@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberDoubt" table="member_doubt">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">提问用户</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bid" type="integer" column="bid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">对应标id</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="debtId" type="integer" column="debt_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">债权转让子ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="serviceId" type="integer" column="service_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">回复客服ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">问题类型：0项目提问，1页面提问|留言，2资产包提问</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="path" type="string" column="path" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">提问|留言页面地址，例如home_project_info</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">留言标题</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="content" type="string" column="content" length="500" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">问题内容</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="reply" type="string" column="reply" length="500" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">客服回复</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">提问时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="replyTime" type="integer" column="reply_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">回复时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

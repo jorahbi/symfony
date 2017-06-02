@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\OfflineCallLog" table="offline_call_log">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="pid" type="integer" column="pid" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">关联的父类id(对应offlinelist 表)</option>
+      </options>
+    </field>
+    <field name="callTime" type="string" column="call_time" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">通话时间</option>
+      </options>
+    </field>
+    <field name="callMission" type="string" column="call_mission" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">通话目的</option>
+      </options>
+    </field>
+    <field name="customerDemand" type="string" column="customer_demand" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">客户需求</option>
+      </options>
+    </field>
+    <field name="isDell" type="string" column="is_dell" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">是否促成</option>
+      </options>
+    </field>
+    <field name="other" type="string" column="other" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注(后来重新修改了)</option>
+      </options>
+    </field>
+    <field name="createTime" type="integer" column="create_time" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">创建时间</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

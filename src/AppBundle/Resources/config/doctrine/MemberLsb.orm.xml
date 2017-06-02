@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberLsb" table="member_lsb">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="amount" type="integer" column="amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">影响利是币数量</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="baseAmount" type="integer" column="base_amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">基础利是币</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="vipAmount" type="integer" column="vip_amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">VIP额外利是币</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">获取/使用类型</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">变更时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

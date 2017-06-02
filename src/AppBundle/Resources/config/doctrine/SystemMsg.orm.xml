@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\SystemMsg" table="system_msg">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID，群发为0</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">消息标题</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="intro" type="string" column="intro" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">消息简介，提供预览作用</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="content" type="text" column="content" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">消息内容</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">发布时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

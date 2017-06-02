@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Mission" table="mission">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">类型：1基本任务...见mission_type.php</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="isActive" type="boolean" column="is_active" nullable="false">
+      <options>
+        <option name="comment">是否激活：0未激活，1已激活</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="param" type="string" column="param" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">关键参数，辅助参数，判断参数</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="title" type="string" column="title" length="200" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">标题</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="intro" type="string" column="intro" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">描述</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="linkUrl" type="string" column="link_url" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">链接地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="status" type="text" column="status" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">json存储，状态种类及按钮细节。每种状态包含3个属性：btn_url按钮链接，btn_name按钮名称，btn_click按钮点击事件</option>
+      </options>
+    </field>
+    <field name="checkFunc" type="string" column="check_func" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">获取状态方法</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="finishFunc" type="string" column="finish_func" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">处理结果方法</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="stime" type="integer" column="stime" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">开始时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="etime" type="integer" column="etime" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">结束时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

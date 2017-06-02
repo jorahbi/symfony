@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ThanksgivingCoupons" table="thanksgiving_coupons">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="href" type="string" column="href" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">红包分享链接</option>
+      </options>
+    </field>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">分享者id</option>
+      </options>
+    </field>
+    <field name="getCouponId" type="string" column="get_coupon_id" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">获取红包id（member_coupons id）</option>
+      </options>
+    </field>
+    <field name="addtime" type="integer" column="addtime" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">链接分享时间</option>
+      </options>
+    </field>
+    <field name="receiver" type="string" column="receiver" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">获取红包用户id</option>
+      </options>
+    </field>
+    <field name="isOpen" type="boolean" column="is_open" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

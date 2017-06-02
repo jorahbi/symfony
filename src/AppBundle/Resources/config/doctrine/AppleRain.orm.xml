@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\AppleRain" table="apple_rain">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="investId" type="integer" column="invest_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">投资记录ID</option>
+      </options>
+    </field>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+      </options>
+    </field>
+    <field name="money" type="decimal" column="money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">现金奖励金额</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">添加记录时间</option>
+      </options>
+    </field>
+    <field name="payTime" type="integer" column="pay_time" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">发放奖励时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="status" type="integer" column="status" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">发放状态: 0:未发放 1:已发放</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="capital" type="decimal" column="capital" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">投资本金</option>
+      </options>
+    </field>
+    <field name="duration" type="integer" column="duration" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">投资期限</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Salary" table="salary">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="month" type="integer" column="month" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">月份，格式：201503</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">类型：1|工资，2|佣金</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="realName" type="string" column="real_name" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">姓名</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userIdcard" type="string" column="user_idcard" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">身份证号码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userPhone" type="string" column="user_phone" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">手机号码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="jobNum" type="string" column="job_num" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">员工工号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="money" type="decimal" column="money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">工资</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="collectOrderNo" type="string" column="collect_order_no" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">代收订单号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="payOrderNo" type="string" column="pay_order_no" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">代付订单号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="comment">状态：1待申请，2待审核，3审核不通过，4已代收，5已代付，6已完成，7已驳回</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注信息</option>
+        <option name="default"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

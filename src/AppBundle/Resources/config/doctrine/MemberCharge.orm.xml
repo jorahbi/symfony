@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberCharge" table="member_charge">
+    <indexes>
+      <index name="u_s" columns="uid,status"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="order_no" columns="order_no"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户id</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="money" type="decimal" column="money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">充值金额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="fee" type="decimal" column="fee" precision="8" scale="2" nullable="false">
+      <options>
+        <option name="comment">手续费</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="userFee" type="decimal" column="user_fee" precision="8" scale="2" nullable="false">
+      <options>
+        <option name="comment">用户承担的手续费</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="orderNo" type="string" column="order_no" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">订单号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">充值时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="payTime" type="integer" column="pay_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">充值成功时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="accountType" type="string" column="account_type" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">账户类型[SAVING_POT:存钱罐; BASIC:基本户]</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="payMethod" type="boolean" column="pay_method" nullable="false">
+      <options>
+        <option name="comment">支付方式[1:网银支付; 2:绑定支付;]</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bankCode" type="string" column="bank_code" length="15" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">银行代码</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="comment">1|未完成，2|成功，3|失败</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addIp" type="string" column="add_ip" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">IP地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="client" type="boolean" column="client" nullable="false">
+      <options>
+        <option name="comment">1:web,2:android,3:ios,4:wap,5:weixin</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

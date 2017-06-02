@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberInfo" table="member_info">
+    <indexes>
+      <index name="birthday_y" columns="birthday_year"/>
+      <index name="birthday_m" columns="birthday_month"/>
+      <index name="birthday_d" columns="birthday_day"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="uid" columns="uid"/>
+    </unique-constraints>
+    <id name="uid" type="integer" column="uid">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="sex" type="string" column="sex" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">性别</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="marry" type="string" column="marry" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">婚姻状况：未婚|未婚,已婚|已婚</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="education" type="string" column="education" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">最高学历</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="income" type="string" column="income" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">月收入</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="address" type="string" column="address" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">居住地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="birthday" type="date" column="birthday" nullable="false">
+      <options>
+        <option name="comment">生日YYYY-MM-DD</option>
+        <option name="default">0000-00-00</option>
+      </options>
+    </field>
+    <field name="birthdayYear" type="smallint" column="birthday_year" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">生日-年</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="birthdayMonth" type="smallint" column="birthday_month" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">生日-月</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="birthdayDay" type="smallint" column="birthday_day" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">生日-日</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="homeplace" type="string" column="homeplace" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">出生地</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="school" type="string" column="school" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">毕业学校</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="company" type="string" column="company" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">公司</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="occupation" type="string" column="occupation" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">职业</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="position" type="string" column="position" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">职位</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="regTime" type="integer" column="reg_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">注册时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="regIp" type="string" column="reg_ip" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">注册ip</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="regAddr" type="string" column="reg_addr" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">注册地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="regWay" type="string" column="reg_way" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">注册渠道</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="regKeyword" type="string" column="reg_keyword" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">注册关键词</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="qaId" type="integer" column="qa_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">安全问题A的ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="qaAnswer" type="string" column="qa_answer" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">安全问题A的回答</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="qbId" type="integer" column="qb_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">安全问题B的ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="qbAnswer" type="string" column="qb_answer" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">安全问题B的回答</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="signTotal" type="integer" column="sign_total" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">主站累计签到总次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="signMaxContinue" type="integer" column="sign_max_continue" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">主站最高连续签到次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="signNowContinue" type="integer" column="sign_now_continue" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">主站当前连续签到次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bbsSignTotal" type="integer" column="bbs_sign_total" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">论坛签到总次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bbsSignMaxContinue" type="integer" column="bbs_sign_max_continue" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">论坛签到最高连续次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bbsSignNowContinue" type="integer" column="bbs_sign_now_continue" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">论坛当前连续签到次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="signature" type="string" column="signature" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">个性签名</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="serviceTime" type="integer" column="service_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">客服最新分配时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="mikaUid" type="integer" column="mika_uid" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">米咔渠道用户id</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="mikaZid" type="integer" column="mika_zid" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">米咔渠道联盟ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="callCno" type="integer" column="call_cno" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">首次拨打电话的客服工号</option>
+      </options>
+    </field>
+    <field name="userTag" type="string" column="user_tag" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">JC-000，未分类；JC-001，内部推荐；JC-002，注册用户；JC-003，半僵尸用户；JC-004，僵尸用户；JC-005，内部员工；JC-006，线下客户</option>
+      </options>
+    </field>
+    <field name="investTag" type="string" column="invest_tag" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">销售标签</option>
+      </options>
+    </field>
+    <field name="appointmentTime" type="integer" column="appointment_time" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">销售顾问预约时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="investTagId" type="integer" column="invest_tag_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">销售标签id。0、待处理，1、再处理，2、已关闭</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

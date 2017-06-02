@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Members" table="members">
+    <indexes>
+      <index name="user_type" columns="user_type"/>
+      <index name="user_integral" columns="user_integral"/>
+      <index name="user_phone" columns="user_phone"/>
+      <index name="user_name" columns="user_name"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userName" type="string" column="user_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">账号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="nickName" type="string" column="nick_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">昵称（中文、英文、数字）</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="realName" type="string" column="real_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">真实姓名</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userPass" type="string" column="user_pass" length="32" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+        <option name="comment">登陆密码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="dealPass" type="string" column="deal_pass" length="32" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+        <option name="comment">交易密码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="appDealPass" type="string" column="app_deal_pass" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">移动端交易密码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userEmail" type="string" column="user_email" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">用户邮箱</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userPhone" type="string" column="user_phone" length="11" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">手机号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userAge" type="boolean" column="user_age" nullable="true">
+      <options>
+        <option name="comment">用户年龄</option>
+      </options>
+    </field>
+    <field name="userIdcard" type="string" column="user_idcard" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">用户证件号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="userIdcardType" type="boolean" column="user_idcard_type" nullable="false">
+      <options>
+        <option name="comment">用户证件类型</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="userGrowth" type="integer" column="user_growth" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户成长值</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="userIntegral" type="integer" column="user_integral" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">积分</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="userExperience" type="boolean" column="user_experience" nullable="false">
+      <options>
+        <option name="comment">是否投资过体验标&#13;
+1:已投&#13;
+0：未投</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="userNovice" type="boolean" column="user_novice" nullable="true">
+      <options>
+        <option name="comment">新手标1：已投，0:未投</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="userType" type="boolean" column="user_type" nullable="false">
+      <options>
+        <option name="comment">1:普通用户,2:学生,3:企业账号,4:非大陆用户</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="userHead" type="string" column="user_head" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">用户头像</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="vipLevel" type="boolean" column="vip_level" nullable="false">
+      <options>
+        <option name="comment">vip等级</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="vipTime" type="integer" column="vip_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">vip期限</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bbsLevelId" type="integer" column="bbs_level_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">论坛等级</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bbsExp" type="integer" column="bbs_exp" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">论坛经验值</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="accountMoney" type="decimal" column="account_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">用户余额，用于非精确统计，业务计算需通过接口获取余额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="receiveMoney" type="decimal" column="receive_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">回款池</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="recommend" type="string" column="recommend" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">推荐人编号,会员为jc000,线下销售为lsf000格式</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="friendId" type="integer" column="friend_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">推荐好友ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="idStatus" type="boolean" column="id_status" nullable="false">
+      <options>
+        <option name="comment">开户状态：0|未开户，1|已开户，2|已实名，3|已绑定手机</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="emailStatus" type="boolean" column="email_status" nullable="false">
+      <options>
+        <option name="comment">邮箱验证0:未验证,1:通过</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="accountStatus" type="boolean" column="account_status" nullable="false">
+      <options>
+        <option name="comment">状态：0正常，1冻结</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="weixinStatus" type="boolean" column="weixin_status" nullable="false">
+      <options>
+        <option name="comment">是否绑定微信</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="questionStatus" type="boolean" column="question_status" nullable="false">
+      <options>
+        <option name="comment">安全问题状态：0未设置1已设置</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="client" type="integer" column="client" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">注册方式0:老平台导入,1:web,2:android,3:ios,4:wap...见client_type.php</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="serviceId" type="integer" column="service_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">客服id(关联lzh_admin的id)</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="investmentAdviserId" type="integer" column="investment_adviser_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">投资顾问id(关联admin表id)</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="qqId" type="string" column="qq_id" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">QQ的open_id</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="wxId" type="string" column="wx_id" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">微信的open_id</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="loginProtect" type="boolean" column="login_protect" nullable="false">
+      <options>
+        <option name="comment">是否开启登录保护 1开启，0不开启</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="loginErrorNum" type="boolean" column="login_error_num" nullable="false">
+      <options>
+        <option name="comment">登录错误次数，大于6次就需要手工解冻</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="loginNum" type="integer" column="login_num" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">成功登录次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="memberStatus" type="boolean" column="member_status" nullable="false">
+      <options>
+        <option name="comment">客服状态0默认1新客户2意向客户3潜在客户4成交客户5无效客户6无效号码</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="lastTime" type="integer" column="last_time" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">最后通话时间</option>
+      </options>
+    </field>
+    <field name="sinaPasswd" type="boolean" column="sina_passwd" nullable="true">
+      <options>
+        <option name="comment">设置新浪交易密码</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="investNum" type="integer" column="invest_num" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="gesture" type="string" column="gesture" length="9" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="advertisement" type="boolean" column="Advertisement" nullable="false">
+      <options>
+        <option name="comment">0代表不是广告，1是广告进入</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

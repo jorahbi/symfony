@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\WheelPrize" table="wheel_prize">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="prizeName" type="string" column="prize_name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">奖品名称</option>
+      </options>
+    </field>
+    <field name="groupId" type="integer" column="group_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">奖品分组</option>
+      </options>
+    </field>
+    <field name="groupName" type="string" column="group_name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">分组名</option>
+      </options>
+    </field>
+    <field name="prizeRate" type="integer" column="prize_rate" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">概率（总和10000）</option>
+      </options>
+    </field>
+    <field name="isTransfer" type="integer" column="is_transfer" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">是否可转让</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="isEnable" type="integer" column="is_enable" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">是否启用</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="prizeIcon" type="string" column="prize_icon" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">奖品图标</option>
+      </options>
+    </field>
+    <field name="totalPrize" type="integer" column="total_prize" nullable="true">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">剩余奖品数量</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="dailyPrize" type="integer" column="daily_prize" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">每日奖品数量</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="resultInfo" type="string" column="result_info" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">获得奖励的提示信息</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\AdminLog" table="admin_log">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="aid" type="integer" column="aid" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">admin id</option>
+      </options>
+    </field>
+    <field name="ip" type="string" column="ip" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">IP地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="time" type="integer" column="time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">登录时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="date" type="date" column="date" nullable="true">
+      <options>
+        <option name="comment">Y-m-d</option>
+      </options>
+    </field>
+    <field name="hour" type="string" column="hour" length="5" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">00:00</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

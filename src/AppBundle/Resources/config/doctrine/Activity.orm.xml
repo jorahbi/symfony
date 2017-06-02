@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Activity" table="activity">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">标题</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="url" type="string" column="url" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">活动链接地址[非必须]</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="cover" type="string" column="cover" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">封面</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="intro" type="string" column="intro" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">活动简介</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="startTime" type="integer" column="start_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">开始时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="endTime" type="integer" column="end_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">结束时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">发布时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="isShow" type="boolean" column="is_show" nullable="false">
+      <options>
+        <option name="comment">是否显示0：隐藏，1：显示</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">活动类型：见activity_type.php</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="borrowIds" type="string" column="borrow_ids" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">项目IDs，多个项目用逗号分隔</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="click" type="integer" column="click" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="seoTitle" type="string" column="seo_title" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">seo标题</option>
+      </options>
+    </field>
+    <field name="seoDes" type="string" column="seo_des" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">seo简介</option>
+      </options>
+    </field>
+    <field name="seoKwd" type="string" column="seo_kwd" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">seo关键字</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

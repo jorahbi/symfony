@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberCompinfo" table="member_compinfo">
+    <indexes>
+      <index name="u_id" columns="u_id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uId" type="integer" column="u_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">用户ID</option>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="comment">审核状态 0 : 初始; 1 : 提交资质; 2 : 审核通过; 3 : 审核不通过</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="auditOrderNo" type="string" column="audit_order_no" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">审核订单号</option>
+      </options>
+    </field>
+    <field name="contact" type="string" column="contact" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业联系人 - 姓名</option>
+      </options>
+    </field>
+    <field name="fixedTelephone" type="string" column="fixed_telephone" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业联系人 - 固定电话</option>
+      </options>
+    </field>
+    <field name="department" type="string" column="department" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业联系人 - 所在部门</option>
+      </options>
+    </field>
+    <field name="telephone" type="string" column="telephone" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业联系人 - 手机号</option>
+      </options>
+    </field>
+    <field name="email" type="string" column="email" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业联系人 - Email</option>
+      </options>
+    </field>
+    <field name="companyName" type="string" column="company_name" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 公司名称</option>
+      </options>
+    </field>
+    <field name="website" type="string" column="website" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 企业网址</option>
+      </options>
+    </field>
+    <field name="addressProvince" type="string" column="address_province" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="addressCity" type="string" column="address_city" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="addressDistrict" type="string" column="address_district" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="address" type="string" column="address" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 企业地址</option>
+      </options>
+    </field>
+    <field name="licenseNo" type="string" column="license_no" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 执照号</option>
+      </options>
+    </field>
+    <field name="licenseAddress" type="string" column="license_address" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 营业执照所在地</option>
+      </options>
+    </field>
+    <field name="licenseExpireDate" type="string" column="license_expire_date" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 执照过期日（营业期限）</option>
+      </options>
+    </field>
+    <field name="businessScope" type="string" column="business_scope" length="256" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 营业范围</option>
+      </options>
+    </field>
+    <field name="organizationNo" type="string" column="organization_no" length="32" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 组织机构代码</option>
+      </options>
+    </field>
+    <field name="summary" type="string" column="summary" length="512" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 企业简介</option>
+      </options>
+    </field>
+    <field name="legalPerson" type="string" column="legal_person" length="32" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 企业法人</option>
+      </options>
+    </field>
+    <field name="certNo" type="string" column="cert_no" length="18" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 法人证件号码</option>
+      </options>
+    </field>
+    <field name="certType" type="string" column="cert_type" length="18" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 证件类型</option>
+      </options>
+    </field>
+    <field name="legalPersonPhone" type="string" column="legal_person_phone" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 法人手机号码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="bankCode" type="string" column="bank_code" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 银行编号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="bankAccountNo" type="string" column="bank_account_no" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 银行卡号</option>
+      </options>
+    </field>
+    <field name="cardType" type="string" column="card_type" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 卡类型</option>
+      </options>
+    </field>
+    <field name="cardAttribute" type="string" column="card_attribute" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 卡属性</option>
+      </options>
+    </field>
+    <field name="province" type="string" column="province" length="128" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 开户行省份</option>
+      </options>
+    </field>
+    <field name="city" type="string" column="city" length="128" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 开户行城市</option>
+      </options>
+    </field>
+    <field name="bankBranch" type="string" column="bank_branch" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 支行名称</option>
+      </options>
+    </field>
+    <field name="filename" type="string" column="fileName" length="32" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 文件名称</option>
+      </options>
+    </field>
+    <field name="digest" type="string" column="digest" length="32" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 文件摘要</option>
+      </options>
+    </field>
+    <field name="digesttype" type="string" column="digestType" length="16" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 文件摘要算法</option>
+      </options>
+    </field>
+    <field name="extendParam" type="string" column="extend_param" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 扩展</option>
+      </options>
+    </field>
+    <field name="auditMessage" type="string" column="audit_message" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">企业信息 - 审核结果的建议</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

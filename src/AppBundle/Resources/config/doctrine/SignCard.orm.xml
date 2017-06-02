@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\SignCard" table="sign_card">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="signDay" type="integer" column="sign_day" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">补签的日期，例如20150511</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">获得时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="endTime" type="integer" column="end_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">截止时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="useTime" type="integer" column="use_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">使用时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="useMonth" type="integer" column="use_month" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">使用时间的月份，例如201505</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

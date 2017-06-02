@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\AppPopup" table="app_popup">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="startTime" type="integer" column="start_time" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">开始时间</option>
+      </options>
+    </field>
+    <field name="endTime" type="integer" column="end_time" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">结束时间</option>
+      </options>
+    </field>
+    <field name="imgUrl" type="string" column="img_url" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="appInterface" type="integer" column="app_interface" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">1: 首页 2:理财 3:账户 4:更多</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

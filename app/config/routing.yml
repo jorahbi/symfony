@@ -1,0 +1,29 @@
+borrow:
+    resource: "@BorrowBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+passport:
+    resource: "@PassportBundle/Controller/"
+    type:     annotation
+    prefix:   /passport
+
+
+api:
+    resource: "@ApiBundle/Controller/"
+    type:     annotation
+    prefix:   /api
+
+admin:
+    resource: "@AdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+# home:
+#     resource: "@HomeBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
+
+
+
+

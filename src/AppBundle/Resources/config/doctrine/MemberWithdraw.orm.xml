@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberWithdraw" table="member_withdraw">
+    <indexes>
+      <index name="u_s" columns="uid,status"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="order" columns="order_no"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">会员id</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="money" type="decimal" column="money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">提现金额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="receiveMoney" type="decimal" column="receive_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">提现回款金额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="fee" type="decimal" column="fee" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">提现手续费</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="userFee" type="decimal" column="user_fee" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">用户承担的手续费</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="cardId" type="integer" column="card_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">提现银行卡(关联member_bank的id字段)</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bankCode" type="string" column="bank_code" length="15" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">银行代码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="bankCard" type="string" column="bank_card" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">银行卡号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="comment">1|申请中，2|已申请，3|已审核，4|已划拨，5|资金到账，6|失败并返还金额</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="orderNo" type="string" column="order_no" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">订单号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="freezeNo" type="string" column="freeze_no" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">冻结订单号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="opApply" type="integer" column="op_apply" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">申请操作员</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="opVerify" type="integer" column="op_verify" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">审核操作员</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="opConfirm" type="integer" column="op_confirm" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">划拨操作员</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">提现时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="applyTime" type="integer" column="apply_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">后台申请时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="verifyTime" type="integer" column="verify_time" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">后台审核时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="confirmTime" type="integer" column="confirm_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">后台划账时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="payTime" type="integer" column="pay_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">提现到账时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="client" type="boolean" column="client" nullable="false">
+      <options>
+        <option name="comment">1:web,2:android,3:wap,4:ios,5:weixin</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="serviceId" type="integer" column="service_id" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">客服ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

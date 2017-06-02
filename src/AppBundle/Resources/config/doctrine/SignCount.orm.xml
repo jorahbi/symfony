@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\SignCount" table="sign_count">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="month" type="integer" column="month" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">日期格式：年月201502</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="totalNum" type="integer" column="total_num" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">本月累计签到次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="continueNum" type="integer" column="continue_num" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">本月连续签到次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="getTotal" type="string" column="get_total" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">json格式{event_id:1}</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="getContinue" type="string" column="get_continue" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">json格式{event_id:1}</option>
+        <option name="default"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} 
+{% block body %}
+<h1>params: {{ params  }}</h1> 
+<h2>相对url: {{ path('example_show', {'slug': params}) }}</h2>
+<h2>绝对url: {{ url('example_show', {'slug': params}) }}</h2>
+{% endblock %} 
+{% block javascripts %}
+<script type="text/javascript">
+/*var url = Routing.generate(
+    'blog_show', {
+        "slug": 'my-blog-post'
+    }
+);
+console.log(url);*/
+</script>
+{% endblock %}

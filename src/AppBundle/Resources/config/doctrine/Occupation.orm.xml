@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Occupation" table="occupation">
+    <id name="id" type="bigint" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="code" type="string" column="code" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">行业代码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="name" type="string" column="name" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">行业类别名称</option>
+      </options>
+    </field>
+    <field name="descrition" type="text" column="descrition" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">行业描述</option>
+      </options>
+    </field>
+    <field name="pcode" type="string" column="pcode" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">上一级行业代码</option>
+      </options>
+    </field>
+    <field name="createtime" type="datetime" column="createTime" nullable="true">
+      <options>
+        <option name="comment">创建时间</option>
+      </options>
+    </field>
+    <field name="updatetime" type="datetime" column="updateTime" nullable="true">
+      <options>
+        <option name="comment">更改时间</option>
+      </options>
+    </field>
+    <field name="vision" type="integer" column="vision" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">版本号</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

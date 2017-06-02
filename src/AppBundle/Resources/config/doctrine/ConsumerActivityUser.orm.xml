@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\ConsumerActivityUser" table="consumer_activity_user">
+    <id name="int" type="integer" column="int">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">用户id</option>
+      </options>
+    </field>
+    <field name="totalBoxNum" type="integer" column="total_box_num" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">宝盒总数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="toalHammerNum" type="integer" column="toal_hammer_num" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">铁锤敲打总次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="usedBoxNum" type="integer" column="used_box_num" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">已用过的宝盒总数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="usedHammerNum" type="integer" column="used_hammer_num" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">已用过的铁锤次数</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="lastSignDate" type="integer" column="last_sign_date" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">最近签到检测时间(非签到时间)</option>
+      </options>
+    </field>
+    <field name="signBoxNum" type="integer" column="sign_box_num" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">签到获取宝盒数量</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

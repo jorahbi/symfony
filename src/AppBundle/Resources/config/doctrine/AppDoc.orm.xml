@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\AppDoc" table="app_doc">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">接口标题</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="url" type="string" column="url" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">测试链接地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="param" type="text" column="param" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">接口参数</option>
+      </options>
+    </field>
+    <field name="secret" type="text" column="secret" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">需要加密的参数，用逗号隔开</option>
+      </options>
+    </field>
+    <field name="status" type="string" column="status" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">接口返回状态码</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="data" type="text" column="data" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">接口返回数据</option>
+      </options>
+    </field>
+    <field name="content" type="text" column="content" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">说明内容</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">类型：0文档1接口</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">添加时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="editTime" type="integer" column="edit_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">修改时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

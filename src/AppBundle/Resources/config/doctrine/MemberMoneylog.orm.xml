@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberMoneylog" table="member_moneylog">
+    <indexes>
+      <index name="add_time" columns="add_time"/>
+      <index name="uid" columns="uid,type,id"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="bid" type="integer" column="bid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">标ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="tid" type="integer" column="tid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">操作数据ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="type" type="boolean" column="type" nullable="false">
+      <options>
+        <option name="comment">类型</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="affectMoney" type="decimal" column="affect_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">影响金额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="affectReceiveMoney" type="decimal" column="affect_receive_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">影响回款池余额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="receiveMoney" type="decimal" column="receive_money" precision="15" scale="2" nullable="false">
+      <options>
+        <option name="comment">回款池余额</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">添加时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addIp" type="string" column="add_ip" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">操作IP</option>
+        <option name="default"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

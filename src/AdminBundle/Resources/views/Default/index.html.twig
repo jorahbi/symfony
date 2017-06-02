@@ -1,0 +1,312 @@
+{% extends 'admin/default/default.html.twig' %}
+{% block title %} default {% endblock %}
+{% block body %}
+
+<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    Widget settings form goes here
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn blue">Save changes</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <!-- BEGIN PAGE TITLE -->
+        <div class="page-title">
+            <h1>Ajax Datatables <small>basic datatable samples</small></h1>
+        </div>
+        <!-- END PAGE TITLE -->
+        <!-- BEGIN PAGE TOOLBAR -->
+        <div class="page-toolbar">
+            <!-- BEGIN THEME PANEL -->
+            <div class="btn-group btn-theme-panel">
+                <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-settings"></i>
+                </a>
+                <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <h3>主题</h3>
+                            <ul class="theme-colors">
+                                <li class="theme-color theme-color-default active" data-theme="default">
+                                    <span class="theme-color-view"></span>
+                                    <span class="theme-color-name">深色页眉</span>
+                                </li>
+                                <li class="theme-color theme-color-light" data-theme="light">
+                                    <span class="theme-color-view"></span>
+                                    <span class="theme-color-name">明亮页眉</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                            <h3>布局</h3>
+                            <ul class="theme-settings">
+                                <li>
+                                    主题风格
+                                    <select class="layout-style-option form-control input-small input-sm">
+                                        <option value="square">方角边风格</option>
+                                        <option value="rounded" selected="selected">圆角边风格</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    界面布局
+                                    <select class="layout-option form-control input-small input-sm">
+                                        <option value="fluid" selected="selected">自适应</option>
+                                        <option value="boxed">固宽剧中</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    页眉
+                                    <select class="page-header-option form-control input-small input-sm">
+                                        <option value="fixed" selected="selected">固定</option>
+                                        <option value="default">滚动</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    页眉下拉菜单样式
+                                    <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+                                        <option value="light">明亮</option>
+                                        <option value="dark" selected="selected">深色</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    侧边栏停靠
+                                    <select class="sidebar-option form-control input-small input-sm">
+                                        <option value="fixed">固定</option>
+                                        <option value="default" selected="selected">滚动</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    菜单展现方式
+                                    <select class="sidebar-menu-option form-control input-small input-sm">
+                                        <option value="accordion" selected="selected">手风琴</option>
+                                        <option value="hover">悬停</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    侧边栏位置
+                                    <select class="sidebar-pos-option form-control input-small input-sm">
+                                        <option value="left" selected="selected">左侧</option>
+                                        <option value="right">右侧</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    页脚
+                                    <select class="page-footer-option form-control input-small input-sm">
+                                        <option value="fixed">固定</option>
+                                        <option value="default" selected="selected">滚动</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END THEME PANEL -->
+        </div>
+        <!-- END PAGE TOOLBAR -->
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE BREADCRUMB -->
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="index.html">主页</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="table_ajax.html#">Data Tables</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="table_ajax.html#">Ajax 数据表格</a>
+        </li>
+    </ul>
+    <!-- END PAGE BREADCRUMB -->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN PAGE CONTENT-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="note note-danger note-shadow">
+                <p>
+                    NOTE: The below datatable is not connected to a real database so the filter and sorting is just simulated for demo purposes only.
+                </p>
+            </div>
+            <!-- Begin: life time stats -->
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift font-green-sharp"></i>
+                        <span class="caption-subject font-green-sharp bold uppercase">Record Listing</span>
+                        <span class="caption-helper">manage records...</span>
+                    </div>
+                    <div class="actions">
+                        <a href="table_ajax.html#" class="btn btn-default btn-circle">
+                            <i class="fa fa-plus"></i>
+                            <span class="hidden-480">
+                    New Order </span>
+                        </a>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-circle" href="table_ajax.html#" data-toggle="dropdown">
+                                <i class="fa fa-share"></i>
+                                <span class="hidden-480">
+                        Tools </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to Excel </a>
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to CSV </a>
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to XML </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Print Invoices </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-container">
+                        <div class="table-actions-wrapper">
+                            <span>
+                        </span>
+                            <select class="table-group-action-input form-control input-inline input-small input-sm">
+                                <option value="">Select...</option>
+                                <option value="Cancel">Cancel</option>
+                                <option value="Cancel">Hold</option>
+                                <option value="Cancel">On Hold</option>
+                                <option value="Close">Close</option>
+                            </select>
+                            <button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover" id="datatable_ajax"  data-modules="dataTablesAjax" data-ajax-url="table_ajax.php" data-source="test">
+                            <thead>
+                                <tr role="row" class="heading">
+                                    <th width="2%">
+                                        <input type="checkbox" class="group-checkable">
+                                    </th>
+                                    <th width="5%" data-order="test">
+                                        Record&nbsp;#
+                                    </th>
+                                    <th width="15%" data-order="test_id">
+                                        Date
+                                    </th>
+                                    <th width="15%" data-order="date">
+                                        Customer
+                                    </th>
+                                    <th width="10%" data-order="customer">
+                                        Ship&nbsp;To
+                                    </th>
+                                    <th width="10%" data-order="ship">
+                                        Price
+                                    </th>
+                                    <th width="10%" data-order="price">
+                                        Amount
+                                    </th>
+                                    <th width="10%">
+                                        Status
+                                    </th>
+                                    <th width="10%">
+                                        Actions
+                                    </th>
+                                </tr>
+                                <tr role="row" class="filter">
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="test_id">
+                                    </td>
+                                    <td>
+                                        <div class="input-group date date-picker margin-bottom-5" data-date-format="dd/mm/yyyy">
+                                            <input type="text" class="form-control form-filter input-sm" readonly name="date_from" placeholder="From">
+                                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                                        </div>
+                                        <div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
+                                            <input type="text" class="form-control form-filter input-sm" readonly name="date_to" placeholder="To">
+                                            <span class="input-group-btn">
+                                <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
+                                </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="customer_name">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-filter input-sm" name="ship_to">
+                                    </td>
+                                    <td>
+                                        <div class="margin-bottom-5">
+                                            <input type="text" class="form-control form-filter input-sm" name="price_from" placeholder="From" />
+                                        </div>
+                                        <input type="text" class="form-control form-filter input-sm" name="price_to" placeholder="To" />
+                                    </td>
+                                    <td>
+                                        <div class="margin-bottom-5">
+                                            <input type="text" class="form-control form-filter input-sm margin-bottom-5 clearfix" name="quantity_from" placeholder="From" />
+                                        </div>
+                                        <input type="text" class="form-control form-filter input-sm" name="quantity_to" placeholder="To" />
+                                    </td>
+                                    <td>
+                                        <select name="status" class="form-control form-filter input-sm">
+                                            <option value="">Select...</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="closed">Closed</option>
+                                            <option value="hold">On Hold</option>
+                                            <option value="fraud">Fraud</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="margin-bottom-5">
+                                            <button class="btn btn-sm yellow filter-submit margin-bottom"><i class="fa fa-search"></i> 搜索</button>
+                                        </div>
+                                        <button class="btn btn-sm red filter-cancel"><i class="fa fa-times"></i> Reset</button>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- End: life time stats -->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT-->
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
+		    //console.log(Core);
+		});
+	</script>
+{% endblock %}

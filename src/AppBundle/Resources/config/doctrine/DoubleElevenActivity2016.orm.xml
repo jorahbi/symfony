@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\DoubleElevenActivity2016" table="double_eleven_activity_2016">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">用户id</option>
+      </options>
+    </field>
+    <field name="totalMoney" type="decimal" column="total_money" precision="15" scale="0" nullable="true">
+      <options>
+        <option name="comment">活动总金额</option>
+      </options>
+    </field>
+    <field name="maxMoney" type="decimal" column="max_money" precision="15" scale="0" nullable="true">
+      <options>
+        <option name="comment">个人最大投资金额</option>
+      </options>
+    </field>
+    <field name="userPhone" type="string" column="user_phone" length="11" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">用户手机号码</option>
+      </options>
+    </field>
+    <field name="isPaid" type="integer" column="is_paid" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">是否已代付。0：未代付；1：已代付</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="isCashBack" type="integer" column="is_cash_back" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">是否已返现。0：未返现；1：已返现</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="payLevel" type="integer" column="pay_level" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">代付等级。1、爵小二（8元以内商品）；2、刘东东（28元以内商品）；3、王聪聪（48元以内商品）；4、李诚诚（258元以内商品）；5、马云云（558元以内商品）</option>
+      </options>
+    </field>
+    <field name="cash" type="decimal" column="cash" precision="15" scale="0" nullable="true">
+      <options>
+        <option name="comment">返现金额</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

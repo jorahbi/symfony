@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\MemberGrowth" table="member_growth">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="tid" type="integer" column="tid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">获取成长值对应记录，如投资记录，发帖、回帖记录ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="getType" type="boolean" column="get_type" nullable="false">
+      <options>
+        <option name="comment">获取类型,详见growth_get_type</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="amount" type="integer" column="amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">应获成长值</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="affectAmount" type="integer" column="affect_amount" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="comment">实际影响成长值</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="todayAmount" type="integer" column="today_amount" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">当日获得成长值总额</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="vipLevel" type="boolean" column="vip_level" nullable="false">
+      <options>
+        <option name="comment">当前VIP等级</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">获得时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addDate" type="integer" column="add_date" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">获得日期Ymd格式</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

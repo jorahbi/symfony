@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\OfflineInvest" table="offline_invest">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">用户ID</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="capital" type="decimal" column="capital" precision="10" scale="2" nullable="false">
+      <options>
+        <option name="comment">理财本金</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="borrowName" type="string" column="borrow_name" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">理财项目</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="duration" type="string" column="duration" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">理财期限</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="rate" type="decimal" column="rate" precision="10" scale="2" nullable="false">
+      <options>
+        <option name="comment">年利率</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="repayType" type="string" column="repay_type" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">还款方式</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="keepFee" type="decimal" column="keep_fee" precision="10" scale="2" nullable="false">
+      <options>
+        <option name="comment">保管费用</option>
+        <option name="default">0.00</option>
+      </options>
+    </field>
+    <field name="bankCardNo" type="string" column="bank_card_no" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">银行卡号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="bankName" type="string" column="bank_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">银行名称</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="bankSubName" type="string" column="bank_sub_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">支行名称</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="fullTime" type="integer" column="full_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">计息日期</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="deadline" type="integer" column="deadline" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">到期日期</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="deadmonth" type="integer" column="deadmonth" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">截止月份</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="comment">状态：1|待审核，2|审核通过，3|审核失败</option>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="info" type="string" column="info" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">备注</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="investImg" type="string" column="invest_img" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">电子资料</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="pactImg" type="text" column="pact_img" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">合同图片集</option>
+      </options>
+    </field>
+    <field name="pactImgV" type="text" column="pact_img_v" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">合同图片集缓存版本号</option>
+      </options>
+    </field>
+    <field name="pactPdf" type="string" column="pact_pdf" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">正式合同</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="contectEmail" type="string" column="contect_email" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">邮件地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="contectPhone" type="string" column="contect_phone" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">联系手机</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="contectReceiver" type="string" column="contect_receiver" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">邮寄收件人</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="contectAddr" type="string" column="contect_addr" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">邮寄地址</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="collection" type="boolean" column="collection" nullable="false">
+      <options>
+        <option name="comment">业务代收：1|是，2|否</option>
+        <option name="default">2</option>
+      </options>
+    </field>
+    <field name="agreementNo" type="string" column="agreement_no" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">协议编号</option>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="tTime" type="integer" column="t_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">T日，客户充值到账日</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="addTime" type="integer" column="add_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="comment">订单提交时间</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>
