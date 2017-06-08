@@ -9,11 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 销售管理
  */
 
-class ArticleController extends Controller
+class SaleController extends Controller
 {
     /**
      * 佣金列表
-     * @Route("/")
+     * @Route("sale/index", name="sale_index")
      */
     public function indexAction()
     {
@@ -22,61 +22,46 @@ class ArticleController extends Controller
 
     /**
      * 业绩列表
-     * @return ModelAndView
+     * @Route("sale/achievement", name="sale_achievement")
      */
-    @RequestMapping("achievement")
-    public ModelAndView achievement()
+    public function achievementAction()
     {
-        return new ModelAndView();
-    }
-
-    /**
-     * 佣金列表
-     * @return ModelAndView
-     */
-    @RequestMapping("sale")
-    public ModelAndView sale()
-    {
-        return new ModelAndView();
+        
     }
 
     /**
      * 佣金详细列表
-     * @return ModelAndView
+     * @Route("sale/saleDetail", name="sale_saleDetail")
      */
-    @RequestMapping("saleDetail")
-    public ModelAndView saleDetail()
+    public function saleDetailAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 团队查询
-     * @return ModelAndView
+     * @Route("sale/team", name="sale_team")
      */
-    @RequestMapping("team")
-    public ModelAndView team()
+    public function teamAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 客服佣金
-     * @return ModelAndView
+     * @Route("sale/staff", name="sale_staff")
      */
-    @RequestMapping("staff")
-    public ModelAndView staff()
+    public function staffAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 客服佣金详细列表
-     * @return ModelAndView
+     * @Route("sale/staffDetail", name="sale_staffDetail")
      */
-    @RequestMapping("staffDetail")
-    public ModelAndView staffDetail()
+    public function staffDetailAction()
     {
-        return new ModelAndView();
+        
     }
 }

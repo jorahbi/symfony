@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 支付管理
  */
 
-class ArticleController extends Controller
+class PayController extends Controller
 {
     /**
      * 活动列表

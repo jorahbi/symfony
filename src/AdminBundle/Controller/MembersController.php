@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 会员管理
  */
 
-class ArticleController extends Controller
+class MembersController extends Controller
 {
     /**
      * 用户列表

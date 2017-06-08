@@ -1,8 +1,8 @@
-# This file is auto-generated during the composer install
+# This file is auto-generated during the composer install #juecaiRefactor
 parameters:
     database_host: 127.0.0.1
     database_port: 3306
-    database_name: juecai-product
+    database_name: test
     database_user: root
     database_password: root
     mailer_transport: smtp
@@ -10,3 +10,4 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 640761e36a410b635e59208e8ae0d072802932e4
+    database_driver: pdo_mysql

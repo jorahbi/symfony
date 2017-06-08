@@ -4,4 +4,7 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     admin.permissionService:
         class: AdminBundle\Services\PermissionService
-        #arguments: ["@service_id", "plain_value", "%parameter%"]
+        arguments: ["@utils.array", "@service_container"]
+       
+        #calls: #set注入
+        #    - [setMailer, ['@app.mailer']]

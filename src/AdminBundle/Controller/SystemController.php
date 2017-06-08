@@ -9,104 +9,95 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 系统管理
  */
 
-class ArticleController extends Controller
+class SystemController extends Controller
 {
     /**
      * 活动列表
      * @Route("/")
      */
-    /*public function indexAction()
+    /*public function indexActionAction()
     {
         return $this->render('AdminBundle:Default:index.html.twig');
     }*/
 
     /**
      * 管理员列表
-     * @return ModelAndView
+     * @Route("system/users", name="system_users")
      */
-    @RequestMapping("users")
-    public ModelAndView users()
+    public function usersAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 禁用管理员列表
-     * @return ModelAndView
+     * @Route("system/disabledUsers", name="system_disabledUsers")
      */
-    @RequestMapping("disabledUsers")
-    public ModelAndView disabledUsers()
+    public function disabledUsersAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 管理员登录日志
-     * @return ModelAndView
+     * @Route("system/operationLog", name="system_operationLog")
      */
-    @RequestMapping("operationLog")
-    public ModelAndView operationLog()
+    public function operationLogAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 管理员管理
-     * @return ModelAndView
+     * @Route("system/manager", name="system_manager")
      */
-    @RequestMapping("manager")
-    public ModelAndView manager()
+    public function managerAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 部门管理
-     * @return ModelAndView
+     * @Route("system/department", name="system_department")
      */
-    @RequestMapping("department")
-    public ModelAndView department()
+    public function departmentAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 职位管理
-     * @return ModelAndView
+     * @Route("system/position", name="system_position")
      */
-    @RequestMapping("position")
-    public ModelAndView position()
+    public function positionAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 消息列表
-     * @return ModelAndView
+     * @Route("system/message", name="system_message")
      */
-    @RequestMapping("message")
-    public ModelAndView message()
+    public function messageAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 发送消息
-     * @return ModelAndView
+     * @Route("system/pushMsg", name="system_pushMsg")
      */
-    @RequestMapping("pushMsg")
-    public ModelAndView pushMsg()
+    public function pushMsgAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 清除数据缓存
-     * @return ModelAndView
+     * @Route("system/cleanData", name="system_cleanData")
      */
-    @RequestMapping("cleanData")
-    public ModelAndView cleanData()
+    public function cleanDataAction()
     {
-        return new ModelAndView();
+        
     }
 }

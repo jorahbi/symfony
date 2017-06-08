@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 项目管理
  */
 
-class ArticleController extends Controller
+class ProjectController extends Controller
 {
     /**
      * 活动列表
@@ -24,143 +24,143 @@ class ArticleController extends Controller
      * 创建新项目
      * @Route("project/borrow", name="project_borrow")
      */
-    public ModelAndView borrow()
+    public function borrowAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 项目详情
      * @Route("project/borrowDetail", name="project_borrowDetail")
      */
-    public ModelAndView borrowDetail()
+    public function borrowDetailAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 待审核借款
      * @Route("project/waits", name="project_waits")
      */
-    public ModelAndView waits()
+    public function waitsAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 投标中的借款
      * @Route("project/ongoing", name="project_ongoing")
      */
-    public ModelAndView ongoing()
+    public function ongoingAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 已完成的借款
      * @Route("project/complete", name="project_complete")
      */
-    public ModelAndView complete()
+    public function completeAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 还款中的借款
      * @Route("project/repaying", name="project_repaying")
      */
-    public ModelAndView repaying()
+    public function repayingAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 已流标的借款
      * @Route("project/failed", name="project_failed")
      */
-    public ModelAndView failed()
+    public function failedAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 费用规则
      * @Route("project/money", name="project_money")
      */
-    public ModelAndView money()
+    public function moneyAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 添加费用规则
      * @Route("project/addMoney", name="project_addMoney")
      */
-    public ModelAndView addMoney()
+    public function addMoneyAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 奖励规则
      * @Route("project/award", name="project_award")
      */
-    public ModelAndView award()
+    public function awardAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 添加奖励规则
      * @Route("project/addAward", name="project_addAward")
      */
-    public ModelAndView addAward()
+    public function addAwardAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 资产包管理
      * @Route("project/box", name="project_box")
      */
-    public ModelAndView box()
+    public function boxAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 创建资产包
      * @Route("project/addBox", name="project_addBox")
      */
-    public ModelAndView addBox()
+    public function addBoxAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 项目到期数据
      * @Route("project/endTime", name="project_endTime")
      */
-    public ModelAndView endTime()
+    public function endTimeAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 投资人还款详情汇总
      * @Route("project/investRepay", name="project_investRepay")
      */
-    public ModelAndView investRepay()
+    public function investRepayAction()
     {
-        return new ModelAndView();
+        
     }
 
     /**
      * 借款人还款详情汇总
      * @Route("project/loanRepay", name="project_loanRepay")
      */
-    public ModelAndView loanRepay()
+    public function loanRepayAction()
     {
-        return new ModelAndView();
+        
     }
 }

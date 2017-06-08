@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
  * 用户注册登录
  */
 
-class ArticleController extends Controller
+class PassportController extends Controller
 {
     /**
      * 活动列表
@@ -24,7 +24,7 @@ class ArticleController extends Controller
      * 用户登录
      * @Route("passport/login", name="passport_login")
      */
-    public function login()
+    public function loginAction()
     {
         
     }
@@ -33,7 +33,7 @@ class ArticleController extends Controller
      * 用户注册
      * @Route("passport/register", name="passport_register")
      */
-    public function register()
+    public function registerAction()
     {
         
     }
@@ -42,7 +42,7 @@ class ArticleController extends Controller
      * 退出登录
      * @Route("passport/loginOut", name="passport_loginOut")
      */
-    public function loginOut()
+    public function loginOutAction()
     {
 
     }
