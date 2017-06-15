@@ -22,7 +22,7 @@ class PayController extends Controller
 
     /**
      * 创建激活会员
-     * @Route("pay/active", name="pay_active")
+     * @Route("pay/active", name="/admin/pay/active")
      */
     public function activeAction()
     {

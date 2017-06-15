@@ -24,7 +24,26 @@ class ArrayService
                 $result[$_item[$key]][] = &$source[$_k];
             else 
                 $result[$_item[$key]] = &$source[$_k];
-            
+        }
+        return $result;
+    }
+
+    /**
+     * 转换key值
+     * @param $source 原数据
+     * @param $key 目标key值
+     * @param $isResultsetArray 是否是二维数组
+     * @return [];
+     */
+	public function &objectChangeKey(Array &$source, $key, $isResultsetArray = false)
+    {
+        $result = [];
+        $getKey = 'get' . ucfirst($key);
+        foreach ($source as $_k => $_item) {
+            if ($isResultsetArray) 
+                $result[$_item->$getKey()][] = &$source[$_k];
+            else 
+                $result[$_item->$getKey()] = &$source[$_k];
         }
         return $result;
     }
@@ -75,33 +94,28 @@ class ArrayService
         return $tree;
 	}
 
-
-	private function _arrayToObject(Array $source, $object)
-	{
-		$newObject = clone $object;
-		foreach (array_keys($source) as $value) 
-		{
-			$setAttribute = 'set' . ucfirst($value);
-			method_exists($newObject, $setAttribute) && $newObject->$setAttribute($source[$value]);
-		}
-		return $newObject;
-	}
-
 	/**
      * 转换key值
      * @param $source 原数据
      * @param $key 目标key值
      * @param $isResultsetArray 是否是二维数组
-     * @return [];
+     * @return [Object];
      */
 	public function &arrayToObject(Array &$source, $object, $key = 'id', $isResultsetArray = false)
     {
         $result = [];
-        foreach ($source as $_k => $_item) {
+        foreach ($source as $_k => $_item) 
+        {
+        	$newObject = clone $object;
+			foreach (array_keys($source) as $value) 
+			{
+				$setAttribute = 'set' . ucfirst($value);
+				method_exists($newObject, $setAttribute) && $newObject->$setAttribute($source[$value]);
+			}
             if ($isResultsetArray) 
-                $result[$_item[$key]][] = $this->_arrayToObject($source[$_k], $object);
+                $result[$_item[$key]][] = $newObject;
             else 
-                $result[$_item[$key]] = $this->_arrayToObject($source[$_k], $object);
+                $result[$_item[$key]] = $newObject;
         }
         return $result;
     }

@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 会员管理
+ * @Route ("/members")
  */
 
 class MembersController extends Controller
 {
     /**
      * 用户列表
-     * @Route("members/index", name="members_index")
+     * @Route("/index", name="/admin/members/index")
      */
     public function indexActionAction()
     {
@@ -22,7 +23,7 @@ class MembersController extends Controller
     
     /**
      * 短信用户列表
-     * @Route("members/msm", name="members_msm")
+     * @Route("/msm", name="/admin/members/msm")
      */
     public function msmAction()
     {
@@ -31,7 +32,7 @@ class MembersController extends Controller
 
     /**
      * 企业用户列表
-     * @Route("members/company", name="members_company")
+     * @Route("/company", name="/admin/members/company")
      */
     public function companyAction()
     {
@@ -40,7 +41,7 @@ class MembersController extends Controller
 
     /**
      * 添加企业用户
-     * @Route("members/addCompany", name="members_addCompany")
+     * @Route("/addCompany", name="/admin/members/addCompany")
      */
     public function addCompanyAction()
     {
@@ -49,7 +50,7 @@ class MembersController extends Controller
 
     /**
      * 推广渠道
-     * @Route("members/market", name="members_market")
+     * @Route("/market", name="/admin/members/market")
      */
     public function marketAction()
     {
@@ -58,7 +59,7 @@ class MembersController extends Controller
 
     /**
      * 添加推广渠道
-     * @Route("members/addMarket", name="members_addMarket")
+     * @Route("/addMarket", name="/admin/members/addMarket")
      */
     public function addMarketAction()
     {
@@ -67,7 +68,7 @@ class MembersController extends Controller
 
     /**
      * 推广统计
-     * @Route("members/marketDetail", name="members_marketDetail")
+     * @Route("/marketDetail", name="/admin/members/marketDetail")
      */
     public function marketDetailAction()
     {
@@ -76,7 +77,7 @@ class MembersController extends Controller
 
     /**
      * 删除推广渠道
-     * @Route("members/delMarket", name="members_delMarket")
+     * @Route("/delMarket", name="/admin/members/delMarket")
      */
     public function delMarketAction()
     {
@@ -85,7 +86,7 @@ class MembersController extends Controller
 
     /**
      * 生成二维码
-     * @Route("members/qrcode", name="members_qrcode")
+     * @Route("/qrcode", name="/admin/members/qrcode")
      */
     public function qrcodeAction()
     {
@@ -94,7 +95,7 @@ class MembersController extends Controller
 
     /**
      * vip客户管理
-     * @Route("members/vip", name="members_vip")
+     * @Route("/vip", name="/admin/members/vip")
      */
     public function vipAction()
     {
@@ -103,7 +104,7 @@ class MembersController extends Controller
 
     /**
      * vip续期
-     * @Route("members/vipRenewal", name="members_vipRenewal")
+     * @Route("/vipRenewal", name="/admin/members/vipRenewal")
      */
     public function vipRenewalAction()
     {

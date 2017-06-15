@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 数据中心
+ * @Route ("/data")
  */
 
 class DataController extends Controller
 {
     /**
      * 商家推广数据列表
-     * @Route("data/index", name="data_index")
+     * @Route("/index", name="/admin/data/index")
      */
     public function indexAction()
     {
@@ -22,7 +23,7 @@ class DataController extends Controller
     
     /**
      * 资金数据列表
-     * @Route("data/money", name="data_money")
+     * @Route("/money", name="/admin/data/money")
      */
     public function moneyAction()
     {
@@ -31,7 +32,7 @@ class DataController extends Controller
 
     /**
      * 资金综合数据
-     * @Route("data/overallMoney", name="data_overallMoney")
+     * @Route("/overallMoney", name="/admin/data/overallMoney")
      */
     public function overallMoneyAction()
     {
@@ -40,7 +41,7 @@ class DataController extends Controller
 
     /**
      * 数据分析
-     * @Route("data/operate", name="data_operate")
+     * @Route("/operate", name="/admin/data/operate")
      */
     public function operateAction()
     {
@@ -49,7 +50,7 @@ class DataController extends Controller
 
     /**
      * 登录统计
-     * @Route("data/loginCount", name="data_loginCount")
+     * @Route("/loginCount", name="/admin/data/loginCount")
      */
     public function loginCountAction()
     {
@@ -58,7 +59,7 @@ class DataController extends Controller
 
     /**
      * 我的情况回访表
-     * @Route("data/visit", name="data_visit")
+     * @Route("/visit", name="/admin/data/visit")
      */
     public function visitAction()
     {
@@ -67,7 +68,7 @@ class DataController extends Controller
 
     /**
      * 今日回访表
-     * @Route("data/visitDay", name="data_visitDay")
+     * @Route("/visitDay", name="/admin/data/visitDay")
      */
     public function visitDayAction()
     {
@@ -76,7 +77,7 @@ class DataController extends Controller
 
     /**
      * 客服拔打名单
-     * @Route("data/staffVisit", name="data_staffVisit")
+     * @Route("/staffVisit", name="/admin/data/staffVisit")
      */
     public function staffVisitAction()
     {
@@ -85,7 +86,7 @@ class DataController extends Controller
 
     /**
      * 销售顾问拔打名单
-     * @Route("data/adviserVisit", name="data_adviserVisit")
+     * @Route("/adviserVisit", name="/admin/data/adviserVisit")
      */
     public function adviserVisitAction()
     {
@@ -94,7 +95,7 @@ class DataController extends Controller
 
     /**
      * 再分配顾客名单
-     * @Route("data/revisit", name="data_revisit")
+     * @Route("/revisit", name="/admin/data/revisit")
      */
     public function revisitAction()
     {
@@ -103,7 +104,7 @@ class DataController extends Controller
 
     /**
      * 客户投资分析
-     * @Route("data/invest", name="data_invest")
+     * @Route("/invest", name="/admin/data/invest")
      */
     public function investAction()
     {

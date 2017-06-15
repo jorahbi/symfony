@@ -7,22 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 系统管理
+ * @Route ("/system")
  */
 
 class SystemController extends Controller
 {
     /**
-     * 活动列表
-     * @Route("/")
-     */
-    /*public function indexActionAction()
-    {
-        return $this->render('AdminBundle:Default:index.html.twig');
-    }*/
-
-    /**
      * 管理员列表
-     * @Route("system/users", name="system_users")
+     * @Route("/users", name="/admin/system/users")
      */
     public function usersAction()
     {
@@ -31,7 +23,7 @@ class SystemController extends Controller
 
     /**
      * 禁用管理员列表
-     * @Route("system/disabledUsers", name="system_disabledUsers")
+     * @Route("/disabledUsers", name="/admin/system/disabledUsers")
      */
     public function disabledUsersAction()
     {
@@ -40,7 +32,7 @@ class SystemController extends Controller
 
     /**
      * 管理员登录日志
-     * @Route("system/operationLog", name="system_operationLog")
+     * @Route("/operationLog", name="/admin/system/operationLog")
      */
     public function operationLogAction()
     {
@@ -49,7 +41,7 @@ class SystemController extends Controller
 
     /**
      * 管理员管理
-     * @Route("system/manager", name="system_manager")
+     * @Route("/manager", name="/admin/system/manager")
      */
     public function managerAction()
     {
@@ -58,7 +50,7 @@ class SystemController extends Controller
 
     /**
      * 部门管理
-     * @Route("system/department", name="system_department")
+     * @Route("/department", name="/admin/system/department")
      */
     public function departmentAction()
     {
@@ -67,7 +59,7 @@ class SystemController extends Controller
 
     /**
      * 职位管理
-     * @Route("system/position", name="system_position")
+     * @Route("/position", name="/admin/system/position")
      */
     public function positionAction()
     {
@@ -76,7 +68,7 @@ class SystemController extends Controller
 
     /**
      * 消息列表
-     * @Route("system/message", name="system_message")
+     * @Route("/message", name="/admin/system/message")
      */
     public function messageAction()
     {
@@ -85,7 +77,7 @@ class SystemController extends Controller
 
     /**
      * 发送消息
-     * @Route("system/pushMsg", name="system_pushMsg")
+     * @Route("/pushMsg", name="/admin/system/pushMsg")
      */
     public function pushMsgAction()
     {
@@ -94,7 +86,7 @@ class SystemController extends Controller
 
     /**
      * 清除数据缓存
-     * @Route("system/cleanData", name="system_cleanData")
+     * @Route("/cleanData", name="/admin/system/cleanData")
      */
     public function cleanDataAction()
     {

@@ -12,17 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class PassportController extends Controller
 {
     /**
-     * 活动列表
-     * @Route("/")
-     */
-   /* public function indexAction()
-    {
-        Route("passport/login", name="passport_") $this->render('AdminBundle:Default:index.html.twig');
-    }*/
-
-    /**
      * 用户登录
-     * @Route("passport/login", name="passport_login")
+     * @Route("passport/login", name="/admin/members/login")
      */
     public function loginAction()
     {
@@ -31,7 +22,7 @@ class PassportController extends Controller
 
     /**
      * 用户注册
-     * @Route("passport/register", name="passport_register")
+     * @Route("passport/register", name="/admin/members/register")
      */
     public function registerAction()
     {
@@ -40,7 +31,7 @@ class PassportController extends Controller
 
     /**
      * 退出登录
-     * @Route("passport/loginOut", name="passport_loginOut")
+     * @Route("passport/loginOut", name="/admin/members/loginOut")
      */
     public function loginOutAction()
     {

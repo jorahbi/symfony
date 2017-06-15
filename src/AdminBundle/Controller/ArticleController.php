@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 文案管理
+ * @Route ("/article")
  */
 
 class ArticleController extends Controller
 {
     /**
      * 文章列表
-     * @Route("article/index", name="article_index")
+     * @Route("/index", name="/admin/article/index")
      */
     public function indexAction()
     {
@@ -22,7 +23,7 @@ class ArticleController extends Controller
 
     /**
      * 帮助信息
-     * @Route("article/help", name="article_help")
+     * @Route("/help", name="/admin/article/help")
      */
     public function helpAction()
     {
@@ -31,7 +32,7 @@ class ArticleController extends Controller
 
     /**
      * 添加文章
-     * @Route("article/add", name="article_add")
+     * @Route("/add", name="/admin/article/add")
      */
     public function addAction()
     {
@@ -40,7 +41,7 @@ class ArticleController extends Controller
 
     /**
      * 短信模板
-     * @Route("article/msm", name="article_msm")
+     * @Route("/msm", name="/admin/article/msm")
      */
     public function msmAction()
     {
@@ -49,7 +50,7 @@ class ArticleController extends Controller
 
     /**
      * 发送短信
-     * @Route("article/sendMsm", name="article_sendMsm")
+     * @Route("/sendMsm", name="/admin/article/sendMsm")
      */
     public function sendMsmAction()
     {
@@ -58,7 +59,7 @@ class ArticleController extends Controller
 
     /**
      * 文章分类
-     * @Route("article/category", name="article_category")
+     * @Route("/category", name="/admin/article/category")
      */
     public function categoryAction()
     {
@@ -67,7 +68,7 @@ class ArticleController extends Controller
 
     /**
      * 添加|编辑文章分类
-     * @Route("article/saveCat", name="article_saveCat")
+     * @Route("/saveCat", name="/admin/article/saveCat")
      */
     public function saveCatAction()
     {
@@ -76,7 +77,7 @@ class ArticleController extends Controller
 
     /**
      * 文章分类异常列表
-     * @Route("article/exception", name="article_exception")
+     * @Route("/exception", name="/admin/article/exception")
      */
     public function exceptionAction()
     {

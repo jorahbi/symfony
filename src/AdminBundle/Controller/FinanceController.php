@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 财务
+ * @Route ("/finance")
  */
 
 class FinanceController extends Controller
@@ -14,7 +15,7 @@ class FinanceController extends Controller
         
     /**
      * 融资租赁还款中借款
-     * @Route("finance/borrowRepay", name="finance_borrowRepay")
+     * @Route("/borrowRepay", name="/admin/finance/borrowRepay")
      */
     public function borrowRepayAction()
     {
@@ -23,7 +24,7 @@ class FinanceController extends Controller
 
     /**
      * 体验标还款
-     * @Route("finance/experienceRepay", name="finance_experienceRepay")
+     * @Route("/experienceRepay", name="/admin/finance/experienceRepay")
      */
     public function experienceRepayAction()
     {
@@ -32,7 +33,7 @@ class FinanceController extends Controller
 
     /**
      * 好友推荐奖励
-     * @Route("finance/friendReward", name="finance_friendReward")
+     * @Route("/friendReward", name="/admin/finance/friendReward")
      */
     public function friendRewardAction()
     {
@@ -41,7 +42,7 @@ class FinanceController extends Controller
 
     /**
      * 充值记录
-     * @Route("finance/recharge", name="finance_recharge")
+     * @Route("/recharge", name="/admin/finance/recharge")
      */
     public function rechargeAction()
     {
@@ -50,7 +51,7 @@ class FinanceController extends Controller
 
     /**
      * 资金汇总
-     * @Route("finance/money", name="finance_money")
+     * @Route("/money", name="/admin/finance/money")
      */
     public function moneyAction()
     {
@@ -59,7 +60,7 @@ class FinanceController extends Controller
 
     /**
      * 资金总览
-     * @Route("finance/moneyOverview", name="finance_moneyOverview")
+     * @Route("/moneyOverview", name="/admin/finance/moneyOverview")
      */
     public function moneyOverviewAction()
     {
@@ -68,7 +69,7 @@ class FinanceController extends Controller
 
     /**
      * 投资汇总
-     * @Route("finance/invest", name="finance_invest")
+     * @Route("/invest", name="/admin/finance/invest")
      */
     public function investAction()
     {
@@ -77,7 +78,7 @@ class FinanceController extends Controller
 
     /**
      * 发标概览
-     * @Route("finance/borrowOverview", name="finance_borrowOverview")
+     * @Route("/borrowOverview", name="/admin/finance/borrowOverview")
      */
     public function borrowOverviewAction()
     {
@@ -86,7 +87,7 @@ class FinanceController extends Controller
 
     /**
      * 红包
-     * @Route("finance/coupons", name="finance_coupons")
+     * @Route("/coupons", name="/admin/finance/coupons")
      */
     public function couponsAction()
     {
@@ -95,7 +96,7 @@ class FinanceController extends Controller
 
     /**
      * 添加红包
-     * @Route("finance/addCoupons", name="finance_addCoupons")
+     * @Route("/addCoupons", name="/admin/finance/addCoupons")
      */
     public function addCouponsAction()
     {
@@ -104,7 +105,7 @@ class FinanceController extends Controller
 
     /**
      * 红包明细
-     * @Route("finance/couponDetail", name="finance_couponDetail")
+     * @Route("/couponDetail", name="/admin/finance/couponDetail")
      */
     public function couponDetailAction()
     {
@@ -113,7 +114,7 @@ class FinanceController extends Controller
 
     /**
      * 红包统计
-     * @Route("finance/couponCount", name="finance_couponCount")
+     * @Route("/couponCount", name="/admin/finance/couponCount")
      */
     public function couponCountAction()
     {
@@ -122,7 +123,7 @@ class FinanceController extends Controller
 
     /**
      * 投融
-     * @Route("finance/outTrade", name="finance_outTrade")
+     * @Route("/outTrade", name="/admin/finance/outTrade")
      */
     public function outTradeAction()
     {
@@ -131,7 +132,7 @@ class FinanceController extends Controller
 
     /**
      * 投融放款总记录
-     * @Route("finance/trade", name="finance_trade")
+     * @Route("/trade", name="/admin/finance/trade")
      */
     public function tradeAction()
     {
@@ -140,7 +141,7 @@ class FinanceController extends Controller
 
     /**
      * 投融放款审核
-     * @Route("finance/checkTrade", name="finance_checkTrade")
+     * @Route("/checkTrade", name="/admin/finance/checkTrade")
      */
     public function checkTradeAction()
     {
@@ -149,7 +150,7 @@ class FinanceController extends Controller
 
     /**
      * 投融放款划拨
-     * @Route("finance/tradePay", name="finance_tradePay")
+     * @Route("/tradePay", name="/admin/finance/tradePay")
      */
     public function tradePayAction()
     {
@@ -158,7 +159,7 @@ class FinanceController extends Controller
 
     /**
      * 贷款
-     * @Route("finance/inTrade", name="finance_inTrade")
+     * @Route("/inTrade", name="/admin/finance/inTrade")
      */
     public function inTradeAction()
     {
@@ -167,7 +168,7 @@ class FinanceController extends Controller
 
     /**
      * 虚拟标投资记录
-     * @Route("finance/investList", name="finance_investList")
+     * @Route("/investList", name="/admin/finance/investList")
      */
     public function investListAction()
     {
@@ -176,7 +177,7 @@ class FinanceController extends Controller
 
     /**
      * 投融端
-     * @Route("finance/investTerminal", name="finance_investTerminal")
+     * @Route("/investTerminal", name="/admin/finance/investTerminal")
      */
     public function investTerminalAction()
     {
@@ -185,7 +186,7 @@ class FinanceController extends Controller
 
     /**
      * 融资租赁端
-     * @Route("finance/lease", name="finance_lease")
+     * @Route("/lease", name="/admin/finance/lease")
      */
     public function leaseAction()
     {
@@ -194,7 +195,7 @@ class FinanceController extends Controller
 
     /**
      * 资金情况表
-     * @Route("finance/moneyDetail", name="finance_moneyDetail")
+     * @Route("/moneyDetail", name="/admin/finance/moneyDetail")
      */
     public function moneyDetailAction()
     {
@@ -203,7 +204,7 @@ class FinanceController extends Controller
 
     /**
      * 债权转让放款总记录
-     * @Route("finance/debt", name="finance_debt")
+     * @Route("/debt", name="/admin/finance/debt")
      */
     public function debtAction()
     {
@@ -212,7 +213,7 @@ class FinanceController extends Controller
 
     /**
      * 债权转让放款审核
-     * @Route("finance/checkDebt", name="finance_checkDebt")
+     * @Route("/checkDebt", name="/admin/finance/checkDebt")
      */
     public function checkDebtAction()
     {
@@ -221,7 +222,7 @@ class FinanceController extends Controller
 
     /**
      * 债权转让放款划拨
-     * @Route("finance/repayDebt", name="finance_repayDebt")
+     * @Route("/repayDebt", name="/admin/finance/repayDebt")
      */
     public function repayDebtAction()
     {
@@ -230,7 +231,7 @@ class FinanceController extends Controller
 
     /**
      * 提现总记录
-     * @Route("finance/take", name="finance_take")
+     * @Route("/take", name="/admin/finance/take")
      */
     public function takeAction()
     {
@@ -239,7 +240,7 @@ class FinanceController extends Controller
 
     /**
      * 提现申请
-     * @Route("finance/applyTake", name="finance_applyTake")
+     * @Route("/applyTake", name="/admin/finance/applyTake")
      */
     public function applyTakeAction()
     {
@@ -248,7 +249,7 @@ class FinanceController extends Controller
 
     /**
      * 提现审核
-     * @Route("finance/checkTake", name="finance_checkTake")
+     * @Route("/checkTake", name="/admin/finance/checkTake")
      */
     public function checkTakeAction()
     {
@@ -257,7 +258,7 @@ class FinanceController extends Controller
 
     /**
      * 提现确认
-     * @Route("finance/confirmTake", name="finance_confirmTake")
+     * @Route("/confirmTake", name="/admin/finance/confirmTake")
      */
     public function confirmTakeAction()
     {

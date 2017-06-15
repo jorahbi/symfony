@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 销售管理
+ * @Route ("/sale")
  */
 
 class SaleController extends Controller
 {
     /**
      * 佣金列表
-     * @Route("sale/index", name="sale_index")
+     * @Route("/index", name="/admin/sale/index")
      */
     public function indexAction()
     {
@@ -22,7 +23,7 @@ class SaleController extends Controller
 
     /**
      * 业绩列表
-     * @Route("sale/achievement", name="sale_achievement")
+     * @Route("/achievement", name="/admin/sale/achievement")
      */
     public function achievementAction()
     {
@@ -31,7 +32,7 @@ class SaleController extends Controller
 
     /**
      * 佣金详细列表
-     * @Route("sale/saleDetail", name="sale_saleDetail")
+     * @Route("/saleDetail", name="/admin/sale/saleDetail")
      */
     public function saleDetailAction()
     {
@@ -40,7 +41,7 @@ class SaleController extends Controller
 
     /**
      * 团队查询
-     * @Route("sale/team", name="sale_team")
+     * @Route("/team", name="/admin/sale/team")
      */
     public function teamAction()
     {
@@ -49,7 +50,7 @@ class SaleController extends Controller
 
     /**
      * 客服佣金
-     * @Route("sale/staff", name="sale_staff")
+     * @Route("/staff", name="/admin/sale/staff")
      */
     public function staffAction()
     {
@@ -58,7 +59,7 @@ class SaleController extends Controller
 
     /**
      * 客服佣金详细列表
-     * @Route("sale/staffDetail", name="sale_staffDetail")
+     * @Route("/staffDetail", name="/admin/sale/staffDetail")
      */
     public function staffDetailAction()
     {

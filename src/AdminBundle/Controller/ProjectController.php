@@ -7,22 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 项目管理
+ * @Route ("/project")
  */
 
 class ProjectController extends Controller
 {
     /**
-     * 活动列表
-     * @Route("/")
-     */
-    /*public function indexAction()
-    {
-        return $this->render('AdminBundle:Default:index.html.twig');
-    }*/
-
-    /**
      * 创建新项目
-     * @Route("project/borrow", name="project_borrow")
+     * @Route("/borrow", name="/admin/project/borrow")
      */
     public function borrowAction()
     {
@@ -31,7 +23,7 @@ class ProjectController extends Controller
 
     /**
      * 项目详情
-     * @Route("project/borrowDetail", name="project_borrowDetail")
+     * @Route("/borrowDetail", name="/admin/project/borrowDetail")
      */
     public function borrowDetailAction()
     {
@@ -40,7 +32,7 @@ class ProjectController extends Controller
 
     /**
      * 待审核借款
-     * @Route("project/waits", name="project_waits")
+     * @Route("/waits", name="/admin/project/waits")
      */
     public function waitsAction()
     {
@@ -49,7 +41,7 @@ class ProjectController extends Controller
 
     /**
      * 投标中的借款
-     * @Route("project/ongoing", name="project_ongoing")
+     * @Route("/ongoing", name="/admin/project/ongoing")
      */
     public function ongoingAction()
     {
@@ -58,7 +50,7 @@ class ProjectController extends Controller
 
     /**
      * 已完成的借款
-     * @Route("project/complete", name="project_complete")
+     * @Route("/complete", name="/admin/project/complete")
      */
     public function completeAction()
     {
@@ -67,7 +59,7 @@ class ProjectController extends Controller
 
     /**
      * 还款中的借款
-     * @Route("project/repaying", name="project_repaying")
+     * @Route("/repaying", name="/admin/project/repaying")
      */
     public function repayingAction()
     {
@@ -76,7 +68,7 @@ class ProjectController extends Controller
 
     /**
      * 已流标的借款
-     * @Route("project/failed", name="project_failed")
+     * @Route("/failed", name="/admin/project/failed")
      */
     public function failedAction()
     {
@@ -85,7 +77,7 @@ class ProjectController extends Controller
 
     /**
      * 费用规则
-     * @Route("project/money", name="project_money")
+     * @Route("/money", name="/admin/project/money")
      */
     public function moneyAction()
     {
@@ -94,7 +86,7 @@ class ProjectController extends Controller
 
     /**
      * 添加费用规则
-     * @Route("project/addMoney", name="project_addMoney")
+     * @Route("/addMoney", name="/admin/project/addMoney")
      */
     public function addMoneyAction()
     {
@@ -103,7 +95,7 @@ class ProjectController extends Controller
 
     /**
      * 奖励规则
-     * @Route("project/award", name="project_award")
+     * @Route("/award", name="/admin/project/award")
      */
     public function awardAction()
     {
@@ -112,7 +104,7 @@ class ProjectController extends Controller
 
     /**
      * 添加奖励规则
-     * @Route("project/addAward", name="project_addAward")
+     * @Route("/addAward", name="/admin/project/addAward")
      */
     public function addAwardAction()
     {
@@ -121,7 +113,7 @@ class ProjectController extends Controller
 
     /**
      * 资产包管理
-     * @Route("project/box", name="project_box")
+     * @Route("/box", name="/admin/project/box")
      */
     public function boxAction()
     {
@@ -130,7 +122,7 @@ class ProjectController extends Controller
 
     /**
      * 创建资产包
-     * @Route("project/addBox", name="project_addBox")
+     * @Route("/addBox", name="/admin/project/addBox")
      */
     public function addBoxAction()
     {
@@ -139,7 +131,7 @@ class ProjectController extends Controller
 
     /**
      * 项目到期数据
-     * @Route("project/endTime", name="project_endTime")
+     * @Route("/endTime", name="/admin/project/endTime")
      */
     public function endTimeAction()
     {
@@ -148,7 +140,7 @@ class ProjectController extends Controller
 
     /**
      * 投资人还款详情汇总
-     * @Route("project/investRepay", name="project_investRepay")
+     * @Route("/investRepay", name="/admin/project/investRepay")
      */
     public function investRepayAction()
     {
@@ -157,7 +149,7 @@ class ProjectController extends Controller
 
     /**
      * 借款人还款详情汇总
-     * @Route("project/loanRepay", name="project_loanRepay")
+     * @Route("/loanRepay", name="/admin/project/loanRepay")
      */
     public function loanRepayAction()
     {

@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 客户管理
+ * @Route ("/customer")
  */
 
 class CustomerController extends Controller
 {
     /**
      * 个人用户列表
-     * @Route("customer/index", name="customer_index")
+     * @Route("/index", name="/admin/customer/index")
      */
     public function indexAction()
     {
@@ -22,7 +23,7 @@ class CustomerController extends Controller
     
     /**
      * 个人用户列表
-     * @Route("customer/users", name="customer_users")
+     * @Route("/users", name="/admin/customer/users")
      */
     public function usersAction()
     {
@@ -31,7 +32,7 @@ class CustomerController extends Controller
 
     /**
      * 回款列表
-     * @Route("customer/payment", name="customer_payment")
+     * @Route("/payment", name="/admin/customer/payment")
      */
     public function paymentAction()
     {
@@ -40,7 +41,7 @@ class CustomerController extends Controller
 
     /**
      * 个人用户销售版
-     * @Route("customer/selfList", name="customer_selfList")
+     * @Route("/selfList", name="/admin/customer/selfList")
      */
     public function selfListAction()
     {
@@ -49,7 +50,7 @@ class CustomerController extends Controller
 
     /**
      * 任务中心用户列表
-     * @Route("customer/lists", name="customer_lists")
+     * @Route("/lists", name="/admin/customer/lists")
      */
     public function listsAction()
     {

@@ -7,13 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 活动管理
+ * @Route("/activity")
  */
 
 class ActivityController extends Controller
 {
     /**
      * 活动列表
-     * @Route("activity/index", name="activity_index")
+     * @Route("/index", name="/admin/activity/index")
      */
     public function indexAction()
     {
@@ -22,7 +23,7 @@ class ActivityController extends Controller
 
     /**
      * APP 欢迎页
-     * @Route("activity/appWelcome", name="activity_appWelcome")
+     * @Route("/appWelcome", name="/admin/activity/appWelcome")
      */
     public function appWelcomeAction()
     {
@@ -32,7 +33,7 @@ class ActivityController extends Controller
 
     /**
      * APP 主导航图标
-     * @Route ("activity/appNav", name="activity_appNav")
+     * @Route("/appNav", name="/admin/activity/appNav")
      */
     public function appNavAction()
     {
@@ -41,7 +42,7 @@ class ActivityController extends Controller
 
     /**
      * APP注册推荐页图片
-     * @Route ("activity/marker", name="activity_marker")
+     * @Route("/marker", name="/admin/activity/marker")
      */
     public function markerAction()
     {
@@ -50,7 +51,7 @@ class ActivityController extends Controller
 
     /**
      * 任务列表
-     * @Route ("activity/task", name="activity_task")
+     * @Route("/task", name="/admin/activity/task")
      */
     public function taskAction()
     {
@@ -59,7 +60,7 @@ class ActivityController extends Controller
 
     /**
      * 添加任务
-     * @Route ("activity/addTask", name="activity_addTask")
+     * @Route("/addTask", name="/admin/activity/addTask")
      */
     public function addTaskAction()
     {
@@ -68,7 +69,7 @@ class ActivityController extends Controller
 
     /**
      * 奖品列表
-     * @Route ("activity/prize", name="activity_prize")
+     * @Route("/prize", name="/admin/activity/prize")
      */
     public function prizeAction()
     {
@@ -77,7 +78,7 @@ class ActivityController extends Controller
 
     /**
      * 添加奖品
-     * @Route ("activity/addPrize", name="activity_addPrize")
+     * @Route("/addPrize", name="/admin/activity/addPrize")
      */
     public function addPrizeAction()
     {
@@ -86,7 +87,7 @@ class ActivityController extends Controller
 
     /**
      * 续投奖励
-     * @Route ("activity/continue", name="activity_continued")
+     * @Route("/continued", name="/admin/activity/continued")
      */
     public function continuedAction()
     {
@@ -95,7 +96,7 @@ class ActivityController extends Controller
 
     /**
      * 奖品兑换列表
-     * @Route ("activity/exchange", name="activity_exchange")
+     * @Route("/exchange", name="/admin/activity/exchange")
      */
     public function exchangeAction()
     {
@@ -104,7 +105,7 @@ class ActivityController extends Controller
 
     /**
      * 签到事件列表
-     * @Route ("activity/sign", name="activity_sign")
+     * @Route("/sign", name="/admin/activity/sign")
      */
     public function signAction()
     {
@@ -112,8 +113,8 @@ class ActivityController extends Controller
     }
 
     /**
-     * 签到事件列表
-     * @Route ("activity/addSign", name="activity_addSign")
+     * 添加签到事件
+     * @Route("/addSign", name="/admin/activity/addSign")
      */
     public function addSignAction()
     {
@@ -122,7 +123,7 @@ class ActivityController extends Controller
 
     /**
      * 积分
-     * @Route ("activity/integral", name="activity_integral")
+     * @Route("/integral", name="/admin/activity/integral")
      */
     public function integralAction()
     {
@@ -131,7 +132,7 @@ class ActivityController extends Controller
 
     /**
      * 添加积分
-     * @Route ("activity/addIntegral", name="activity_addIntegral")
+     * @Route("/addIntegral", name="/admin/activity/addIntegral")
      */
     public function addIntegralAction()
     {

@@ -4,12 +4,13 @@ namespace AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use \Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Permission
- *
+ * @ORM\Cache("READ_WRITE") 
  * @ORM\Table(name="permission")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\PermissionRepository")
  */
 class Permission
 {
@@ -18,25 +19,26 @@ class Permission
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="label", type="string", length=45, nullable=false)
      */
     private $label;
 
     /**
-     * @ORM\OneToMany(targetEntity="permission", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="permission", mappedBy="parent", cascade={"persist"})
      */
     private $children;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Permission", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Permission", inversedBy="children", cascade={"persist"})
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */
     private $parent;
 
@@ -45,7 +47,7 @@ class Permission
      *
      * @ORM\Column(name="path", type="string", length=20, nullable=false)
      */
-    private $path;
+    private $path = '';
 
     /**
      * @var string
@@ -53,6 +55,13 @@ class Permission
      * @ORM\Column(name="icon", type="string", length=45, nullable=true)
      */
     private $icon = '';
+
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="lv", type="integer", nullable=false)
+     */
+    private $lv = 1;
 
     /**
      * @var boolean
@@ -74,23 +83,12 @@ class Permission
      * @ORM\Column(name="is_menu", type="boolean", nullable=false)
      */
     private $isMenu = '1';
-
-
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->children = new ArrayCollection();
-    }
-
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-     public function setChildren(Permission $children)
-    {
-        return $this->children->add($children);
-
-        return $this;
+        $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -101,17 +99,6 @@ class Permission
     public function getId()
     {
         return $this->id;
-    }
-
-     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function setId($id)
-    {
-        return $this->id = $id;
-        return $this;
     }
 
     /**
@@ -136,30 +123,6 @@ class Permission
     public function getLabel()
     {
         return $this->label;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param integer $parent
-     *
-     * @return Permission
-     */
-    public function setParent($parent)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return integer
-     */
-    public function getParent()
-    {
-        return $this->parent;
     }
 
     /**
@@ -208,6 +171,30 @@ class Permission
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * Set lv
+     *
+     * @param integer $lv
+     *
+     * @return Permission
+     */
+    public function setLv($lv)
+    {
+        $this->lv = $lv;
+
+        return $this;
+    }
+
+    /**
+     * Get lv
+     *
+     * @return integer
+     */
+    public function getLv()
+    {
+        return $this->lv;
     }
 
     /**
@@ -282,15 +269,61 @@ class Permission
         return $this->isMenu;
     }
 
-
-    public function __clon()
+    /**
+     * Add child
+     *
+     * @param \AdminBundle\Entity\permission $child
+     *
+     * @return Permission
+     */
+    public function addChild(\AdminBundle\Entity\permission $child)
     {
-        $this->setParent('0');
-        $this->setLabel('');
-        $this->setPath('');
-        $this->setIcon('');
-        $this->setStatus('1');
-        $this->setLink('');
-        $this->setIsMenu('1');
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \AdminBundle\Entity\permission $child
+     */
+    public function removeChild(\AdminBundle\Entity\permission $child)
+    {
+        $this->children->removeElement($child);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \AdminBundle\Entity\Permission $parent
+     *
+     * @return Permission
+     */
+    public function setParent(\AdminBundle\Entity\Permission $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \AdminBundle\Entity\Permission
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }
