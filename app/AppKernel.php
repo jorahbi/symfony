@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new PassportBundle\PassportBundle(),
             new BorrowBundle\BorrowBundle(),
             new UtilsBundle\UtilsBundle(),
+            new WebBundle\WebBundle(),
+            new TestBundle\TestBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

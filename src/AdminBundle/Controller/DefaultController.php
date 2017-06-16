@@ -126,4 +126,14 @@ class DefaultController extends Controller
 
         return $this->render('AdminBundle:Default:database.html.twig');  
     }
+
+
+    /**
+     * 自定义表单
+     * @Route("/custom", name="custom")
+     */
+    public function customAction()
+    {
+
+    }
 }

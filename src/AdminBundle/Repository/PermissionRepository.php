@@ -39,7 +39,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 		->where('p.lv = :lv')
 		->setParameter('lv', '2')
 		->getQuery();
-
-		return $query->getArrayResult();
+		return $query->getResult();
+		//return $query->getArrayResult();
 	}
 }
