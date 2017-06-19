@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -19,20 +20,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
  
 class PermissionType extends AbstractType
 {
-
-    private $_container;
-    private $_doctrine;
-
-    private function _getContainer()
-    {
-        global $kernel;
-        $this->_container = $kernel->getContainer();
-        $this->_doctrine = $this->_container->get('doctrine')->getManager();
-    }
-
     public function buildForm(FormBuilderInterface $builder, Array $options)
     {
-        $this->_getContainer();
         /*$permissions = $this->_doctrine->getRepository('AdminBundle:Permission')->getRoot();
         $parents = [];
         foreach($permissions as &$value)
@@ -44,6 +33,7 @@ class PermissionType extends AbstractType
             ->add('link', TextType::class)
             ->add('lv', TextType::class)
             ->add('path', TextType::class, array('mapped' => false, 'required' => false))
+            ->add('path1', IntegerType::class, array('mapped' => false, 'required' => false))
             //->add('icon', TextType::class, array('required' => false))
             /*->add('parentId', ChoiceType::class, array(
                 'required' => false, 
@@ -80,7 +70,7 @@ class PermissionType extends AbstractType
                     'choice_label' => 'label',
                     //'property' => 'label',
                     'query_builder' => function(EntityRepository $er){
-                        return $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
+                        //return $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
                     }
                 ];
 

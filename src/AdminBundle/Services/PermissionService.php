@@ -45,11 +45,9 @@ class PermissionService
 	/**
 	 * 后台菜单显示 
 	 */
-	public function menu()
+	public function &menu()
 	{
-		$repository = $this->doctrine->getRepository('AdminBundle:Permission');
-		$permission = $repository->findBy(['lv' => 1]);
-		return $permission;
+		return $this->doctrine->getRepository('AdminBundle:Permission')->getMenus();
 	}
 
 	public function test($object)
