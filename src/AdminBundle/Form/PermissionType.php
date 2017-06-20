@@ -33,7 +33,6 @@ class PermissionType extends AbstractType
             ->add('link', TextType::class)
             ->add('lv', TextType::class)
             ->add('path', TextType::class, array('mapped' => false, 'required' => false))
-            ->add('path1', IntegerType::class, array('mapped' => false, 'required' => false))
             //->add('icon', TextType::class, array('required' => false))
             /*->add('parentId', ChoiceType::class, array(
                 'required' => false, 
