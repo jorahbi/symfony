@@ -53,10 +53,6 @@ class RequestListener
                 {
                     header('Location: ' . $value['redirect']);die;
                 }
-                $perCache = $this->fileSystem->getItem('stats.permissionsAll')->get();
-                $currentMenu = isset($perCache[$currentRoute]) ? $perCache[$currentRoute] : '';
-                unset($perCache);
-                $this->container->get('admin.permissionService')->setCurrentMenu(explode(',', $currentMenu));
                 break;
             }
         }
@@ -75,6 +71,7 @@ class RequestListener
             //$resultCache = $perCache->get();
             //权限验证 跳转
         }
+        $this->container->get('admin.permissionService')->setCurrentRoute($currentRoute);
         return true;
     }
 

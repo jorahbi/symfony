@@ -3,6 +3,7 @@
 namespace AdminBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use AdminBundle\Entity\Activity;
 use CommonBundle\Services\ArrayService;
 use Doctrine\Common\Cache\CacheProvider;
@@ -21,7 +22,7 @@ class PermissionService
 	protected $arrayService;
 	protected $container;
 	protected $doctrine;
-	protected $currentMenu;
+	protected $currentRoute;
 
 	public function __construct(ArrayService $arrayService, Container $container)
 	{
@@ -42,14 +43,29 @@ class PermissionService
 		
 	}
 
-	public function setCurrentMenu($name)
+	public function setCurrentRoute($route)
 	{
-		$this->currentMenu = $name;
+		$this->currentRoute = $route;
 	}
 	
-	public function getCurrentMenu()
+	/**
+	 * 返回当前选中菜单与页面面包屑
+	 *	@return []
+	 */
+	public function &getCurrentMenu()
 	{
-		return $this->currentMenu;
+		//get cache item 根据后台管理员id获取对应的缓存
+        $perCache = (new FilesystemAdapter())->getItem('stats.permissionsAll')->get();
+        //菜单栏选中路径
+        $menuTmp = isset($perCache['menus'][$this->currentRoute]) ? $perCache['menus'][$this->currentRoute] : '';
+        $currentMenu['parent'] = explode(',', $menuTmp);
+        //后台面包屑
+        foreach ($currentMenu['parent'] as $v) 
+        {
+            $currentMenu['crumbs'][] = $perCache['crumbs'][$v];
+        }
+        unset($perCache);
+        return $currentMenu;
 	}
 
 	/**
