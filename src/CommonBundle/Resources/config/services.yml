@@ -1,0 +1,28 @@
+parameters:
+    request.interceptor: 
+        admin: {redirect: /admin/login, filter: ['/admin/login'], method: _adminAuth} #[redirect: xxx , params: params, filter: [], method: ]
+#     common.file.system:  Symfony\Component\Filesystem\Filesystem
+#     common.file.system.IOException: Symfony\Component\Filesystem\Exception\IOException
+
+services:
+#    common.example:
+#        class: commonBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    common.array:
+        class: CommonBundle\Services\ArrayService
+    kernel.request_listener:
+        class: CommonBundle\EventListener\RequestListener
+        arguments: ["@service_container"]
+        tags: 
+            - { name: kernel.event_listener, event: kernel.request }
+    common.twig_extension:
+        class: CommonBundle\Twig\CommonExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    # common.file:
+    #     class: commonBundle\Services\FileService
+    #     arguments: ["%common.file.system%", "%common.file.system.IOException%"]
+    #     calls: 
+    #         - [setFileSystem, ['@app.mailer']]

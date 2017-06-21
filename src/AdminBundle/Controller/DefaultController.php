@@ -47,7 +47,7 @@ class DefaultController extends Controller
 
     /**
      * 表单
-     * @Route("/form", name="form")
+     * @Route("/form", name="/admin/form")
      */
     public function formAction(Request $request)
     {

@@ -4,11 +4,8 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     admin.permissionService:
         class: AdminBundle\Services\PermissionService
-        arguments: ["@utils.array", "@service_container"]
-    kernel.request_listener:
-        class: AdminBundle\EventListener\RequestListener
-        tags: 
-            - { name: kernel.event_listener, event: kernel.request }
+        arguments: ["@common.array", "@service_container"]
+    
        
         #calls: #set注入
         #    - [setMailer, ['@app.mailer']]

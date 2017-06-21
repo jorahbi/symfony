@@ -4,7 +4,7 @@ namespace AdminBundle\Services;
 
 use Symfony\Component\DependencyInjection\Container;
 use AdminBundle\Entity\Activity;
-use UtilsBundle\Services\ArrayService;
+use CommonBundle\Services\ArrayService;
 use Doctrine\Common\Cache\CacheProvider;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\DoctrineProvider;
@@ -21,6 +21,7 @@ class PermissionService
 	protected $arrayService;
 	protected $container;
 	protected $doctrine;
+	protected $currentMenu;
 
 	public function __construct(ArrayService $arrayService, Container $container)
 	{
@@ -41,13 +42,27 @@ class PermissionService
 		
 	}
 
+	public function setCurrentMenu($name)
+	{
+		$this->currentMenu = $name;
+	}
 	
+	public function getCurrentMenu()
+	{
+		return $this->currentMenu;
+	}
+
 	/**
 	 * 后台菜单显示 
 	 */
 	public function &menu()
 	{
 		return $this->doctrine->getRepository('AdminBundle:Permission')->getMenus();
+	}
+
+	public function getPath()
+	{
+		
 	}
 
 	public function test($object)

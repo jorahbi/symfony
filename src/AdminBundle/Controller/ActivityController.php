@@ -27,7 +27,6 @@ class ActivityController extends Controller
      */
     public function appWelcomeAction()
     {
-        var_dump('app welcome');
         return $this->render('AdminBundle:Default:index.html.twig');
     }
 

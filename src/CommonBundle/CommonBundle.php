@@ -1,9 +1,9 @@
 <?php
 
-namespace UtilsBundle;
+namespace CommonBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class UtilsBundle extends Bundle
+class CommonBundle extends Bundle
 {
 }

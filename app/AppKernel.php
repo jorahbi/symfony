@@ -20,9 +20,9 @@ class AppKernel extends Kernel
             new ApiBundle\ApiBundle(),
             new PassportBundle\PassportBundle(),
             new BorrowBundle\BorrowBundle(),
-            new UtilsBundle\UtilsBundle(),
             new WebBundle\WebBundle(),
             new TestBundle\TestBundle(),
+            new CommonBundle\CommonBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,8 +1,8 @@
 {% extends 'AdminBundle:layout:default.html.twig' %}
 {% block title %} default {% endblock %}
 {% block body %}
-	{% form_theme form 'UtilsBundle:Form:form_div_layout.html.twig' %}
-	{{ form_start(form, {'action': path('form'), 'method': 'POST'}) }}
+	{% form_theme form 'CommonBundle:Form:form_div_layout.html.twig' %}
+	{{ form_start(form, {'action': path('/admin/form'), 'method': 'POST'}) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}
 

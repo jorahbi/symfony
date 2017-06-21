@@ -1,6 +1,6 @@
 <?php 
 
-namespace UtilsBundle\Services;
+namespace CommonBundle\Services;
 
 use \Doctrine\Common\Collections\ArrayCollection;
 

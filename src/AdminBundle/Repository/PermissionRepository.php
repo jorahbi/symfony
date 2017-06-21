@@ -42,16 +42,16 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	public function &getPermissionAll()
 	{
 		$cache = new FilesystemAdapter();
-		//$cache->deleteItem('stats.permissions');//删除缓存
+		//$cache->deleteItem('stats.permissionsAll');//删除缓存
 		$perCache = $cache->getItem('stats.permissionsAll');
 		if($perCache->isHit()){
 			$resultCache = $perCache->get();
 			return $resultCache;
 		}
 		$result = [];
-		foreach($this->findAll() as $item)
+		foreach($this->findBy(['lv' => 3]) as $item)
 		{
-			$result[] = $item->getLink();
+			$result[$item->getLink()] = $item->getPath();
 		}
 		$perCache->set($result);
         $cache->save($perCache);
@@ -63,7 +63,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 */
 	public function &getMenus()
 	{
-		$this->getPermissionAll();
+		//$this->getPermissionAll();
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissions');//删除缓存
 		$perCache = $cache->getItem('stats.permissions');

@@ -1,5 +1,4 @@
 <!-- admin 菜单栏 -->
-
 <div class="page-sidebar navbar-collapse collapse">
     <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
         <li class="start ">
@@ -9,7 +8,7 @@
             </a>
         </li>
         {% for menus in permission.menu %}
-             <li>
+        <li class="{% if menus.getId|inArray(permission.getCurrentMenu) %}active open {% endif %}">
             <a href="javascript:;">
                 <i class="{{ menus.getIcon }}"></i>
                 <span class="title">{{ menus.getLabel }}</span>
@@ -17,19 +16,19 @@
             </a>
             <ul class="sub-menu">
                 {% for children1 in menus.getChildren %}
-                <li>
+                <li class="{% if children1.getId|inArray(permission.getCurrentMenu) %}active open {% endif %}">
                     <a href="javascript:;">
                         <i class="{{ children1.getIcon }}"></i> {{ children1.getLabel }}<span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         {% for children2 in children1.getChildren %}
-                        <li>
-                            <a href="{{  path(children2.getLink) }}"><i class="{{ children2.getIcon }}"></i> {{ children2.getLabel }}</a>
+                        <li class="{% if children2.getId|inArray(permission.getCurrentMenu) %}active{% endif %}">
+                            <a href="{{ path(children2.getLink) }}"><i class="{{ children2.getIcon }}"></i> {{ children2.getLabel }}</a>
                         </li>
-                    {% endfor %}
+                        {% endfor %}
                     </ul>
                 </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         </li>
         {% endfor %}
