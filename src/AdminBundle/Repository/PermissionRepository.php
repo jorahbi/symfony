@@ -39,11 +39,31 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 		//return $query->getArrayResult();
 	}
 
+	public function &getPermissionAll()
+	{
+		$cache = new FilesystemAdapter();
+		//$cache->deleteItem('stats.permissions');//删除缓存
+		$perCache = $cache->getItem('stats.permissionsAll');
+		if($perCache->isHit()){
+			$resultCache = $perCache->get();
+			return $resultCache;
+		}
+		$result = [];
+		foreach($this->findAll() as $item)
+		{
+			$result[] = $item->getLink();
+		}
+		$perCache->set($result);
+        $cache->save($perCache);
+        return $result;
+	}
+
 	/**
 	 * 获取全部菜单树排列
 	 */
 	public function &getMenus()
 	{
+		$this->getPermissionAll();
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissions');//删除缓存
 		$perCache = $cache->getItem('stats.permissions');
