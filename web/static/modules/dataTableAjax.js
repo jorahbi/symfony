@@ -67,7 +67,9 @@ define("dataTablesAjax", function(require, exports, module) {
                         return responseData;
                     }
                 },
-                columns: require('Data/test'),
+                columns: require([setting.source], function(columns){
+                    return columns;
+                }),//require('Data/test'),
                 order: [
                     [1, "asc"]
                 ], // set first column as a default sort by asc

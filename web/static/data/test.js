@@ -1,4 +1,4 @@
-define(function() {
+define('Data/test', function() {
     return [{
             data: 'test1',
             render: function(data, type, row, meta) {

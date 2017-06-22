@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * 项目管理
@@ -34,8 +35,9 @@ class ProjectController extends Controller
      * 待审核借款
      * @Route("/waits", name="/admin/project/waits")
      */
-    public function waitsAction()
+    public function waitsAction(Request $request)
     {
+        $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
         return $this->render('AdminBundle:Project:waits.html.twig');
     }
 
