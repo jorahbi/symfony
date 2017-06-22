@@ -18,7 +18,7 @@ class ProjectController extends Controller
      */
     public function borrowAction()
     {
-        
+        return $this->render('AdminBundle:Project:borrow.html.twig');
     }
 
     /**
@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function borrowDetailAction()
     {
-        
+        return $this->render('AdminBundle:Project:borrowDetail.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class ProjectController extends Controller
      */
     public function waitsAction()
     {
-        
+        return $this->render('AdminBundle:Project:waits.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class ProjectController extends Controller
      */
     public function ongoingAction()
     {
-        
+        return $this->render('AdminBundle:Project:ongoing.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class ProjectController extends Controller
      */
     public function completeAction()
     {
-        
+        return $this->render('AdminBundle:Project:complete.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class ProjectController extends Controller
      */
     public function repayingAction()
     {
-        
+        return $this->render('AdminBundle:Project:repaying.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class ProjectController extends Controller
      */
     public function failedAction()
     {
-        
+        return $this->render('AdminBundle:Project:failed.html.twig');
     }
 
     /**
@@ -81,7 +81,7 @@ class ProjectController extends Controller
      */
     public function moneyAction()
     {
-        
+        return $this->render('AdminBundle:Project:money.html.twig');
     }
 
     /**
@@ -90,7 +90,7 @@ class ProjectController extends Controller
      */
     public function addMoneyAction()
     {
-        
+        return $this->render('AdminBundle:Project:addMoney.html.twig');
     }
 
     /**
@@ -99,7 +99,7 @@ class ProjectController extends Controller
      */
     public function awardAction()
     {
-        
+        return $this->render('AdminBundle:Project:award.html.twig');
     }
 
     /**
@@ -108,7 +108,7 @@ class ProjectController extends Controller
      */
     public function addAwardAction()
     {
-        
+        return $this->render('AdminBundle:Project:addAward.html.twig');
     }
 
     /**
@@ -117,7 +117,7 @@ class ProjectController extends Controller
      */
     public function boxAction()
     {
-        
+        return $this->render('AdminBundle:Project:box.html.twig');
     }
 
     /**
@@ -126,7 +126,7 @@ class ProjectController extends Controller
      */
     public function addBoxAction()
     {
-        
+        return $this->render('AdminBundle:Project:addBox.html.twig');
     }
 
     /**
@@ -135,7 +135,7 @@ class ProjectController extends Controller
      */
     public function endTimeAction()
     {
-        
+        return $this->render('AdminBundle:Project:endTime.html.twig');
     }
 
     /**
@@ -144,7 +144,7 @@ class ProjectController extends Controller
      */
     public function investRepayAction()
     {
-        
+        return $this->render('AdminBundle:Project:investRepay.html.twig');
     }
 
     /**
@@ -153,6 +153,6 @@ class ProjectController extends Controller
      */
     public function loanRepayAction()
     {
-        
+        return $this->render('AdminBundle:Project:loanRepay.html.twig');
     }
 }

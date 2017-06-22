@@ -17,7 +17,7 @@ class PassportController extends Controller
      */
     public function loginAction()
     {
-        
+        return $this->render('AdminBundle:Passport:login.html.twig');
     }
 
     /**
@@ -26,7 +26,7 @@ class PassportController extends Controller
      */
     public function registerAction()
     {
-        
+        return $this->render('AdminBundle:Passport:register.html.twig');
     }
 
     /**
@@ -35,6 +35,6 @@ class PassportController extends Controller
      */
     public function loginOutAction()
     {
-
+        return $this->render('AdminBundle:Passport:loginOut.html.twig');
     }
 }

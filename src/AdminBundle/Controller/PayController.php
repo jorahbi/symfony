@@ -26,6 +26,6 @@ class PayController extends Controller
      */
     public function activeAction()
     {
-        
+        return $this->render('AdminBundle:Pay:active.html.twig');
     }
 }

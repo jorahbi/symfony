@@ -22,7 +22,8 @@ var requireConfig = {
                 'css!plugins/simple-line-icons/simple-line-icons.min.css',
                 'css!modules/admin/admin5css/components-rounded.css',
                 'css!modules/admin/admin5css/plugins.css',
-                'css!modules/admin/layout4/css/layout.css',
+                'css!modules/admin/layout/css/layout.css',
+                'css!modules/admin/layout/css/themes/default.css',
                 //'modules/admin/scripts/metronic',
                 //'modules/admin/layout4/scripts/layout'
             ]

@@ -16,9 +16,9 @@ class MembersController extends Controller
      * 用户列表
      * @Route("/index", name="/admin/members/index")
      */
-    public function indexActionAction()
+    public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Members:index.html.twig');
     }
     
     /**
@@ -27,7 +27,7 @@ class MembersController extends Controller
      */
     public function msmAction()
     {
-        
+        return $this->render('AdminBundle:Members:msm.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class MembersController extends Controller
      */
     public function companyAction()
     {
-        
+        return $this->render('AdminBundle:Members:company.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class MembersController extends Controller
      */
     public function addCompanyAction()
     {
-        
+        return $this->render('AdminBundle:Members:addCompany.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class MembersController extends Controller
      */
     public function marketAction()
     {
-        
+        return $this->render('AdminBundle:Members:market.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class MembersController extends Controller
      */
     public function addMarketAction()
     {
-        
+        return $this->render('AdminBundle:Members:addMarket.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class MembersController extends Controller
      */
     public function marketDetailAction()
     {
-        
+        return $this->render('AdminBundle:Members:marketDetail.html.twig');
     }
 
     /**
@@ -81,7 +81,7 @@ class MembersController extends Controller
      */
     public function delMarketAction()
     {
-        
+        return $this->render('AdminBundle:Members:delMarket.html.twig');
     }
 
     /**
@@ -90,7 +90,7 @@ class MembersController extends Controller
      */
     public function qrcodeAction()
     {
-        
+        return $this->render('AdminBundle:Members:qrcode.html.twig');
     }
 
     /**
@@ -99,7 +99,7 @@ class MembersController extends Controller
      */
     public function vipAction()
     {
-        
+        return $this->render('AdminBundle:Members:vip.html.twig');
     }
 
     /**
@@ -108,6 +108,6 @@ class MembersController extends Controller
      */
     public function vipRenewalAction()
     {
-        
+        return $this->render('AdminBundle:Members:vipRenewal.html.twig');
     }
 }

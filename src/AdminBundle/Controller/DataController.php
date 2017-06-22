@@ -18,7 +18,7 @@ class DataController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Data:index.html.twig');
     }
     
     /**
@@ -27,7 +27,7 @@ class DataController extends Controller
      */
     public function moneyAction()
     {
-        
+        return $this->render('AdminBundle:Data:money.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class DataController extends Controller
      */
     public function overallMoneyAction()
     {
-        
+        return $this->render('AdminBundle:Data:overallMoney.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class DataController extends Controller
      */
     public function operateAction()
     {
-        
+        return $this->render('AdminBundle:Data:operate.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class DataController extends Controller
      */
     public function loginCountAction()
     {
-        
+        return $this->render('AdminBundle:Data:loginCount.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class DataController extends Controller
      */
     public function visitAction()
     {
-        
+        return $this->render('AdminBundle:Data:visit.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class DataController extends Controller
      */
     public function visitDayAction()
     {
-        
+        return $this->render('AdminBundle:Data:visitDay.html.twig');
     }
 
     /**
@@ -81,7 +81,7 @@ class DataController extends Controller
      */
     public function staffVisitAction()
     {
-        
+        return $this->render('AdminBundle:Data:staffVisit.html.twig');
     }
 
     /**
@@ -90,7 +90,7 @@ class DataController extends Controller
      */
     public function adviserVisitAction()
     {
-        
+        return $this->render('AdminBundle:Data:adviserVisit.html.twig');
     }
 
     /**
@@ -99,7 +99,7 @@ class DataController extends Controller
      */
     public function revisitAction()
     {
-        
+        return $this->render('AdminBundle:Data:revisit.html.twig');
     }
 
     /**
@@ -108,6 +108,6 @@ class DataController extends Controller
      */
     public function investAction()
     {
-        
+        return $this->render('AdminBundle:Data:invest.html.twig');
     }
 }

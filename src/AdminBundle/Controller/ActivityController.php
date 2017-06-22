@@ -18,7 +18,7 @@ class ActivityController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Activity:index.html.twig');
     }
 
     /**
@@ -27,7 +27,7 @@ class ActivityController extends Controller
      */
     public function appWelcomeAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Activity:appWelcome.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class ActivityController extends Controller
      */
     public function appNavAction()
     {
-        
+        return $this->render('AdminBundle:Activity:appNav.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class ActivityController extends Controller
      */
     public function markerAction()
     {
-        
+        return $this->render('AdminBundle:Activity:marker.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class ActivityController extends Controller
      */
     public function taskAction()
     {
-        
+        return $this->render('AdminBundle:Activity:task.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class ActivityController extends Controller
      */
     public function addTaskAction()
     {
-        
+        return $this->render('AdminBundle:Activity:addTas.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class ActivityController extends Controller
      */
     public function prizeAction()
     {
-        
+        return $this->render('AdminBundle:Activity:prize.html.twig');
     }
 
     /**
@@ -81,7 +81,7 @@ class ActivityController extends Controller
      */
     public function addPrizeAction()
     {
-        
+        return $this->render('AdminBundle:Activity:addPrize.html.twig');
     }
 
     /**
@@ -90,7 +90,7 @@ class ActivityController extends Controller
      */
     public function continuedAction()
     {
-        
+        return $this->render('AdminBundle:Activity:continued.html.twig');
     }
 
     /**
@@ -99,7 +99,7 @@ class ActivityController extends Controller
      */
     public function exchangeAction()
     {
-        
+        return $this->render('AdminBundle:Activity:exchange.html.twig');
     }
 
     /**
@@ -108,7 +108,7 @@ class ActivityController extends Controller
      */
     public function signAction()
     {
-        
+        return $this->render('AdminBundle:Activity:sign.html.twig');
     }
 
     /**
@@ -117,7 +117,7 @@ class ActivityController extends Controller
      */
     public function addSignAction()
     {
-        
+        return $this->render('AdminBundle:Activity:addSign.html.twig');
     }
 
     /**
@@ -126,7 +126,7 @@ class ActivityController extends Controller
      */
     public function integralAction()
     {
-        
+        return $this->render('AdminBundle:Activity:integral.html.twig');
     }
 
     /**
@@ -135,6 +135,6 @@ class ActivityController extends Controller
      */
     public function addIntegralAction()
     {
-        
+        return $this->render('AdminBundle:Activity:addIntegral.html.twig');
     }
 }

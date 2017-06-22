@@ -18,7 +18,7 @@ class SystemController extends Controller
      */
     public function usersAction()
     {
-        
+        return $this->render('AdminBundle:System:users.html.twig');
     }
 
     /**
@@ -27,7 +27,7 @@ class SystemController extends Controller
      */
     public function disabledUsersAction()
     {
-        
+        return $this->render('AdminBundle:System:disabledUsers.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class SystemController extends Controller
      */
     public function operationLogAction()
     {
-        
+        return $this->render('AdminBundle:System:operationLog.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class SystemController extends Controller
      */
     public function managerAction()
     {
-        
+        return $this->render('AdminBundle:System:manager.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class SystemController extends Controller
      */
     public function departmentAction()
     {
-        
+        return $this->render('AdminBundle:System:department.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class SystemController extends Controller
      */
     public function positionAction()
     {
-        
+        return $this->render('AdminBundle:System:position.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class SystemController extends Controller
      */
     public function messageAction()
     {
-        
+        return $this->render('AdminBundle:System:message.html.twig');
     }
 
     /**
@@ -81,7 +81,7 @@ class SystemController extends Controller
      */
     public function pushMsgAction()
     {
-        
+        return $this->render('AdminBundle:System:pushMsg.html.twig');
     }
 
     /**
@@ -90,6 +90,6 @@ class SystemController extends Controller
      */
     public function cleanDataAction()
     {
-        
+        return $this->render('AdminBundle:System:cleanData.html.twig');
     }
 }

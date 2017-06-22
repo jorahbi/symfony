@@ -18,7 +18,7 @@ class SaleController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Sale:index.html.twig');
     }
 
     /**
@@ -27,7 +27,7 @@ class SaleController extends Controller
      */
     public function achievementAction()
     {
-        
+        return $this->render('AdminBundle:Sale:achievement.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class SaleController extends Controller
      */
     public function saleDetailAction()
     {
-        
+        return $this->render('AdminBundle:Sale:saleDetail.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class SaleController extends Controller
      */
     public function teamAction()
     {
-        
+        return $this->render('AdminBundle:Sale:team.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class SaleController extends Controller
      */
     public function staffAction()
     {
-        
+        return $this->render('AdminBundle:Sale:staff.html.twig');
     }
 
     /**
@@ -63,6 +63,6 @@ class SaleController extends Controller
      */
     public function staffDetailAction()
     {
-        
+        return $this->render('AdminBundle:Sale:staffDetail.html.twig');
     }
 }

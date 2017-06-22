@@ -19,7 +19,7 @@ class FinanceController extends Controller
      */
     public function borrowRepayAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Finance:borrowRepay.html.twig');
     }
 
     /**
@@ -28,7 +28,7 @@ class FinanceController extends Controller
      */
     public function experienceRepayAction()
     {
-        
+        return $this->render('AdminBundle:Finance:experienceRepay.html.twig');
     }
 
     /**
@@ -37,7 +37,7 @@ class FinanceController extends Controller
      */
     public function friendRewardAction()
     {
-        
+        return $this->render('AdminBundle:Finance:friendReward.html.twig');
     }
 
     /**
@@ -46,7 +46,7 @@ class FinanceController extends Controller
      */
     public function rechargeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:recharge.html.twig');
     }
 
     /**
@@ -55,7 +55,7 @@ class FinanceController extends Controller
      */
     public function moneyAction()
     {
-        
+        return $this->render('AdminBundle:Finance:money.html.twig');
     }
 
     /**
@@ -64,7 +64,7 @@ class FinanceController extends Controller
      */
     public function moneyOverviewAction()
     {
-        
+        return $this->render('AdminBundle:Finance:moneyOverview.html.twig');
     }
 
     /**
@@ -73,7 +73,7 @@ class FinanceController extends Controller
      */
     public function investAction()
     {
-        
+        return $this->render('AdminBundle:Finance:invest.html.twig');
     }
 
     /**
@@ -82,7 +82,7 @@ class FinanceController extends Controller
      */
     public function borrowOverviewAction()
     {
-        
+        return $this->render('AdminBundle:Finance:borrowOverview.html.twig');
     }
 
     /**
@@ -91,7 +91,7 @@ class FinanceController extends Controller
      */
     public function couponsAction()
     {
-        
+        return $this->render('AdminBundle:Finance:coupons.html.twig');
     }
 
     /**
@@ -100,7 +100,7 @@ class FinanceController extends Controller
      */
     public function addCouponsAction()
     {
-        
+        return $this->render('AdminBundle:Finance:addCoupons.html.twig');
     }
 
     /**
@@ -109,7 +109,7 @@ class FinanceController extends Controller
      */
     public function couponDetailAction()
     {
-        
+        return $this->render('AdminBundle:Finance:couponDetail.html.twig');
     }
 
     /**
@@ -118,7 +118,7 @@ class FinanceController extends Controller
      */
     public function couponCountAction()
     {
-        
+        return $this->render('AdminBundle:Finance:couponCount.html.twig');
     }
 
     /**
@@ -127,7 +127,7 @@ class FinanceController extends Controller
      */
     public function outTradeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:outTrade.html.twig');
     }
 
     /**
@@ -136,7 +136,7 @@ class FinanceController extends Controller
      */
     public function tradeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:trade.html.twig');
     }
 
     /**
@@ -145,7 +145,7 @@ class FinanceController extends Controller
      */
     public function checkTradeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:checkTrade.html.twig');
     }
 
     /**
@@ -154,7 +154,7 @@ class FinanceController extends Controller
      */
     public function tradePayAction()
     {
-        
+        return $this->render('AdminBundle:Finance:tradePay.html.twig');
     }
 
     /**
@@ -163,7 +163,7 @@ class FinanceController extends Controller
      */
     public function inTradeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:inTrade.html.twig');
     }
 
     /**
@@ -172,7 +172,7 @@ class FinanceController extends Controller
      */
     public function investListAction()
     {
-        
+        return $this->render('AdminBundle:Finance:investList.html.twig');
     }
 
     /**
@@ -181,7 +181,7 @@ class FinanceController extends Controller
      */
     public function investTerminalAction()
     {
-        
+        return $this->render('AdminBundle:Finance:investTerminal.html.twig');
     }
 
     /**
@@ -190,7 +190,7 @@ class FinanceController extends Controller
      */
     public function leaseAction()
     {
-        
+        return $this->render('AdminBundle:Finance:lease.html.twig');
     }
 
     /**
@@ -199,7 +199,7 @@ class FinanceController extends Controller
      */
     public function moneyDetailAction()
     {
-        
+        return $this->render('AdminBundle:Finance:moneyDetail.html.twig');
     }
 
     /**
@@ -208,7 +208,7 @@ class FinanceController extends Controller
      */
     public function debtAction()
     {
-        
+        return $this->render('AdminBundle:Finance:debt.html.twig');
     }
 
     /**
@@ -217,7 +217,7 @@ class FinanceController extends Controller
      */
     public function checkDebtAction()
     {
-        
+        return $this->render('AdminBundle:Finance:checkDebt.html.twig');
     }
 
     /**
@@ -226,7 +226,7 @@ class FinanceController extends Controller
      */
     public function repayDebtAction()
     {
-        
+        return $this->render('AdminBundle:Finance:repayDebt.html.twig');
     }
 
     /**
@@ -235,7 +235,7 @@ class FinanceController extends Controller
      */
     public function takeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:take.html.twig');
     }
 
     /**
@@ -244,7 +244,7 @@ class FinanceController extends Controller
      */
     public function applyTakeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:applyTake.html.twig');
     }
 
     /**
@@ -253,7 +253,7 @@ class FinanceController extends Controller
      */
     public function checkTakeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:checkTake.html.twig');
     }
 
     /**
@@ -262,6 +262,6 @@ class FinanceController extends Controller
      */
     public function confirmTakeAction()
     {
-        
+        return $this->render('AdminBundle:Finance:confirmTake.html.twig');
     }
 }

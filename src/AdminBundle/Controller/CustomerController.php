@@ -27,7 +27,7 @@ class CustomerController extends Controller
      */
     public function usersAction()
     {
-        
+        return $this->render('AdminBundle:Default:users.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class CustomerController extends Controller
      */
     public function paymentAction()
     {
-        
+        return $this->render('AdminBundle:Default:payment.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class CustomerController extends Controller
      */
     public function selfListAction()
     {
-        
+        return $this->render('AdminBundle:Default:selfList.html.twig');
     }
 
     /**
@@ -54,6 +54,6 @@ class CustomerController extends Controller
      */
     public function listsAction()
     {
-        
+        return $this->render('AdminBundle:Default:lists.html.twig');
     }
 }

@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        return $this->render('AdminBundle:Article:index.html.twig');
     }
 
     /**
@@ -27,7 +27,7 @@ class ArticleController extends Controller
      */
     public function helpAction()
     {
-        
+        return $this->render('AdminBundle:Article:help.html.twig');
     }
 
     /**
@@ -36,7 +36,7 @@ class ArticleController extends Controller
      */
     public function addAction()
     {
-        
+        return $this->render('AdminBundle:Article:add.html.twig');
     }
 
     /**
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      */
     public function msmAction()
     {
-        
+        return $this->render('AdminBundle:Article:msm.html.twig');
     }
 
     /**
@@ -54,7 +54,7 @@ class ArticleController extends Controller
      */
     public function sendMsmAction()
     {
-        
+        return $this->render('AdminBundle:Article:sendMsm.html.twig');
     }
 
     /**
@@ -63,7 +63,7 @@ class ArticleController extends Controller
      */
     public function categoryAction()
     {
-        
+        return $this->render('AdminBundle:Article:category.html.twig');
     }
 
     /**
@@ -72,7 +72,7 @@ class ArticleController extends Controller
      */
     public function saveCatAction()
     {
-        
+        return $this->render('AdminBundle:Article:save.html.twig');
     }
 
     /**
@@ -81,6 +81,6 @@ class ArticleController extends Controller
      */
     public function exceptionAction()
     {
-        
+        return $this->render('AdminBundle:Article:exception.html.twig');
     }
 }

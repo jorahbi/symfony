@@ -26,6 +26,30 @@
             <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
                 <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN PAGE HEAD -->
+                    {# <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>{{ permission.getCurrentMenu['crumbs'][0]['label'] }} <small>basic datatable samples</small></h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div> #}
+                    <!-- END PAGE HEAD -->
+                    <!-- BEGIN PAGE BREADCRUMB -->
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb breadcrumb">
+                        {% for crumbs in permission.getCurrentMenu['crumbs'] %}
+                            <li>
+                                <i class="{{ crumbs['icon'] }}"></i>
+                                <a href="{{ crumbs['link'] }}">{{ crumbs['label'] }}</a>
+                                
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- END PAGE BREADCRUMB -->
+                    <!-- END PAGE HEADER-->
                 {% block body %}{% endblock %}
                 </div>
             </div>
@@ -37,7 +61,7 @@
         <script src="{{ asset('static/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('static/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('static/modules/admin/scripts/metronic.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('static/modules/admin/layout4/scripts/layout.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('static/modules/admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
