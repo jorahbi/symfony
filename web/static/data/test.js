@@ -1,15 +1,15 @@
-define('Data/test', function() {
+define(function() {
     return [{
-            data: 'test1',
+            data: 'id',
             render: function(data, type, row, meta) {
                 return '<input type="checkbox" name="id[]" value="' + data + '">';
             }
         },
-        { data: 'test2' },
-        { data: 'test3' },
-        { data: 'test4' },
-        { data: 'test5' }, {
-            data: 'test6',
+        { data: 'borrowName', bSortable: false},//bSortable: false不排序
+        { data: 'borrowOrder' },
+        { data: 'classify' },
+        { data: 'interest' }, {
+            data: 'money',
             searchable: false,
             render: function(data, type, row, meta) {
                 /*console.log(data);
@@ -19,12 +19,12 @@ define('Data/test', function() {
                 return '<a>test</a>'
             }
         },
-        { data: 'test7' }, {
+        { data: 'package' }, {
             render: function(data, type, row, meta) {
                 return '<span class="label label-sm label-success">Pending</span>';
             }
         }, {
-            data: 'test8',
+            data: 'upperPrice',
             render: function(data, type, row, meta) {
                 return '<a href="javascript:;" class="btn btn-xs default"><i class="fa fa-search"></i> View</a>';
             }

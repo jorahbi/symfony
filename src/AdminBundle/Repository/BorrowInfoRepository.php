@@ -11,14 +11,43 @@ namespace AdminBundle\Repository;
 class BorrowInfoRepository extends \Doctrine\ORM\EntityRepository
 {
 
-	public function getList($status = '0')
+	protected $pageLimit = 10;
+	protected $pageIndex = 1;
+	protected $status = 0;
+	protected $queryBuilder = null;
+	protected $query = null;
+
+
+	protected function mapRequest()
 	{
-		$query = $this->getEntityManager()->createQueryBuilder()
-		->select('b.id, b.package')
-		->from($this->getEntityName(), 'b')
+		empty($this->queryBuilder) && $this->queryBuilder = $this->getEntityManager()->createQueryBuilder();
+		empty($this->query) && $this->query = $this->queryBuilder->from($this->getEntityName(), 'b');
+	}
+
+	public function &getList($status = '5')
+	{
+		$this->mapRequest();
+		$count = $this->query->select('count(b.id)')
 		->where('b.borrowStatus = :borrowStatus')
 		->setParameter('borrowStatus', $status)
+		->getQuery()->getSingleScalarResult();
+
+		$result['recordsTotal'] = $result['recordsFiltered'] = $count;
+		$query = $this->query->select('b.id as id', 'm.id as mid')
+		->leftJoin('AdminBundle:Members', 'm', 'WITH', 'm.id = b.borrowUid')
+		//->leftJoin('AdminBundle:BorrowInvest', 'bi', 'WITH', 'bi.bid = b.id')
+		->setMaxResults($this->pageLimit)
+		->setFirstResult(($this->pageIndex - 1) * $this->pageLimit)
+		->where('b.borrowStatus = :borrowStatus')
+		->setParameter('borrowStatus', $status)
+		//->orderBy('e.' . $this->order, $this->orderBy)
 		->getQuery();
-		return $query->getArrayResult();
+		$result['data'] = $query->getArrayResult();
+		print_r($query->getSQL());
+		print_r($result);die;
+		//\Doctrine\Common\Util\Debug::dump($result['data']);die;
+		//\Doctrine\Common\Util\Debug::dump($result['data'][0]->getBorrowInvest());die;
+		//\Doctrine\Common\Util\Debug::dump($result);die;
+		return $result;
 	}
 }

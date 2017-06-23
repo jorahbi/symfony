@@ -17,7 +17,7 @@ class BorrowInfo
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -52,7 +52,8 @@ class BorrowInfo
     /**
      * @var integer
      *
-     * @ORM\Column(name="borrow_uid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Members", inversedBy="memberBorrow", cascade={"persist"})
+     * @ORM\JoinColumn(name="borrow_uid", referencedColumnName="id")
      */
     private $borrowUid = '0';
 
@@ -97,6 +98,13 @@ class BorrowInfo
      * @ORM\Column(name="money", type="decimal", precision=15, scale=2, nullable=false)
      */
     private $money = '0.00';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="invest_money", type="decimal", precision=15, scale=2, nullable=false)
+     */
+    private $investMoney = '0.00';
 
     /**
      * @var string
@@ -364,7 +372,10 @@ class BorrowInfo
      */
     private $addTime = '0';
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="BorrowInvest", mappedBy="bid")
+     */
+    private $borrowInvest;
 
     /**
      * Get id
@@ -386,7 +397,7 @@ class BorrowInfo
     public function setPackage($package)
     {
         $this->package = $package;
-    
+
         return $this;
     }
 
@@ -410,7 +421,7 @@ class BorrowInfo
     public function setClassify($classify)
     {
         $this->classify = $classify;
-    
+
         return $this;
     }
 
@@ -434,7 +445,7 @@ class BorrowInfo
     public function setBorrowName($borrowName)
     {
         $this->borrowName = $borrowName;
-    
+
         return $this;
     }
 
@@ -458,7 +469,7 @@ class BorrowInfo
     public function setBorrowOrder($borrowOrder)
     {
         $this->borrowOrder = $borrowOrder;
-    
+
         return $this;
     }
 
@@ -482,7 +493,7 @@ class BorrowInfo
     public function setBorrowUid($borrowUid)
     {
         $this->borrowUid = $borrowUid;
-    
+
         return $this;
     }
 
@@ -506,7 +517,7 @@ class BorrowInfo
     public function setBorrowType($borrowType)
     {
         $this->borrowType = $borrowType;
-    
+
         return $this;
     }
 
@@ -530,7 +541,7 @@ class BorrowInfo
     public function setDuration($duration)
     {
         $this->duration = $duration;
-    
+
         return $this;
     }
 
@@ -554,7 +565,7 @@ class BorrowInfo
     public function setDurationUnit($durationUnit)
     {
         $this->durationUnit = $durationUnit;
-    
+
         return $this;
     }
 
@@ -578,7 +589,7 @@ class BorrowInfo
     public function setDurationMonth($durationMonth)
     {
         $this->durationMonth = $durationMonth;
-    
+
         return $this;
     }
 
@@ -602,7 +613,7 @@ class BorrowInfo
     public function setDurationOriginal($durationOriginal)
     {
         $this->durationOriginal = $durationOriginal;
-    
+
         return $this;
     }
 
@@ -626,7 +637,7 @@ class BorrowInfo
     public function setMoney($money)
     {
         $this->money = $money;
-    
+
         return $this;
     }
 
@@ -650,7 +661,7 @@ class BorrowInfo
     public function setInterest($interest)
     {
         $this->interest = $interest;
-    
+
         return $this;
     }
 
@@ -674,7 +685,7 @@ class BorrowInfo
     public function setFinialMoney($finialMoney)
     {
         $this->finialMoney = $finialMoney;
-    
+
         return $this;
     }
 
@@ -698,7 +709,7 @@ class BorrowInfo
     public function setFinialInterest($finialInterest)
     {
         $this->finialInterest = $finialInterest;
-    
+
         return $this;
     }
 
@@ -722,7 +733,7 @@ class BorrowInfo
     public function setFinialBaseInterest($finialBaseInterest)
     {
         $this->finialBaseInterest = $finialBaseInterest;
-    
+
         return $this;
     }
 
@@ -746,7 +757,7 @@ class BorrowInfo
     public function setReceiveMoney($receiveMoney)
     {
         $this->receiveMoney = $receiveMoney;
-    
+
         return $this;
     }
 
@@ -770,7 +781,7 @@ class BorrowInfo
     public function setReceiveInterest($receiveInterest)
     {
         $this->receiveInterest = $receiveInterest;
-    
+
         return $this;
     }
 
@@ -794,7 +805,7 @@ class BorrowInfo
     public function setInterestRate($interestRate)
     {
         $this->interestRate = $interestRate;
-    
+
         return $this;
     }
 
@@ -818,7 +829,7 @@ class BorrowInfo
     public function setBaseRate($baseRate)
     {
         $this->baseRate = $baseRate;
-    
+
         return $this;
     }
 
@@ -842,7 +853,7 @@ class BorrowInfo
     public function setAlsRate($alsRate)
     {
         $this->alsRate = $alsRate;
-    
+
         return $this;
     }
 
@@ -866,7 +877,7 @@ class BorrowInfo
     public function setRepaymentType($repaymentType)
     {
         $this->repaymentType = $repaymentType;
-    
+
         return $this;
     }
 
@@ -890,7 +901,7 @@ class BorrowInfo
     public function setRepaymentDay($repaymentDay)
     {
         $this->repaymentDay = $repaymentDay;
-    
+
         return $this;
     }
 
@@ -914,7 +925,7 @@ class BorrowInfo
     public function setBorrowStatus($borrowStatus)
     {
         $this->borrowStatus = $borrowStatus;
-    
+
         return $this;
     }
 
@@ -938,7 +949,7 @@ class BorrowInfo
     public function setCover($cover)
     {
         $this->cover = $cover;
-    
+
         return $this;
     }
 
@@ -962,7 +973,7 @@ class BorrowInfo
     public function setStartPrice($startPrice)
     {
         $this->startPrice = $startPrice;
-    
+
         return $this;
     }
 
@@ -986,7 +997,7 @@ class BorrowInfo
     public function setUpperPrice($upperPrice)
     {
         $this->upperPrice = $upperPrice;
-    
+
         return $this;
     }
 
@@ -1010,7 +1021,7 @@ class BorrowInfo
     public function setPerPrice($perPrice)
     {
         $this->perPrice = $perPrice;
-    
+
         return $this;
     }
 
@@ -1034,7 +1045,7 @@ class BorrowInfo
     public function setStartTime($startTime)
     {
         $this->startTime = $startTime;
-    
+
         return $this;
     }
 
@@ -1058,7 +1069,7 @@ class BorrowInfo
     public function setHasMoney($hasMoney)
     {
         $this->hasMoney = $hasMoney;
-    
+
         return $this;
     }
 
@@ -1082,7 +1093,7 @@ class BorrowInfo
     public function setOpenTime($openTime)
     {
         $this->openTime = $openTime;
-    
+
         return $this;
     }
 
@@ -1106,7 +1117,7 @@ class BorrowInfo
     public function setEndTime($endTime)
     {
         $this->endTime = $endTime;
-    
+
         return $this;
     }
 
@@ -1130,7 +1141,7 @@ class BorrowInfo
     public function setFullTime($fullTime)
     {
         $this->fullTime = $fullTime;
-    
+
         return $this;
     }
 
@@ -1154,7 +1165,7 @@ class BorrowInfo
     public function setDeadline($deadline)
     {
         $this->deadline = $deadline;
-    
+
         return $this;
     }
 
@@ -1178,7 +1189,7 @@ class BorrowInfo
     public function setIsShow($isShow)
     {
         $this->isShow = $isShow;
-    
+
         return $this;
     }
 
@@ -1202,7 +1213,7 @@ class BorrowInfo
     public function setIsAuto($isAuto)
     {
         $this->isAuto = $isAuto;
-    
+
         return $this;
     }
 
@@ -1226,7 +1237,7 @@ class BorrowInfo
     public function setIsOverdue($isOverdue)
     {
         $this->isOverdue = $isOverdue;
-    
+
         return $this;
     }
 
@@ -1250,7 +1261,7 @@ class BorrowInfo
     public function setIsLoan($isLoan)
     {
         $this->isLoan = $isLoan;
-    
+
         return $this;
     }
 
@@ -1274,7 +1285,7 @@ class BorrowInfo
     public function setCouponsType($couponsType)
     {
         $this->couponsType = $couponsType;
-    
+
         return $this;
     }
 
@@ -1298,7 +1309,7 @@ class BorrowInfo
     public function setHits($hits)
     {
         $this->hits = $hits;
-    
+
         return $this;
     }
 
@@ -1322,7 +1333,7 @@ class BorrowInfo
     public function setRisk($risk)
     {
         $this->risk = $risk;
-    
+
         return $this;
     }
 
@@ -1346,7 +1357,7 @@ class BorrowInfo
     public function setDanbaoName($danbaoName)
     {
         $this->danbaoName = $danbaoName;
-    
+
         return $this;
     }
 
@@ -1370,7 +1381,7 @@ class BorrowInfo
     public function setZhaiwuName($zhaiwuName)
     {
         $this->zhaiwuName = $zhaiwuName;
-    
+
         return $this;
     }
 
@@ -1394,7 +1405,7 @@ class BorrowInfo
     public function setZhaiwuIdcard($zhaiwuIdcard)
     {
         $this->zhaiwuIdcard = $zhaiwuIdcard;
-    
+
         return $this;
     }
 
@@ -1418,7 +1429,7 @@ class BorrowInfo
     public function setZhaiwuCompany($zhaiwuCompany)
     {
         $this->zhaiwuCompany = $zhaiwuCompany;
-    
+
         return $this;
     }
 
@@ -1442,7 +1453,7 @@ class BorrowInfo
     public function setPactType($pactType)
     {
         $this->pactType = $pactType;
-    
+
         return $this;
     }
 
@@ -1466,7 +1477,7 @@ class BorrowInfo
     public function setPactZhang($pactZhang)
     {
         $this->pactZhang = $pactZhang;
-    
+
         return $this;
     }
 
@@ -1490,7 +1501,7 @@ class BorrowInfo
     public function setRongziyongtu($rongziyongtu)
     {
         $this->rongziyongtu = $rongziyongtu;
-    
+
         return $this;
     }
 
@@ -1514,7 +1525,7 @@ class BorrowInfo
     public function setSaleAuto($saleAuto)
     {
         $this->saleAuto = $saleAuto;
-    
+
         return $this;
     }
 
@@ -1538,7 +1549,7 @@ class BorrowInfo
     public function setAddTime($addTime)
     {
         $this->addTime = $addTime;
-    
+
         return $this;
     }
 
@@ -1550,5 +1561,70 @@ class BorrowInfo
     public function getAddTime()
     {
         return $this->addTime;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->borrowInvest = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add borrowInvest
+     *
+     * @param \AdminBundle\Entity\BorrowInvest $borrowInvest
+     *
+     * @return BorrowInfo
+     */
+    public function addBorrowInvest(\AdminBundle\Entity\BorrowInvest $borrowInvest)
+    {
+        $this->borrowInvest[] = $borrowInvest;
+
+        return $this;
+    }
+
+    /**
+     * Remove borrowInvest
+     *
+     * @param \AdminBundle\Entity\BorrowInvest $borrowInvest
+     */
+    public function removeBorrowInvest(\AdminBundle\Entity\BorrowInvest $borrowInvest)
+    {
+        $this->borrowInvest->removeElement($borrowInvest);
+    }
+
+    /**
+     * Get borrowInvest
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBorrowInvest()
+    {
+        return $this->borrowInvest;
+    }
+
+    /**
+     * Set investMoney
+     *
+     * @param string $investMoney
+     *
+     * @return BorrowInfo
+     */
+    public function setInvestMoney($investMoney)
+    {
+        $this->investMoney = $investMoney;
+
+        return $this;
+    }
+
+    /**
+     * Get investMoney
+     *
+     * @return string
+     */
+    public function getInvestMoney()
+    {
+        return $this->investMoney;
     }
 }

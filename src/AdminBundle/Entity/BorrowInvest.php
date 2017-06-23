@@ -17,14 +17,15 @@ class BorrowInvest
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="bid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="BorrowInfo", inversedBy="borrowInvest")
+     * @ORM\JoinColumn(name="bid", referencedColumnName="id")
      */
     private $bid = '0';
 
@@ -38,7 +39,8 @@ class BorrowInvest
     /**
      * @var integer
      *
-     * @ORM\Column(name="uid", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Members", inversedBy="memberInvest", cascade={"persist"})
+     * @ORM\JoinColumn(name="uid", referencedColumnName="id")
      */
     private $uid = '0';
 
@@ -246,7 +248,7 @@ class BorrowInvest
     public function setBid($bid)
     {
         $this->bid = $bid;
-    
+
         return $this;
     }
 
@@ -270,7 +272,7 @@ class BorrowInvest
     public function setDebtId($debtId)
     {
         $this->debtId = $debtId;
-    
+
         return $this;
     }
 
@@ -294,7 +296,7 @@ class BorrowInvest
     public function setUid($uid)
     {
         $this->uid = $uid;
-    
+
         return $this;
     }
 
@@ -318,7 +320,7 @@ class BorrowInvest
     public function setCapital($capital)
     {
         $this->capital = $capital;
-    
+
         return $this;
     }
 
@@ -342,7 +344,7 @@ class BorrowInvest
     public function setCapitalYear($capitalYear)
     {
         $this->capitalYear = $capitalYear;
-    
+
         return $this;
     }
 
@@ -366,7 +368,7 @@ class BorrowInvest
     public function setInterest($interest)
     {
         $this->interest = $interest;
-    
+
         return $this;
     }
 
@@ -390,7 +392,7 @@ class BorrowInvest
     public function setFee($fee)
     {
         $this->fee = $fee;
-    
+
         return $this;
     }
 
@@ -414,7 +416,7 @@ class BorrowInvest
     public function setReceiveCapital($receiveCapital)
     {
         $this->receiveCapital = $receiveCapital;
-    
+
         return $this;
     }
 
@@ -438,7 +440,7 @@ class BorrowInvest
     public function setReceiveInterest($receiveInterest)
     {
         $this->receiveInterest = $receiveInterest;
-    
+
         return $this;
     }
 
@@ -462,7 +464,7 @@ class BorrowInvest
     public function setPaidFee($paidFee)
     {
         $this->paidFee = $paidFee;
-    
+
         return $this;
     }
 
@@ -486,7 +488,7 @@ class BorrowInvest
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
@@ -510,7 +512,7 @@ class BorrowInvest
     public function setDealStatus($dealStatus)
     {
         $this->dealStatus = $dealStatus;
-    
+
         return $this;
     }
 
@@ -534,7 +536,7 @@ class BorrowInvest
     public function setDiscount($discount)
     {
         $this->discount = $discount;
-    
+
         return $this;
     }
 
@@ -558,7 +560,7 @@ class BorrowInvest
     public function setOrderNo($orderNo)
     {
         $this->orderNo = $orderNo;
-    
+
         return $this;
     }
 
@@ -582,7 +584,7 @@ class BorrowInvest
     public function setAddTime($addTime)
     {
         $this->addTime = $addTime;
-    
+
         return $this;
     }
 
@@ -606,7 +608,7 @@ class BorrowInvest
     public function setAddMs($addMs)
     {
         $this->addMs = $addMs;
-    
+
         return $this;
     }
 
@@ -630,7 +632,7 @@ class BorrowInvest
     public function setDeadline($deadline)
     {
         $this->deadline = $deadline;
-    
+
         return $this;
     }
 
@@ -654,7 +656,7 @@ class BorrowInvest
     public function setIsAuto($isAuto)
     {
         $this->isAuto = $isAuto;
-    
+
         return $this;
     }
 
@@ -678,7 +680,7 @@ class BorrowInvest
     public function setClient($client)
     {
         $this->client = $client;
-    
+
         return $this;
     }
 
@@ -702,7 +704,7 @@ class BorrowInvest
     public function setServiceId($serviceId)
     {
         $this->serviceId = $serviceId;
-    
+
         return $this;
     }
 
@@ -726,7 +728,7 @@ class BorrowInvest
     public function setSale($sale)
     {
         $this->sale = $sale;
-    
+
         return $this;
     }
 
@@ -750,7 +752,7 @@ class BorrowInvest
     public function setJobNum($jobNum)
     {
         $this->jobNum = $jobNum;
-    
+
         return $this;
     }
 
@@ -774,7 +776,7 @@ class BorrowInvest
     public function setBrokerage($brokerage)
     {
         $this->brokerage = $brokerage;
-    
+
         return $this;
     }
 
@@ -798,7 +800,7 @@ class BorrowInvest
     public function setBrokerageExt($brokerageExt)
     {
         $this->brokerageExt = $brokerageExt;
-    
+
         return $this;
     }
 
@@ -822,7 +824,7 @@ class BorrowInvest
     public function setBrokerageType($brokerageType)
     {
         $this->brokerageType = $brokerageType;
-    
+
         return $this;
     }
 
@@ -846,7 +848,7 @@ class BorrowInvest
     public function setIsFirst($isFirst)
     {
         $this->isFirst = $isFirst;
-    
+
         return $this;
     }
 
@@ -870,7 +872,7 @@ class BorrowInvest
     public function setRate($rate)
     {
         $this->rate = $rate;
-    
+
         return $this;
     }
 
@@ -894,7 +896,7 @@ class BorrowInvest
     public function setIsBeyond($isBeyond)
     {
         $this->isBeyond = $isBeyond;
-    
+
         return $this;
     }
 
@@ -918,7 +920,7 @@ class BorrowInvest
     public function setAddIp($addIp)
     {
         $this->addIp = $addIp;
-    
+
         return $this;
     }
 

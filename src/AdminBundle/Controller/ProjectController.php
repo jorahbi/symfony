@@ -37,7 +37,14 @@ class ProjectController extends Controller
      */
     public function waitsAction(Request $request)
     {
-        $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
+$result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
+        if($request->isXmlHttpRequest())
+        {
+            //$result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
+            $result['draw'] = $request->get('draw');
+            return $this->json($result);
+        }
+        
         return $this->render('AdminBundle:Project:waits.html.twig');
     }
 
