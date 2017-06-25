@@ -1,7 +1,9 @@
 define("core", function(require, exports, module) {
     var Setting = function() {};
-    var modules = {};
-    var moduleName = [];
+    var modules = {
+        Core: (new Setting())
+    };
+
     Setting.prototype.init = function() {
         for (var key in requireConfig.paths) {
             var selector = '[data-modules="' + key + '"]';
@@ -15,8 +17,19 @@ define("core", function(require, exports, module) {
         }
 
     };
-
-    (new Setting()).init();
-
+    
+    Setting.prototype.reset = function(moduleName){
+        var selector = '[data-modules="' + moduleName + '"]';
+        if(!modules[moduleName]){
+            require([moduleName], function(module){
+                module.module.init(selector);
+                modules[module.name] = module.module;
+            });
+            return;
+        }
+        modules[name].init(selector);
+    };
+    
+    modules.Core.init();
     return modules;
 });

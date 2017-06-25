@@ -12,6 +12,7 @@ var requireConfig = {
         vue: 'vue',
         core: 'core',
         dataTablesAjax: 'modules/dataTableAjax',
+        modals: 'modules/modals',
         datatables: 'plugins/datatables/media/js/jquery.dataTables.min',
         datepicker: 'modules/datepicker'
     },
@@ -26,6 +27,14 @@ var requireConfig = {
                 'css!modules/admin/layout/css/themes/default.css',
                 //'modules/admin/scripts/metronic',
                 //'modules/admin/layout4/scripts/layout'
+            ]
+        },
+        modals: {
+            deps: [
+                'css!plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css',
+                'css!plugins/bootstrap-modal/css/bootstrap-modal.css',
+                'plugins/bootstrap-modal/js/bootstrap-modalmanager',
+                'plugins/bootstrap-modal/js/bootstrap-modal',
             ]
         },
         dataTablesAjax: {

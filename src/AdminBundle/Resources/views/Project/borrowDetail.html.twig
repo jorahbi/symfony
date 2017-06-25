@@ -2,13 +2,26 @@
 {% block title %} default {% endblock %}
 {% block body %}
     <!-- BEGIN PAGE CONTENT-->
+<table>
+    <tr>
+		<td>
+			 Ajax
+		</td>
+		<td>
+			<a class="btn default" id="ajax-demo" data-modal="ajax-modal" data-toggle="modal" data-modules="modals" data-source="{{ path('/admin/project/complete') }}">
+			View Demo </a>
+		</td>
+	</tr>
+</table>
+
     <!-- END PAGE CONTENT-->
 {% endblock %}
 
 {% block javascripts %}
 	<script type="text/javascript">
-		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
-		    //console.log(Core);
+		require(['admin', 'vue', 'core'], function(Admin, Vue, Core, modals) {
+		    console.log(Core);
+		    //Core.modals
 		});
 	</script>
 {% endblock %}

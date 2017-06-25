@@ -33,7 +33,7 @@ class BorrowInfoRepository extends \Doctrine\ORM\EntityRepository
 		->getQuery()->getSingleScalarResult();
 
 		$result['recordsTotal'] = $result['recordsFiltered'] = $count;
-		$query = $this->query->select('b.id as id', 'm.id as mid')
+		$query = $this->query->select('b.id, b.borrowName, b.money, b.investMoney, b.repaymentType, b.duration, b.addTime, m.realName, m.id uid')
 		->leftJoin('AdminBundle:Members', 'm', 'WITH', 'm.id = b.borrowUid')
 		//->leftJoin('AdminBundle:BorrowInvest', 'bi', 'WITH', 'bi.bid = b.id')
 		->setMaxResults($this->pageLimit)
@@ -43,11 +43,7 @@ class BorrowInfoRepository extends \Doctrine\ORM\EntityRepository
 		//->orderBy('e.' . $this->order, $this->orderBy)
 		->getQuery();
 		$result['data'] = $query->getArrayResult();
-		print_r($query->getSQL());
-		print_r($result);die;
 		//\Doctrine\Common\Util\Debug::dump($result['data']);die;
-		//\Doctrine\Common\Util\Debug::dump($result['data'][0]->getBorrowInvest());die;
-		//\Doctrine\Common\Util\Debug::dump($result);die;
 		return $result;
 	}
 }

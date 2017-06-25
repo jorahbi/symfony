@@ -31,10 +31,15 @@ define("dataTablesAjax", function(require, exports, module) {
 
         require([setting.source], function(columns){
             var grid = new Datatable();
+            columns.init(setting.element.data());
             grid.init({
                 src: setting.element,
                 onSuccess: function(grid) {
                     grid.clearAjaxParams();
+                    setTimeout(function(){
+                        require(['core'], function(Core){Core.Core.reset('modals')});
+                    }, 1000);
+                    
                 },
                 onError: function(grid) {},
                 onDataLoad: function(grid) {},
@@ -69,7 +74,7 @@ define("dataTablesAjax", function(require, exports, module) {
                             return responseData;
                         }
                     },
-                    columns: columns,//require('Data/test'),
+                    columns: columns.columns,//require('Data/test'),
                     order: [
                         [1, "asc"]
                     ], // set first column as a default sort by asc
