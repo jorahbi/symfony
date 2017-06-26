@@ -27,7 +27,7 @@ define("core", function(require, exports, module) {
             });
             return;
         }
-        modules[name].init(selector);
+        modules[moduleName].init(selector);
     };
     
     modules.Core.init();

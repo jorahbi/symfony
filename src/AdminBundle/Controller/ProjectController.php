@@ -37,7 +37,7 @@ class ProjectController extends Controller
      */
     public function waitsAction(Request $request)
     {
-        if($request->isXmlHttpRequest())
+        if($request->isXmlHttpRequest() && $request->get('draw'))
         {
             $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
             $result['draw'] = $request->get('draw');
@@ -62,8 +62,8 @@ class ProjectController extends Controller
      */
     public function completeAction()
     {
-        return $this->json(['result' => 'is ok1111']);
-        //return $this->render('AdminBundle:Project:complete.html.twig');
+        //return $this->json(['result' => 'is ok1111']);
+        return $this->render('AdminBundle:Project:complete.html.twig');
     }
 
     /**
