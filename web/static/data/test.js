@@ -13,7 +13,6 @@ define(function() {
         { 
             data: 'realName',
             render: function(data, type, row, meta) {
-                console.log(row)
                 return '<a class="btn default" id="ajax-demo" data-modal="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalUrl + '"> ' + data + ' </a>';
             }
         },
