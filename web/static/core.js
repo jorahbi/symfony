@@ -9,9 +9,11 @@ define("core", function(require, exports, module) {
             var selector = '[data-modules="' + key + '"]';
             if (document.querySelector('[data-modules="' + key + '"]')) {
                 require([key], function(module) {
-                    var selector = '[data-modules="' + module.name + '"]';
-                    module.module.init(selector);
-                    modules[module.name] = module.module;
+                    if(module){
+                        var selector = '[data-modules="' + module.name + '"]';
+                        module.module.init(selector);
+                        modules[module.name] = module.module;
+                    }
                 });
             }
         }

@@ -14,7 +14,8 @@ var requireConfig = {
         dataTablesAjax: 'modules/dataTableAjax',
         modals: 'modules/modals',
         datatables: 'plugins/datatables/media/js/jquery.dataTables.min',
-        datepicker: 'modules/datepicker'
+        datepicker: 'modules/datepicker',
+        dropdowns: 'modules/dropdowns',
     },
     shim:{
         admin: {
@@ -54,6 +55,13 @@ var requireConfig = {
             deps: [
                 'plugins/bootstrap-datepicker/js/bootstrap-datepicker',
                 'css!plugins/bootstrap-datepicker/css/datepicker.css',
+            ]
+        },
+        dropdowns: {
+            deps: [
+                'css!plugins/select2/select2.css',
+                'css!modules/admin/admin5css/plugins.css',
+                'plugins/select2/select2.min'
             ]
         }
     },

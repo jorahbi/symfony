@@ -7,7 +7,7 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\DoctrineProvider;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\Tools\Pagination\Paginator; 
+#use Doctrine\ORM\Tools\Pagination\Paginator; 
 /**
  * PermissionRepository
  *
@@ -80,7 +80,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	public function &getCrumbs()
 	{
 		$cache = new FilesystemAdapter();
-		//$cache->deleteItem('stats.permissionsAll');//删除缓存
+		$cache->deleteItem('stats.permissionsAll');//删除缓存
 		//set cache item 根据后台管理员id设置对应的缓存
 		$perCache = $cache->getItem('stats.crumbs');
 		if($perCache->isHit()){
