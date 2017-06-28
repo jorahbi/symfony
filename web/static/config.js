@@ -60,7 +60,8 @@ var requireConfig = {
         dropdowns: {
             deps: [
                 'css!plugins/select2/select2.css',
-                'css!modules/admin/admin5css/plugins.css',
+                'css!css11/plugins.css',
+                'css!css11/components.css',
                 'plugins/select2/select2.min'
             ]
         }
