@@ -65,7 +65,7 @@ class RequestListener
     {
         //登录、权限验证
         //$cache->deleteItem('stats.permissions');//删除缓存
-        $perCache = $this->fileSystem->getItem('stats.permissionsAll');
+        $perCache = $this->fileSystem->getItem('stats.crumbs');
         $resultCache = [];
         if($perCache->isHit() && in_array($currentRoute, $perCache->get())){
             //$resultCache = $perCache->get();

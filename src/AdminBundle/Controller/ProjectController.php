@@ -37,7 +37,7 @@ class ProjectController extends Controller
      */
     public function waitsAction(Request $request)
     {
-        if($request->isXmlHttpRequest() && $request->get('draw'))
+        if($request->headers->get('Ajax-Type') == 'pjax')
         {
             $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:BorrowInfo')->getList();
             $result['draw'] = $request->get('draw');

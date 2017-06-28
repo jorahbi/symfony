@@ -47,6 +47,11 @@ class PermissionService
 	{
 		$this->currentRoute = $route;
 	}
+
+	public function getCurrentRoute()
+	{
+		return $this->currentRoute;
+	}
 	
 	/**
 	 * 返回当前选中菜单与页面面包屑
@@ -55,9 +60,9 @@ class PermissionService
 	public function &getCurrentMenu()
 	{
 		//get cache item 根据后台管理员id获取对应的缓存
-        $perCache = (new FilesystemAdapter())->getItem('stats.permissionsAll')->get();
+        $perCache = (new FilesystemAdapter())->getItem('stats.crumbs')->get();
         //菜单栏选中路径
-        $menuTmp = isset($perCache['menus'][$this->currentRoute]) ? $perCache['menus'][$this->currentRoute] : '';
+        $menuTmp = isset($perCache['menus'][$this->getCurrentRoute()]) ? $perCache['menus'][$this->getCurrentRoute()] : '';
         $currentMenu['parent'] = explode(',', $menuTmp);
         //后台面包屑
         foreach ($currentMenu['parent'] as $v) 

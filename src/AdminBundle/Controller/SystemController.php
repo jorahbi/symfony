@@ -4,6 +4,7 @@ namespace AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * 系统管理
@@ -14,10 +15,17 @@ class SystemController extends Controller
 {
     /**
      * 管理员列表
-     * @Route("/users", name="/admin/system/users")
+     * @Route("/users/{parent}", name="/admin/system/users", defaults={"parent": 0})
+     *  
      */
-    public function usersAction()
+    public function usersAction(Request $request)
     {
+        if($request->headers->get('Ajax-Type') == 'pjax')
+        {
+            $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->getPermission($request);
+            $result['draw'] = $request->get('draw');
+            return $this->json($result);
+        }
         return $this->render('AdminBundle:System:users.html.twig');
     }
 
@@ -92,4 +100,14 @@ class SystemController extends Controller
     {
         return $this->render('AdminBundle:System:cleanData.html.twig');
     }
+
+    /**
+     * 添加后台权限
+     * @Route("/cleanData", name="/admin/system/addPermission")
+     */
+    public function addPermissionAction()
+    {
+        return $this->render('AdminBundle:System:cleanData.html.twig');
+    }
+
 }

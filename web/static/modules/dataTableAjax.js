@@ -56,6 +56,9 @@ define("dataTablesAjax", function(require, exports, module) {
                     pageLength: 10, // default record count per page
                     ajax: {
                         url: setting.ajaxUrl, // ajax source
+                        beforeSend: function(request){
+                             request.setRequestHeader('Ajax-Type', 'pjax');
+                        },
                         data: function(requestData) {
                             var result = {
                                 length: requestData.length,

@@ -80,7 +80,6 @@ var Datatable = function() {
                         "type": "POST", // request type
                         "timeout": 20000,
                         "data": function(data) { // add request parameters before submit
-                            console.log(ajaxParams);
                             $.each(ajaxParams, function(key, value) {
                                 data[key] = value;
                             });

@@ -6,6 +6,8 @@ use AdminBundle\Entity\Permission;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\DoctrineProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Tools\Pagination\Paginator; 
 /**
  * PermissionRepository
  *
@@ -14,6 +16,14 @@ use Symfony\Component\Cache\DoctrineProvider;
  */
 class PermissionRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	protected $queryBuilder = null;
+
+	protected function mapRequest()
+	{
+		empty($this->queryBuilder) && $this->queryBuilder = $this->getEntityManager()->createQueryBuilder()->from($this->getEntityName(), 'p');
+	}
+
 	public function add (Permission $permission)
 	{	
 		$this->mapRequest($permission);
@@ -39,12 +49,40 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 		//return $query->getArrayResult();
 	}
 
-	public function &getPermissionAll()
+	public function &getPermission(Request $request)
+	{
+		$result = [];
+		$this->mapRequest();
+
+		if($request->get('parent') !== 0)
+		{
+			$this->queryBuilder->andWhere('p.parent = :parent')
+				->setParameter('parent', $request->get('parent'));
+		}
+		else
+		{
+			$this->queryBuilder
+			->andWhere('p.lv = :lv')
+			->setParameter('lv', 1);
+		}
+		$result['recordsTotal'] = $result['recordsFiltered'] = $this->queryBuilder->select('count(p.id)')->getQuery()->getSingleScalarResult();
+
+		$this->queryBuilder->select('p');
+		$this->queryBuilder->setFirstResult($request->get('start'))->setMaxResults($request->get('length'));
+		$result['data'] = $this->queryBuilder->getQuery()->getArrayResult();
+		return $result;
+	}
+
+	/**
+	 * 后台面包屑
+	 * 
+	 */
+	public function &getCrumbs()
 	{
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissionsAll');//删除缓存
 		//set cache item 根据后台管理员id设置对应的缓存
-		$perCache = $cache->getItem('stats.permissionsAll');
+		$perCache = $cache->getItem('stats.crumbs');
 		if($perCache->isHit()){
 			$resultCache = $perCache->get();
 			return $resultCache;
@@ -72,7 +110,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 */
 	public function &getMenus()
 	{
-		$this->getPermissionAll();
+		//$this->getCrumbs();
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissions');//删除缓存
 		$perCache = $cache->getItem('stats.permissions');
