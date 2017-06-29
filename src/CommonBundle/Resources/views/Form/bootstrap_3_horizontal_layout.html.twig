@@ -82,20 +82,16 @@ col-sm-10
 
 {# icheck#}
 {%- block choice_widget_expanded -%}
-    <div {{ block('widget_container_attributes') }}>
-        <div class="input-group">
             <div class="icheck-inline" data-modules="icheck">
                 {%- for child in form %}
                 <label> <input type="radio" {% if child.vars.checked %} checked="checked" {% endif %}name="{{child.vars.full_name}}" id="{{child.vars.id}}" class="icheck "> {{child.vars.label}}</label>
                 {% endfor -%}
             </div>
-        </div>
-    </div>
 {%- endblock choice_widget_expanded -%}
 
 {# select2 #}
 {%- block choice_widget_collapsed -%}
-    <div class="form-group">
+    
     {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
         {% set required = false %}
     {%- endif -%}
@@ -114,5 +110,6 @@ col-sm-10
         {{- block('choice_widget_options') -}}
     
     </select>
-    </div>
 {%- endblock choice_widget_collapsed -%}
+
+

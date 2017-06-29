@@ -34,6 +34,15 @@ define('modals', function(require) {
                 $modal.load(setting.data.source, '', function() {
                     
                     $modal.modal();
+                    require(['core'], function(Core){
+                            for (var key in requireConfig.paths) {
+                                if(key == 'dataTablesAjax') continue;
+                                if (document.querySelector('[data-modules="' + key + '"]')) {
+                                    Core.Core.reset(key);
+                                }
+                            }
+                        //Core.Core.reset('modals')
+                        });
                 });
             }, 1000);
         });

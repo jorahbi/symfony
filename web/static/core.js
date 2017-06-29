@@ -9,11 +9,10 @@ define("core", function(require, exports, module) {
             var selector = '[data-modules="' + key + '"]';
             if (document.querySelector('[data-modules="' + key + '"]')) {
                 require([key], function(module) {
-                    if(module){
-                        var selector = '[data-modules="' + module.name + '"]';
-                        module.module.init(selector);
-                        modules[module.name] = module.module;
-                    }
+                    var selector = '[data-modules="' + module.name + '"]';
+                    module.module.init(selector);
+                    modules[module.name] = module.module;
+                
                 });
             }
         }
@@ -29,7 +28,7 @@ define("core", function(require, exports, module) {
             });
             return;
         }
-        modules[moduleName].init(selector);
+        //modules[moduleName].init(selector);
     };
     
     modules.Core.init();

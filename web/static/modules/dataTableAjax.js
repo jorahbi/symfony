@@ -37,7 +37,16 @@ define("dataTablesAjax", function(require, exports, module) {
                 onSuccess: function(grid) {
                     grid.clearAjaxParams();
                     setTimeout(function(){
-                        require(['core'], function(Core){Core.Core.reset('modals')});
+                        require(['core'], function(Core){
+                            for (var key in requireConfig.paths) {
+                                if(key == 'dataTablesAjax') continue;
+                                if (document.querySelector('[data-modules="' + key + '"]')) {
+                                    Core.Core.reset(key);
+                                }
+                            }
+                        //Core.Core.reset('modals')
+                        });
+                        
                     }, 1000);
                     
                 },
