@@ -16,6 +16,7 @@ var requireConfig = {
         datatables: 'plugins/datatables/media/js/jquery.dataTables.min',
         datepicker: 'modules/datepicker',
         dropdowns: 'modules/dropdowns',
+        icheck: 'modules/icheck'
     },
     shim:{
         admin: {
@@ -60,9 +61,16 @@ var requireConfig = {
         dropdowns: {
             deps: [
                 'css!plugins/select2/select2.css',
-                'css!css11/plugins.css',
-                'css!css11/components.css',
+                'css!global/plugins.css',
+                'css!global/components.css',
                 'plugins/select2/select2.min'
+            ]
+        },
+        icheck: {
+            deps: [
+                'css!global/plugins.css',
+                'css!plugins/icheck/skins/minimal/_all.css',
+                'plugins/icheck/icheck.min'
             ]
         }
     },

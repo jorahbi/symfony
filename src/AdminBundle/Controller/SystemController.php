@@ -5,6 +5,8 @@ namespace AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AdminBundle\Form\PermissionType;
+use AdminBundle\Entity\Permission;
 
 /**
  * 系统管理
@@ -44,7 +46,9 @@ class SystemController extends Controller
      */
     public function operationLogAction()
     {
-        return $this->render('AdminBundle:System:operationLog.html.twig');
+        $permission = new Permission();
+        $form = $this->createForm(PermissionType::class, $permission);
+        return $this->render('AdminBundle:System:operationLog.html.twig', ['form' => $form->createView()]);
     }
 
     /**

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 use Symfony\Component\Form\Extension\Core\Type\LocaleType;
@@ -28,11 +29,16 @@ class PermissionType extends AbstractType
         {
             $parents[$value['label']] = $value['id'];
         }*/
-        $builder->add('label', TextType::class)
-            //->add('path', TextType::class, array('mapped' => false, 'required' => false))
-            ->add('link', TextType::class)
-            ->add('lv', TextType::class)
-            ->add('path', TextType::class, array('mapped' => false, 'required' => false))
+         $builder->add('status', CurrencyType::class, array(
+                'mapped' => false, 
+                'required' => true, 
+                'choices' => ['是' => 0, '否' => 1], 
+                'expanded' => true,
+                'multiple' => false,
+            ));
+            //->add('link', TextType::class);
+            /*->add('lv', TextType::class)
+            ->add('path', TextType::class, array('mapped' => false, 'required' => false))*/
             //->add('icon', TextType::class, array('required' => false))
             /*->add('parentId', ChoiceType::class, array(
                 'required' => false, 
@@ -46,7 +52,7 @@ class PermissionType extends AbstractType
             ->add('path5', LocaleType::class, array('mapped' => false, 'required' => false))
             ->add('path6', TimezoneType::class, array('mapped' => false, 'required' => false))
             ->add('path7', CurrencyType::class, array('mapped' => false, 'required' => false))*/
-            ->add('save', SubmitType::class, array('label' => 'Create Task'));
+            // ->add('save', SubmitType::class, array('label' => 'Create Task'));
             /*$builder->add('parentTest', EntityType::class, [
                 'class' => 'AdminBundle:Permission',
                     'mapped' => false,

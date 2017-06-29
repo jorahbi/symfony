@@ -1,27 +1,18 @@
 {% extends 'AdminBundle:layout:default.html.twig' %}
 {% block title %} default {% endblock %}
 {% block body %}
+	<!-- BEGIN PAGE CONTENT-->
+	{% form_theme form 'CommonBundle:Form:bootstrap_3_horizontal_layout.html.twig' %}
+	{{ form_start(form, {'action': path('/admin/form'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe'}}) }}
+	
+	{{ form_label(form.parentTest, label|default(null),{'label_attr': {'class' : 'control-label col-md-3'}}) }}
+	{{ form_widget(form.parentTest, {'attr': {'class' : 'form-control input-xlarge select2me', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
+	{{ form_errors(form.parentTest, {'error_attr': {'class' : 'asdfsd'}}) }}
 
-    <!-- BEGIN PAGE CONTENT-->
-    <div class="row">
-		<div class="col-md-12">
-			<form action="#" class="form-horizontal form-row-sepe">
-				<div class="form-body">
-					<h4 class="form-section">Fixed Width</h4>
-					<div class="form-group">
-						<label class="control-label col-md-3">Extra Large</label>
-						<div class="col-md-4">
-							<select class="form-control input-xlarge select2me" data-modules="dropdowns" data-placeholder="Select...">
-								<option value=""></option>
-								<option value="AL">Alabama</option>
-								<option value="WY">&nbsp;&nbsp;&nbsp;&nbsp;Wyoming</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
+	{{ form_label(form.status, label|default(null),{'label_attr': {'class' : 'col-md-3'}}) }}
+	{{ form_widget(form.status) }}
+	{{ form_errors(form.status) }}
+	{{ form_end(form)}}
     <!-- END PAGE CONTENT-->
 {% endblock %}
 
