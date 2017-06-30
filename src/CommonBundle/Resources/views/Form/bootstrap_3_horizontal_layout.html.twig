@@ -82,11 +82,11 @@ col-sm-10
 
 {# icheck#}
 {%- block choice_widget_expanded -%}
-            <div class="icheck-inline" data-modules="icheck">
-                {%- for child in form %}
-                <label> <input type="radio" {% if child.vars.checked %} checked="checked" {% endif %}name="{{child.vars.full_name}}" id="{{child.vars.id}}" class="icheck "> {{child.vars.label}}</label>
-                {% endfor -%}
-            </div>
+    <div class="icheck-inline" data-modules="icheck">
+        {%- for child in form %}
+        <label> <input type="radio" {% if child.vars.checked %} checked="checked" {% endif %} name="{{child.vars.full_name}}" value="{{child.vars.value}}" id="{{child.vars.id}}" class="icheck "> {{child.vars.label}}</label>
+        {% endfor -%}
+    </div>
 {%- endblock choice_widget_expanded -%}
 
 {# select2 #}

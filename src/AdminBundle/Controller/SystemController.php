@@ -17,18 +17,18 @@ class SystemController extends Controller
 {
     /**
      * 管理员列表
-     * @Route("/users/{parent}", name="/admin/system/users", defaults={"parent": 0})
+     * @Route("/users/{parent}", name="/admin/system/users", defaults={"parent": "0"})
      *  
      */
     public function usersAction(Request $request)
     {
-        if($request->headers->get('Ajax-Type') == 'pjax')
+        if($request->isXmlHttpRequest())
         {
             $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->getPermission($request);
             $result['draw'] = $request->get('draw');
             return $this->json($result);
         }
-        return $this->render('AdminBundle:System:users.html.twig');
+        return $this->render('AdminBundle:System:users.html.twig', ['parent' => $request->get('parent')]);
     }
 
     /**
@@ -46,9 +46,8 @@ class SystemController extends Controller
      */
     public function operationLogAction()
     {
-        $permission = new Permission();
-        $form = $this->createForm(PermissionType::class, $permission);
-        return $this->render('AdminBundle:System:operationLog.html.twig', ['form' => $form->createView()]);
+        
+        return $this->render('AdminBundle:System:operationLog.html.twig');
     }
 
     /**
@@ -107,11 +106,30 @@ class SystemController extends Controller
 
     /**
      * 添加后台权限
-     * @Route("/cleanData", name="/admin/system/addPermission")
+     * @Route("/savePermission/{pid}/{type}", name="/admin/system/savePermission", defaults={"pid": 0, "type": "add"})
+     * 默认pid为0 初始为添加菜单
      */
-    public function addPermissionAction()
+    public function savePermissionAction(Request $request)
     {
-        return $this->render('AdminBundle:System:cleanData.html.twig');
+        $permission = new Permission();
+        $form = $this->createForm(PermissionType::class, $permission);
+        
+            $form->handleRequest($request);
+            $permission = $form->getData();
+            var_dump($form->isSubmitted(), $form->isValid());
+            $errors = $this->get('validator')->validate($permission);
+        var_dump(count($errors));
+        return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * 添加后台权限
+     * @Route("/delPermission/{pid}", name="/admin/system/delPermission")
+     * 默认pid为0 初始为添加菜单
+     */
+    public function delPermissionAction()
+    {
+        return $this->json(['status' => 1]);
     }
 
 }

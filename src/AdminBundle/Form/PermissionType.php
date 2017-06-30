@@ -23,12 +23,6 @@ class PermissionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, Array $options)
     {
-        /*$permissions = $this->_doctrine->getRepository('AdminBundle:Permission')->getRoot();
-        $parents = [];
-        foreach($permissions as &$value)
-        {
-            $parents[$value['label']] = $value['id'];
-        }*/
          $builder->add('status', CurrencyType::class, array(
                 'mapped' => false, 
                 'required' => true, 
@@ -36,24 +30,12 @@ class PermissionType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
             ));
-            //->add('link', TextType::class);
-            /*->add('lv', TextType::class)
-            ->add('path', TextType::class, array('mapped' => false, 'required' => false))*/
-            //->add('icon', TextType::class, array('required' => false))
-            /*->add('parentId', ChoiceType::class, array(
-                'required' => false, 
-                'mapped' => false,
-            	'choices' => $parents,
-            	//'expanded' => true
-            ))*/
-            /*->add('path2', CountryType::class, array('mapped' => false, 'required' => false))
-            //->add('path3', EntityType::class, array('mapped' => false, 'required' => false))
-            ->add('path4', LanguageType::class, array('mapped' => false, 'required' => false))
-            ->add('path5', LocaleType::class, array('mapped' => false, 'required' => false))
-            ->add('path6', TimezoneType::class, array('mapped' => false, 'required' => false))
-            ->add('path7', CurrencyType::class, array('mapped' => false, 'required' => false))*/
-            // ->add('save', SubmitType::class, array('label' => 'Create Task'));
-            /*$builder->add('parentTest', EntityType::class, [
+            $builder->add('link', TextType::class)
+            ->add('lv', TextType::class)
+            ->add('path', TextType::class, array('mapped' => false, 'required' => false))
+            ->add('label', TextType::class);
+             
+            $builder->add('parentId', EntityType::class, [
                 'class' => 'AdminBundle:Permission',
                     'mapped' => false,
                     'choice_label' => 'label',
@@ -64,8 +46,9 @@ class PermissionType extends AbstractType
                         //\Doctrine\Common\Util\Debug::dump($er->findBy(['lv' => 1]));
                         return $result;
                     }
-            ]);*/
-    	$builder->addEventListener(
+            ])
+            ->add('save', SubmitType::class, array('label' => 'Create Task'));
+    	/*$builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function(FormEvent $event){
                 $form = $event->getForm();
@@ -79,9 +62,9 @@ class PermissionType extends AbstractType
                     }
                 ];
 
-                $form->add('parentTest', EntityType::class, $formOptions);
+                $form->add('parentId', EntityType::class, $formOptions);
             }
-        );
+        );*/
     }
 }
 

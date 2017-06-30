@@ -13,7 +13,7 @@ define('modals', function(require) {
         setting.element = $(selector);
         setting.data = setting.element.data();
 
-        setting.modalHtml = '<div id="' + setting.data.modal + '"  class="modal fade" tabindex="-1"></div>';
+        setting.modalHtml = '<div id="' + setting.data.modal + '"  class="modal fade bs-modal-lg in" role="dialog"  tabindex="-1"></div>';
         $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner =
             '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
             '<div class="progress progress-striped active">' +
@@ -27,22 +27,23 @@ define('modals', function(require) {
         var $modal = $('#' + setting.data.modal);
 
         setting.element.on('click', function() {
+            var _self = $(this);
             // create the backdrop and wait for next modal to be triggered
             $('body').modalmanager('loading');
 
             setTimeout(function() {
-                $modal.load(setting.data.source, '', function() {
+                $modal.load(_self.attr('data-source'), '', function() {
                     
                     $modal.modal();
                     require(['core'], function(Core){
-                            for (var key in requireConfig.paths) {
-                                if(key == 'dataTablesAjax') continue;
-                                if (document.querySelector('[data-modules="' + key + '"]')) {
-                                    Core.Core.reset(key);
-                                }
+                        Core.Core.rebind('modals', false);
+                        for (var key in requireConfig.paths) {
+                            if (document.querySelector('[data-modules="' + key + '"]')) {
+                                Core.Core.reset(key);
                             }
-                        //Core.Core.reset('modals')
-                        });
+                        }
+                    //Core.Core.reset('modals')
+                    });
                 });
             }, 1000);
         });

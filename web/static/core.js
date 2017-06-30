@@ -4,6 +4,10 @@ define("core", function(require, exports, module) {
         Core: (new Setting())
     };
 
+    var rebindModules = {
+        modals: true
+    };
+
     Setting.prototype.init = function() {
         for (var key in requireConfig.paths) {
             var selector = '[data-modules="' + key + '"]';
@@ -28,9 +32,14 @@ define("core", function(require, exports, module) {
             });
             return;
         }
-        //modules[moduleName].init(selector);
+        rebindModules[moduleName] && (modules[moduleName].init(selector));
     };
     
+    Setting.prototype.rebind = function(moduleName, isBind){
+
+        (moduleName) && (typeof isBind == 'boolean') && (rebindModules[moduleName] = isBind);
+    }
+
     modules.Core.init();
     return modules;
 });

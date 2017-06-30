@@ -7,7 +7,7 @@ define("admin", function(require, exports, module) {
 	"use strict";
 	Metronic.init(); 
     Layout.init(); 
-    $(document.body).on("click", 'a:not(a[target="_blank"],a[href^="javascript:"],a[data-toggle],a[data-target],a[data-event],a[href="#"])', function(e) {
+    /*$(document.body).on("click", 'a:not(a[target="_blank"],a[href^="javascript:"],a[data-toggle],a[data-modules],a[data-target],a[data-event],a[href="#"])', function(e) {
     	var _self = $(this);
     	e.stopPropagation();
     	e.preventDefault();
@@ -16,14 +16,10 @@ define("admin", function(require, exports, module) {
         $.ajax({
             url: _self.attr('href'),
             beforeSend: function(){
-                /*var loading = ' <div class="loading-spinner" style="width: 200px; margin-left: -100px;">\
-                                    <div class="progress progress-striped active">\
-                                        <div class="progress-bar" style="width: 100%;"></div>\
-                                    </div>\
-                                </div>';
-                    body.append(loading);*/
-                $('.page-sidebar-menu').find('li').removeClass('active open');
-                _self.parent().addClass('active').parents().addClass('active open');
+                if(_self.parents('.page-sidebar-menu') > 0){
+                    $('.page-sidebar-menu').find('li').removeClass('active open');
+                    _self.parent().addClass('active').parents().addClass('active open');
+                }
             },
             success: function(data){
                 var title = $(data).find('title');
@@ -45,6 +41,6 @@ define("admin", function(require, exports, module) {
 
             }
         });    	
-    });
+    });*/
 });
 

@@ -39,7 +39,6 @@ define("dataTablesAjax", function(require, exports, module) {
                     setTimeout(function(){
                         require(['core'], function(Core){
                             for (var key in requireConfig.paths) {
-                                if(key == 'dataTablesAjax') continue;
                                 if (document.querySelector('[data-modules="' + key + '"]')) {
                                     Core.Core.reset(key);
                                 }
@@ -66,20 +65,17 @@ define("dataTablesAjax", function(require, exports, module) {
                     ajax: {
                         url: setting.ajaxUrl, // ajax source
                         beforeSend: function(request){
-                             request.setRequestHeader('Ajax-Type', 'pjax');
+                             //request.setRequestHeader('Ajax-Type', 'pjax');
                         },
                         data: function(requestData) {
-                            var result = {
-                                length: requestData.length,
-                                start: requestData.start,
-                                draw: requestData.draw,
-                                orderColumn: requestData.columns[requestData.order[0].column].data,
-                                orderType: requestData.order[0].dir
-                            };
-                            setting.element.find('input[type="text"], input[type="hidden"], select').each(function(idx, item) {
-                                result[$(item).attr('name')] = $(item).val();
-                            });
-                            return result;
+                            var formData = setting.element.parents('form.data-table').serializeArray();
+                            formData.push({name: 'length', value: requestData.length});
+                            formData.push({name: 'start', value: requestData.start});
+                            formData.push({name: 'draw', value: requestData.draw});
+                            formData.push({name: 'orderColumn', value: requestData.columns[requestData.order[0].column].data});
+                            formData.push({name: 'orderType', value: requestData.order[0].dir});
+                            
+                            return formData;
                         },
                         dataFilter: function(responseData) {
                             //返回后的数据

@@ -53,11 +53,10 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	{
 		$result = [];
 		$this->mapRequest();
-
-		if($request->get('parent') !== 0)
+		if($request->get('parentId') !== '0')
 		{
 			$this->queryBuilder->andWhere('p.parent = :parent')
-				->setParameter('parent', $request->get('parent'));
+				->setParameter('parent', $request->get('parentId'));
 		}
 		else
 		{
@@ -69,6 +68,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 
 		$this->queryBuilder->select('p');
 		$this->queryBuilder->setFirstResult($request->get('start'))->setMaxResults($request->get('length'));
+
 		$result['data'] = $this->queryBuilder->getQuery()->getArrayResult();
 		return $result;
 	}
