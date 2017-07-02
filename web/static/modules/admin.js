@@ -7,7 +7,7 @@ define("admin", function(require, exports, module) {
 	"use strict";
 	Metronic.init(); 
     Layout.init(); 
-    /*$(document.body).on("click", 'a:not(a[target="_blank"],a[href^="javascript:"],a[data-toggle],a[data-modules],a[data-target],a[data-event],a[href="#"])', function(e) {
+    $(document.body).on("click", 'a:not(a[target="_blank"],a[href^="javascript:"],a[data-toggle],a[data-modules],a[data-target],a[data-event],a[href="#"])', function(e) {
     	var _self = $(this);
     	e.stopPropagation();
     	e.preventDefault();
@@ -15,11 +15,12 @@ define("admin", function(require, exports, module) {
         
         $.ajax({
             url: _self.attr('href'),
-            beforeSend: function(){
+            beforeSend: function(request){
                 if(_self.parents('.page-sidebar-menu') > 0){
                     $('.page-sidebar-menu').find('li').removeClass('active open');
                     _self.parent().addClass('active').parents().addClass('active open');
                 }
+                request.setRequestHeader('Ajax-Type', 'pjax');
             },
             success: function(data){
                 var title = $(data).find('title');
@@ -41,6 +42,6 @@ define("admin", function(require, exports, module) {
 
             }
         });    	
-    });*/
+    });
 });
 

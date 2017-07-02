@@ -297,6 +297,10 @@ var Datatable = function() {
 
         getTable: function() {
             return table;
+        },
+
+        tableDestroy: function(){
+            dataTable.destroy();
         }
 
     };

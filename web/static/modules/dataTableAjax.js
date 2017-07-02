@@ -8,6 +8,7 @@ define("dataTablesAjax", function(require, exports, module) {
         dataPicker: '.date-picker',
         source: ''
     };
+    var grid = new Datatable();
     var tableAjax = function() {};
 
     tableAjax.prototype.init = function(selector) {
@@ -16,10 +17,14 @@ define("dataTablesAjax", function(require, exports, module) {
         var data = setting.element.data();
         setting.ajaxUrl = data.ajaxUrl;
         setting.source = 'Data/' + data.source;
+        setting.element.attr('id', 'dataTable' + (new Date()).getTime());
         this.initPickers();
         this.handleRecords();
     };
 
+    tableAjax.prototype.destroy = function(){
+        grid.tableDestroy();
+    }
 
     tableAjax.prototype.initPickers = function() {
         require(['datepicker'], function(dataPicker) {
@@ -30,9 +35,10 @@ define("dataTablesAjax", function(require, exports, module) {
     tableAjax.prototype.handleRecords = function() {
 
         require([setting.source], function(columns){
-            var grid = new Datatable();
+            
             columns.init(setting.element.data());
             grid.init({
+                paging: false,
                 src: setting.element,
                 onSuccess: function(grid) {
                     grid.clearAjaxParams();

@@ -20,19 +20,17 @@ define("core", function(require, exports, module) {
                 });
             }
         }
-
     };
     
     Setting.prototype.reset = function(moduleName){
         var selector = '[data-modules="' + moduleName + '"]';
-        if(!modules[moduleName]){
-            require([moduleName], function(module){
-                module.module.init(selector);
-                modules[module.name] = module.module;
-            });
-            return;
-        }
-        rebindModules[moduleName] && (modules[moduleName].init(selector));
+        //(modules.dataTablesAjax) && (modules.dataTablesAjax.destroy());
+        (modules[moduleName]) && (modules[moduleName] = null);
+        require([moduleName], function(module){
+            module.module.init(selector);
+            modules[module.name] = module.module;
+        });
+        return;
     };
     
     Setting.prototype.rebind = function(moduleName, isBind){

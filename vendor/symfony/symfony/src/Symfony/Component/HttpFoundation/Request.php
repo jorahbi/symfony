@@ -1687,7 +1687,7 @@ class Request
      */
     public function isXmlHttpRequest()
     {
-        return 'XMLHttpRequest' == $this->headers->get('X-Requested-With');
+        return (('XMLHttpRequest' == $this->headers->get('X-Requested-With')) && ('pjax' != $this->headers->get('Ajax-Type')));
     }
 
     /*
