@@ -156,3 +156,6 @@
     margin-left: 0;
   }
 }
+.form-control.select2-container, .icheck-inline {
+  padding: 0 15px !important;
+}

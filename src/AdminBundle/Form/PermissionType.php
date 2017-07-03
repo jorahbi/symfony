@@ -29,16 +29,17 @@ class PermissionType extends AbstractType
                 'choices' => ['是' => 0, '否' => 1], 
                 'expanded' => true,
                 'multiple' => false,
+                'data' => 0
             ));
             $builder->add('link', TextType::class)
-            ->add('lv', TextType::class)
-            ->add('path', TextType::class, array('mapped' => false, 'required' => false))
+            ->add('path', HiddenType::class, ['mapped' => false, 'required' => false])
             ->add('label', TextType::class);
              
             $builder->add('parentId', EntityType::class, [
                 'class' => 'AdminBundle:Permission',
                     'mapped' => false,
                     'choice_label' => 'label',
+                    'required' => false,
                     'query_builder' => function(EntityRepository $er){
                         //return $er->findBy(['lv' => 1]);
                         $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
@@ -47,7 +48,7 @@ class PermissionType extends AbstractType
                         return $result;
                     }
             ])
-            ->add('save', SubmitType::class, array('label' => 'Create Task'));
+            ->add('save', SubmitType::class);
     	/*$builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function(FormEvent $event){

@@ -119,7 +119,13 @@
 {% block javascripts %}
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
-		    //console.log(Core);
+            //Core.Core.getModule();
+            //加载时序问题延迟2秒
+            //console.log(dataTablesAjax)
+            //console.log(modals)
+            /*setTimeout(function(){
+                Core.modals.callback(function(modals){console.log(modals.find('#test'))})
+            }, 2000)*/
 		});
 	</script>
 {% endblock %}

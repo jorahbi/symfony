@@ -1,5 +1,6 @@
 define("dataTablesAjax", function(require, exports, module) {
     "use strict";
+    // datatables 有待优化
     require('/static/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js');
     var setting = {
         selector: '',
@@ -10,6 +11,7 @@ define("dataTablesAjax", function(require, exports, module) {
     };
     var grid = new Datatable();
     var tableAjax = function() {};
+    var responseDataNums = 0; //返回数据总行数
 
     tableAjax.prototype.init = function(selector) {
         setting.selector = selector;
@@ -40,21 +42,7 @@ define("dataTablesAjax", function(require, exports, module) {
             grid.init({
                 paging: false,
                 src: setting.element,
-                onSuccess: function(grid) {
-                    grid.clearAjaxParams();
-                    setTimeout(function(){
-                        require(['core'], function(Core){
-                            for (var key in requireConfig.paths) {
-                                if (document.querySelector('[data-modules="' + key + '"]')) {
-                                    Core.Core.reset(key);
-                                }
-                            }
-                        //Core.Core.reset('modals')
-                        });
-                        
-                    }, 1000);
-                    
-                },
+                onSuccess: function(grid) { },
                 onError: function(grid) {},
                 onDataLoad: function(grid) {},
                 loadingMessage: 'Loading...',
@@ -67,6 +55,20 @@ define("dataTablesAjax", function(require, exports, module) {
                         [10, 20, 50, 100, 150, -1],
                         [10, 20, 50, 100, 150, "All"] // change per page values here
                     ],
+                    initComplete: function(nRow, aData, iDataIndex){//detail http://www.cnblogs.com/amoniyibeizi/p/4548111.html
+                        setTimeout(function(){
+                            //时序问题，缺少dom填充完成回调函数，暂时先延时2秒
+                            require(['core'], function(Core){
+                                for (var key in requireConfig.paths) {
+                                    if (document.querySelector('[data-modules="' + key + '"]')) {
+                                        Core.Core.reset(key);
+                                    }
+                                }
+                            //Core.Core.reset('modals')
+                            });
+                        }, 2000)
+                        
+                    },
                     pageLength: 10, // default record count per page
                     ajax: {
                         url: setting.ajaxUrl, // ajax source

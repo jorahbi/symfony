@@ -82,7 +82,8 @@ col-sm-10
 
 {# icheck#}
 {%- block choice_widget_expanded -%}
-    <div class="icheck-inline" data-modules="icheck">
+    <div class="icheck-inline col-md-7" data-modules="icheck">
+        {% dump(form) %}
         {%- for child in form %}
         <label> <input type="radio" {% if child.vars.checked %} checked="checked" {% endif %} name="{{child.vars.full_name}}" value="{{child.vars.value}}" id="{{child.vars.id}}" class="icheck "> {{child.vars.label}}</label>
         {% endfor -%}

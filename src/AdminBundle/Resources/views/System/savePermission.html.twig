@@ -1,25 +1,51 @@
+  
   <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 	<h4 class="modal-title">添加新权限</h4>
 </div>
 <div class="modal-body">
 	<!-- BEGIN PAGE CONTENT-->
-	{% form_theme form 'CommonBundle:Form:form_div_layout.html.twig' %}
+	{% form_theme form 'CommonBundle:Form:bootstrap.html.twig' %}
 	{{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe'}}) }}
+
 	<div class="form-group">
-		{{ form_label(form.parent, label|default(null), {'label_attr': {'class' : 'col-md-3'}}) }}
-		{{ form_widget(form.parent, {'attr': {'class' : 'form-control input-xlarge select2me col-md-7 ', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
-		{{ form_errors(form.parent) }}
+		{{ form_label(form.label, '名称', {'label_attr': {'class' : 'col-md-3'}}) }}
+		<div class="col-sm-7">
+			{{ form_widget(form.label) }}
+		</div>
+		{{ form_errors(form.label) }}
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.parentId, '所属权限', {'label_attr': {'class' : 'col-md-3'}}) }}
+		{{ form_widget(form.parentId, {'attr': {'class' : 'form-control input-xlarge select2me col-md-7 ', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
+		{{ form_errors(form.parentId) }}
 	</div>
 	<div class="form-group">
-		{{ form_label(form.status, label|default(null), {'label_attr': {'class' : 'col-md-3'}}) }}
-		{{ form_widget(form.status) }}
+		{{ form_label(form.status, '是否启用', {'label_attr': {'class' : 'col-md-3'}}) }}
+		{{ form_widget(form.status, {'attr': {'class': 'col-md-7', 'asdfsda': 'asdfsd'}}) }}
 		{{ form_errors(form.status) }}
+	</div>
+
+	<div class="form-group">
+		{{ form_label(form.link, '链接', {'label_attr': {'class' : 'col-md-3'}}) }}
+		<div class="col-sm-7">
+			{{ form_widget(form.link) }}
+		</div>
+		{{ form_errors(form.link) }}
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-3"></div>
+		{{ form_label(form.save, '添加', {'label_attr': {'class' : 'col-md-3'}}) }}
+		<div class="col-md-7">
+			{{ form_widget(form.save) }}
+		</div>
 	</div>
 	{{ form_end(form)}}
     <!-- END PAGE CONTENT-->
     </div>
 <div class="modal-footer">
 	<button type="button" class="btn default" data-dismiss="modal">关闭</button>
-	<button type="button" class="btn blue">保存</button>
+	<button type="button" class="btn blue" id="test">保存</button>
 </div>

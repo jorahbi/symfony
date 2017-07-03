@@ -16,8 +16,8 @@ define("admin", function(require, exports, module) {
         $.ajax({
             url: _self.attr('href'),
             beforeSend: function(request){
-                if(_self.parents('.page-sidebar-menu') > 0){
-                    $('.page-sidebar-menu').find('li').removeClass('active open');
+                if(_self.parents('.page-sidebar-menu').length > 0){
+                    $('.page-sidebar-menu').find('li').removeClass('active').removeClass('open');
                     _self.parent().addClass('active').parents().addClass('active open');
                 }
                 request.setRequestHeader('Ajax-Type', 'pjax');
@@ -28,6 +28,8 @@ define("admin", function(require, exports, module) {
                 body.html($(data).find('.page-content-wrapper .page-content').html());
                 
                 require(['core'], function(Core){
+
+                    console.log('admin module');
                     for (var key in requireConfig.paths) {
                         if (document.querySelector('[data-modules="' + key + '"]')) {
                             Core.Core.reset(key);
@@ -42,6 +44,9 @@ define("admin", function(require, exports, module) {
 
             }
         });    	
-    });
+    });/*
+    window.addEventListener('popstate', function(event) {
+        console.log(event.state);
+    });*/
 });
 

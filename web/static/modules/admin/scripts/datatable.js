@@ -22,6 +22,9 @@ var Datatable = function() {
         }
     };
 
+
+
+
     return {
 
         //main function to initiate the module
@@ -63,7 +66,7 @@ var Datatable = function() {
                             "pageOf": "of"
                         }
                     },
-
+                    "bRetrieve": true,
                     "orderCellsTop": true,
                     "columnDefs": [{ // define columns sorting options(by default all columns are sortable extept the first checkbox column)
                         'orderable': false,
@@ -169,7 +172,6 @@ var Datatable = function() {
 
             // initialize a datatable
             dataTable = table.DataTable(options.dataTable);
-
             // revert back to default
             $.fn.dataTableExt.oStdClasses.sWrapper = tmp.sWrapper;
             $.fn.dataTableExt.oStdClasses.sFilterInput = tmp.sFilterInput;

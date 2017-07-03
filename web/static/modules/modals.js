@@ -6,6 +6,8 @@ define('modals', function(require) {
         element: '',
         modalHtml: '<div id="ajax-modal"  class="modal fade" tabindex="-1"></div>'
     };
+    var $modal = null;
+    var callback = function(){};
     var Modal = function() {};
 
     Modal.prototype.init = function(selector) {
@@ -24,7 +26,7 @@ define('modals', function(require) {
         $.fn.modalmanager.defaults.resize = true;
         //ajax demo:
         $('.page-content-wrapper .page-content').append(setting.modalHtml);
-        var $modal = $('#' + setting.data.modal);
+        $modal = $('#' + setting.data.modal);
 
         setting.element.on('click', function() {
             var _self = $(this);
@@ -36,13 +38,14 @@ define('modals', function(require) {
                     
                     $modal.modal();
                     require(['core'], function(Core){
+                        console.log('modals module');
                         Core.Core.rebind('modals', false);
                         for (var key in requireConfig.paths) {
                             if (document.querySelector('[data-modules="' + key + '"]')) {
                                 Core.Core.reset(key);
                             }
                         }
-                    //Core.Core.reset('modals')
+                        
                     });
                 });
             }, 1000);
@@ -60,6 +63,18 @@ define('modals', function(require) {
             }, 1000);
         });
     };
+
+    Modal.prototype.getModal = function(){
+        return $modal;
+    }
+
+    Modal.prototype.callback = function(handle){
+
+        if(typeof handle != 'function') return;
+        console.log(typeof handle != 'function', typeof handle)
+        callback = handle;
+        Modal.call(handle, $modal);
+    }
 
     return {
         name: 'modals',

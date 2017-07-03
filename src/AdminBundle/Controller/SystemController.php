@@ -118,7 +118,7 @@ class SystemController extends Controller
             $permission = $form->getData();
             var_dump($form->isSubmitted(), $form->isValid());
             $errors = $this->get('validator')->validate($permission);
-        var_dump(count($errors));
+        var_dump($request->get('pid'));
         return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);
     }
 
