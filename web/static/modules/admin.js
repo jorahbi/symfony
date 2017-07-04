@@ -23,18 +23,31 @@ define("admin", function(require, exports, module) {
                 request.setRequestHeader('Ajax-Type', 'pjax');
             },
             success: function(data){
-                var title = $(data).find('title');
+               
+                var scripts = '';
+                data = data.replace(/<script[^>]*>([\s\S]*?)<\/script>/gi, function(){
+                    scripts += arguments[1] + '\n';
+                    return '';
+                });
+                //var currentTitle = document.getElementsByTagName('title')[0].innerText;
+                //document.title = currentTitle;
                 history.pushState({}, document.title, _self.attr('href'));
                 body.html($(data).find('.page-content-wrapper .page-content').html());
-                
-                require(['core'], function(Core){
 
+                require(['core'], function(Core){
                     for (var key in requireConfig.paths) {
                         if (document.querySelector('[data-modules="' + key + '"]')) {
                             Core.reset(key);
                         }
                     }
-                })
+                    if(scripts != ''){
+                        var script = document.createElement('script');
+                        script.setAttribute('type', 'text/javascript');
+                        script.text = scripts;
+                        document.head.appendChild(script);
+                        document.head.removeChild(script);
+                    }
+                });
             },
             error: function(){
 

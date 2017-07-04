@@ -1,5 +1,5 @@
 {% extends 'AdminBundle:layout:default.html.twig' %}
-{% block title %} default {% endblock %}
+{% block title %} disabled {% endblock %}
 {% block body %}
     <!-- BEGIN PAGE CONTENT-->
     <!-- END PAGE CONTENT-->
@@ -9,6 +9,7 @@
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
 		    //console.log(Core);
+		    alert('')
 		});
 	</script>
 {% endblock %}
