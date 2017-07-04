@@ -81,7 +81,11 @@ var requireConfig = {
     },
     urlArgs: "t=" + (new Date()).getTime()
 };
-
+/*String.prototype.trim=function(char){
+    char = char || '';
+    var reg = new RegExp('/(^\s+)|(^' + char + '?)|(\s+$)|(' + char + '?$)/g');
+    return this.replace(reg,'')
+}*/
 requirejs.config(requireConfig);
 
 

@@ -1,17 +1,12 @@
 define("core", function(require, exports, module) {
-    var Setting = function() {};
+    var Core = function() {};
     var modules = {
-        Core: (new Setting())
+        Core: (new Core())
     };
 
-    var rebindModules = {
-        modals: true
-    };
-
-    var moduleLock = false;
-    var moduleNum = 0;
-    var test = 0;
-    Setting.prototype.init = function() {
+    var moduleNum = 0; //要加载的模块总数
+    var moduleIndex = 0; //当前加载的模块
+    Core.prototype.init = function() {
         for (var key in requireConfig.paths) {
             var selector = '[data-modules="' + key + '"]';
             if (document.querySelector('[data-modules="' + key + '"]')) {
@@ -20,19 +15,14 @@ define("core", function(require, exports, module) {
                     var selector = '[data-modules="' + module.name + '"]';
                     module.module.init(selector);
                     modules[module.name] = module.module;
-                    test ++;
-                    if(moduleNum == test) moduleLock = true;
+                    moduleIndex ++;
                 });
             }
         }
     };
     
-    Setting.prototype.reset = function(moduleName){
+    Core.prototype.reset = function(moduleName){
         var selector = '[data-modules="' + moduleName + '"]';
-
-        //modals 不需要重新绑定，否则会有重复弹层
-        if(modules[moduleName] && rebindModules[moduleName] == false) return;
-console.log(moduleName);
         require([moduleName], function(module){
             module.module.init(selector);
             modules[module.name] = module.module;
@@ -40,14 +30,17 @@ console.log(moduleName);
         return;
     };
     
-    Setting.prototype.rebind = function(moduleName, isBind){
-        (moduleName) && (typeof isBind == 'boolean') && (rebindModules[moduleName] = isBind);
-    }
-
-    Setting.prototype.getModule = function(moduleName){
-        
+    //获取require模块
+    Core.prototype.getModule = function(callback){
+        //加载时序问题，模块全部加载完成后结束调用
+       var timer = setInterval(function(){
+            if(moduleIndex == moduleNum){
+                callback.call(undefined, modules);
+                clearInterval(timer);
+            }
+        }, 100);
     }
 
     modules.Core.init();
-    return modules;
+    return modules.Core;
 });

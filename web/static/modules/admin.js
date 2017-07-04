@@ -29,10 +29,9 @@ define("admin", function(require, exports, module) {
                 
                 require(['core'], function(Core){
 
-                    console.log('admin module');
                     for (var key in requireConfig.paths) {
                         if (document.querySelector('[data-modules="' + key + '"]')) {
-                            Core.Core.reset(key);
+                            Core.reset(key);
                         }
                     }
                 })

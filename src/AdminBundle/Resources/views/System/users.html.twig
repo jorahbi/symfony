@@ -13,7 +13,7 @@
                         <span class="caption-helper">help</span>
                     </div>
                     <div class="actions">
-                        <a class="btn btn-default btn-circle" data-modal="ajax-modal" data-toggle="modal" data-modules="modals" data-source="{{ path('/admin/system/savePermission') }}">
+                        <a class="btn btn-default btn-circle" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="{{ path('/admin/system/savePermission') }}">
                             <i class="fa fa-plus"></i>
                             <span class="hidden-480">添加菜单</span>
                         </a>
@@ -119,13 +119,12 @@
 {% block javascripts %}
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
-            //Core.Core.getModule();
-            //加载时序问题延迟2秒
-            //console.log(dataTablesAjax)
-            //console.log(modals)
-            /*setTimeout(function(){
-                Core.modals.callback(function(modals){console.log(modals.find('#test'))})
-            }, 2000)*/
+            Core.getModule(function(modules){
+                modules.modals.callback(function(modal, modalId){
+                    console.log(modalId);
+                   modal.find('#test').click(function(){alert(modalId)})
+                });
+            });
 		});
 	</script>
 {% endblock %}

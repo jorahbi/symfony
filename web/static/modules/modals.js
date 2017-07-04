@@ -2,59 +2,76 @@ define('modals', function(require) {
 
     var setting = {
         id: '',
-        data: '',//[modal:弹层填充位置, source: ajax请求路径]
+        data: '', //[modal:弹层填充位置, source: ajax请求路径]
         element: '',
-        modalHtml: '<div id="ajax-modal"  class="modal fade" tabindex="-1"></div>'
+        modalHtml: '<div id="ajax-modal"  class="modal fade" tabindex="-1"></div>',
+        pageContainer: $('.page-content-wrapper .page-content')
     };
-    var $modal = null;
-    var callback = function(){};
+    var modals = {}; //
+    var callback = null;
     var Modal = function() {};
 
+
     Modal.prototype.init = function(selector) {
-
         setting.element = $(selector);
-        setting.data = setting.element.data();
 
-        setting.modalHtml = '<div id="' + setting.data.modal + '"  class="modal fade bs-modal-lg in" role="dialog"  tabindex="-1"></div>';
+        setting.data = setting.element.data();
+        $.fn.modalmanager.defaults.resize = true;
+        var modalLock = {}; //modal lock
+
+        var modalHtml = '';
         $.fn.modal.defaults.spinner = $.fn.modalmanager.defaults.spinner =
             '<div class="loading-spinner" style="width: 200px; margin-left: -100px;">' +
             '<div class="progress progress-striped active">' +
             '<div class="progress-bar" style="width: 100%;"></div>' +
             '</div>' +
             '</div>';
+        var _self = this;
 
-        $.fn.modalmanager.defaults.resize = true;
-        //ajax demo:
-        $('.page-content-wrapper .page-content').append(setting.modalHtml);
-        $modal = $('#' + setting.data.modal);
+        //不同的id添加不同的modal html
+        setting.element.each(function(idx, item) {
+            var modalId = $(item).attr('data-target');
+            if (modalLock[modalId] == true)
+                return true;
 
-        setting.element.on('click', function() {
+            modalHtml = '<div id="' + modalId + '"  class="modal fade bs-modal-lg" role="dialog"  tabindex="-1"></div>';
+
+            if (modalLock[modalId] == undefined) {
+                setting.pageContainer.find('#' + modalId).remove();
+                setting.element.off().on('hidden', 'click.bs.modal.data-api');
+                setting.pageContainer.append(modalHtml);
+                modalLock[modalId] = true;
+                modals[modalId] = $('#' + modalId);
+                //调用各自所属的modal
+                _self._modalInit(modalId);
+            }
+        });
+    };
+
+    Modal.prototype._modalInit = function(modalId) {
+        setting.element.on('click.bs.modal.data-api', function() {
             var _self = $(this);
+            var modalTarget = _self.attr('data-target');
             // create the backdrop and wait for next modal to be triggered
             $('body').modalmanager('loading');
 
-            setTimeout(function() {
-                $modal.load(_self.attr('data-source'), '', function() {
-                    
-                    $modal.modal();
-                    require(['core'], function(Core){
-                        console.log('modals module');
-                        Core.Core.rebind('modals', false);
-                        for (var key in requireConfig.paths) {
-                            if (document.querySelector('[data-modules="' + key + '"]')) {
-                                Core.Core.reset(key);
-                            }
+            modals[modalTarget].load(_self.attr('data-source'), '', function(responseText, status, data) {
+                modals[modalTarget].modal();
+                require(['core'], function(Core) {
+                    for (var key in requireConfig.paths) {
+                        if (document.querySelector('[data-modules="' + key + '"]')) {
+                            Core.reset(key);
                         }
-                        
-                    });
+                    }
                 });
-            }, 1000);
+                callback.call(undefined, modals[modalTarget], modalTarget);
+            });
         });
 
-        $modal.on('click', '.update', function() {
-            $modal.modal('loading');
+        modals[modalId].on('click.bs.modal.data-api', '.update', function() {
+            modals[modalId].modal('loading');
             setTimeout(function() {
-                $modal
+                modals[modalId]
                     .modal('loading')
                     .find('.modal-body')
                     .prepend('<div class="alert alert-info fade in">' +
@@ -64,16 +81,8 @@ define('modals', function(require) {
         });
     };
 
-    Modal.prototype.getModal = function(){
-        return $modal;
-    }
-
-    Modal.prototype.callback = function(handle){
-
-        if(typeof handle != 'function') return;
-        console.log(typeof handle != 'function', typeof handle)
-        callback = handle;
-        Modal.call(handle, $modal);
+    Modal.prototype.callback = function(handle) {
+        callback = typeof handle == 'function' ? handle : function() {};
     }
 
     return {

@@ -110,7 +110,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 */
 	public function &getMenus()
 	{
-		//$this->getCrumbs();
+		$this->getCrumbs();
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissions');//删除缓存
 		$perCache = $cache->getItem('stats.permissions');
