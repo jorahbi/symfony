@@ -58,12 +58,9 @@ define('modals', function(require) {
             modals[modalTarget].load(_self.attr('data-source'), '', function(responseText, status, data) {
                 modals[modalTarget].modal();
                 require(['core'], function(Core) {
-                    for (var key in requireConfig.paths) {
-                        if (document.querySelector('[data-modules="' + key + '"]')) {
-                            Core.reset(key);
-                        }
-                    }
+                    Core.init();
                 });
+                // (当前modal jquery对象, modal Id)
                 callback.call(undefined, modals[modalTarget], modalTarget);
             });
         });

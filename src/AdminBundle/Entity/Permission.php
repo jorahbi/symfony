@@ -25,7 +25,7 @@ class Permission
 
     /**
      * @var string
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message = "label 不能为空")
      * @ORM\Column(name="label", type="string", length=45, nullable=false)
      */
     private $label;

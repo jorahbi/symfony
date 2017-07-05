@@ -11,6 +11,7 @@ var requireConfig = {
         tables: 'modules/tables',
         vue: 'vue',
         core: 'core',
+        tools: 'modules/tools',
         dataTablesAjax: 'modules/dataTableAjax',
         modals: 'modules/modals',
         datatables: 'plugins/datatables/media/js/jquery.dataTables.min',
@@ -60,10 +61,11 @@ var requireConfig = {
         },
         dropdowns: {
             deps: [
+                'plugins/select2/select2',
                 'css!plugins/select2/select2.css',
                 'css!global/plugins.css',
                 'css!global/components.css',
-                'plugins/select2/select2.min'
+                
             ]
         },
         /*icheck: {

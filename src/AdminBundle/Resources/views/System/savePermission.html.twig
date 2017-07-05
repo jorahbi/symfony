@@ -6,7 +6,7 @@
 <div class="modal-body">
 	<!-- BEGIN PAGE CONTENT-->
 	{% form_theme form 'CommonBundle:Form:bootstrap.html.twig' %}
-	{{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe'}}) }}
+	{{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe', 'id': 'save-permission'}}) }}
 
 	<div class="form-group">
 		{{ form_label(form.label, '名称', {'label_attr': {'class' : 'col-md-3'}}) }}

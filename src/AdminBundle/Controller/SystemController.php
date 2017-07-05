@@ -113,12 +113,23 @@ class SystemController extends Controller
     {
         $permission = new Permission();
         $form = $this->createForm(PermissionType::class, $permission);
+        $form->handleRequest($request);
         
-            $form->handleRequest($request);
+        if($request->isXmlHttpRequest() && $form->isSubmitted())
+        {
+            $result = [];
+            if(!$form->isValid())
+            {
+                foreach($this->get('validator')->validate($permission)->getIterator() as $key => $validate)
+                {
+                    $result['message'][] = $validate->getMessage();
+                }
+                return $this->json($result);
+            }
             $permission = $form->getData();
-            var_dump($form->isSubmitted(), $form->isValid());
-            $errors = $this->get('validator')->validate($permission);
-        var_dump($request->get('pid'));
+            
+            return $this->json(['status' => 1]);
+        }
         return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);
     }
 

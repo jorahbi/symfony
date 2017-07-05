@@ -118,13 +118,24 @@
 
 {% block javascripts %}
 	<script type="text/javascript">
-		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
+		require(['admin', 'vue', 'core', 'tools'], function(Admin, Vue, Core, Tools) {
             Core.getModule(function(modules){
-                modules.modals.callback(function(modal, modalId){
-                    console.log(modalId);
-                   modal.find('#test').click(function(){alert(modalId)})
+                modules.modals.callback(function(modal){
+                    var form = $(modal).find('.form-row-sepe.form-horizontal');
+                    $(modal).find('#test').click(function(){
+                        console.log(form.attr('action'));
+                        Tools.ajax({
+                            url: form.attr('action'),
+                            data: form.serializeArray(),
+                            successCallback: function(data){
+                                console.log(data);
+                            }
+                        });
+                        //console.log(form.serializeArray());    
+                    })
                 });
             });
+
 		});
 	</script>
 {% endblock %}

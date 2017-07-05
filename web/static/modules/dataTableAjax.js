@@ -49,11 +49,7 @@ define("dataTablesAjax", function(require, exports, module) {
                     setTimeout(function(){
                         //时序问题，缺少dom填充完成回调函数，暂时先延时1秒
                         require(['core'], function(Core){
-                            for (var key in requireConfig.paths) {
-                                if (document.querySelector('[data-modules="' + key + '"]')) {
-                                    Core.reset(key);
-                                }
-                            }
+                            Core.init();
                         });
                     }, 1000);
                 },

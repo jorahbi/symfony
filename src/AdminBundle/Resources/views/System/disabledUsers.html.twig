@@ -2,14 +2,22 @@
 {% block title %} disabled {% endblock %}
 {% block body %}
     <!-- BEGIN PAGE CONTENT-->
+    <button id="test"> 测试按钮</button>
+    <select data-modules="dropdowns">
+    	<option>11</option>
+    	<option>22</option>
+    	<option>33</option>
+    	<option>44</option>
+    </select>
     <!-- END PAGE CONTENT-->
 {% endblock %}
 
 {% block javascripts %}
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core'], function(Admin, Vue, Core) {
-		    //console.log(Core);
-		    alert('')
+			/*Core.getModule(function(modules){
+				console.log(modules)
+			})*/
 		});
 	</script>
 {% endblock %}

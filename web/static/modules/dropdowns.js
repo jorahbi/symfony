@@ -1,9 +1,17 @@
-define('dropdowns', function(require, exports, module) {
+define('dropdowns', ['plugins/select2/select2.min'], function(require, exports, module) {
     "use strict";
     var Dropdowns = function() {};
 
+    var setting = {
+        element: null
+    };
+
     Dropdowns.prototype.init = function(selector) {
-        $(selector).select2();
+        var css = {};
+        setting.element = $(selector);
+        if(setting.element.width() > 1 && setting.element.closest('div.form-group').length > 0) //siblings 兄弟元素
+            css = {dropdownCss: {'width': setting.element.width() - 4, 'margin-left': 15}};
+        setting.element.select2(css);
     }
     return {
         name: 'dropdowns',

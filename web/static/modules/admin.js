@@ -1,5 +1,5 @@
 /**
- * 后台js统一入口
+ * 
  *
  */
 
@@ -35,11 +35,7 @@ define("admin", function(require, exports, module) {
                 body.html($(data).find('.page-content-wrapper .page-content').html());
 
                 require(['core'], function(Core){
-                    for (var key in requireConfig.paths) {
-                        if (document.querySelector('[data-modules="' + key + '"]')) {
-                            Core.reset(key);
-                        }
-                    }
+                    Core.init();
                     if(scripts != ''){
                         var script = document.createElement('script');
                         script.setAttribute('type', 'text/javascript');
