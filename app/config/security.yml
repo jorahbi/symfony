@@ -37,6 +37,10 @@ security:
             logout:
                 path: /logout
                 target: /admin/passport/login
+            
+            guard:
+                authenticators:
+                    - app.token_authenticator
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             #form_login: ~
