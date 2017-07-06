@@ -28,7 +28,9 @@ admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
     prefix:   /admin
-
+    
+logout: 
+    path: /logout
 # home:
 #     resource: "@HomeBundle/Controller/"
 #     type:     annotation

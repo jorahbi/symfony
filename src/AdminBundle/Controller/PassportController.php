@@ -7,22 +7,40 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * 用户注册登录
+ *  @Route("/passport")
  */
 
 class PassportController extends Controller
 {
     /**
      * 用户登录
-     * @Route("passport/login", name="/admin/members/login")
+     * @Route("/login", name="/admin/passport/login")
      */
     public function loginAction()
     {
-        return $this->render('AdminBundle:Passport:login.html.twig');
+
+        /*$user = new \AdminBundle\Entity\Admin();
+        $plainPassword = 'admin123';
+        $encoder = $this->container->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($user, $plainPassword);
+        var_dump($encoded);*/
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one / 获取可能存在的登录错误信息
+        $error = $authenticationUtils->getLastAuthenticationError();
+        var_dump($error);
+        // last username entered by the user / 获取用户输入的username（用户名）
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('AdminBundle:Passport:login.html.twig', [
+            'username' => $lastUsername,
+            'error' => $error
+        ]);
     }
 
     /**
      * 用户注册
-     * @Route("passport/register", name="/admin/members/register")
+     * @Route("/register", name="/admin/passport/register")
      */
     public function registerAction()
     {
@@ -30,8 +48,17 @@ class PassportController extends Controller
     }
 
     /**
+     * 用户找回密码
+     * @Route("/resetPassword", name="/admin/passport/resetPassword")
+     */
+    public function resetPasswordAction()
+    {
+        return $this->render('AdminBundle:Passport:resetPassword.html.twig');
+    }
+
+    /**
      * 退出登录
-     * @Route("passport/loginOut", name="/admin/members/loginOut")
+     * @Route("/loginOut", name="/admin/passport/loginOut")
      */
     public function loginOutAction()
     {
