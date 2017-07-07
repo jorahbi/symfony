@@ -22,6 +22,8 @@ class SystemController extends Controller
      */
     public function usersAction(Request $request)
     {
+        //var_dump(get_class($this->container->get('doctrine')));die;//Doctrine\ORM\EntityManager
+        //var_dump($request->getSession()->get('admin_id'));
         if($request->isXmlHttpRequest())
         {
             $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->getPermission($request);

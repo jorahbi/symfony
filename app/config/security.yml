@@ -3,17 +3,22 @@
 security:
     #加密方式
     encoders:
-        AdminBundle\Entity\Admin:
-            algorithm: bcrypt
+        # AdminBundle\Entity\Admin:
+        #     algorithm: md5
+        AdminBundle\Entity\Admin: 
+            algorithm: md5
+            #cost: 12
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: ~
+        # in_memory:
+        #     memory: ~
         our_db_provider:
             entity:
                 class: AdminBundle:Admin
                 property: username
+        # webservice:
+        #     id: app.webservice_admin_provider
     
 
     firewalls:
@@ -30,6 +35,8 @@ security:
                 login_path: /admin/passport/login
                 check_path: /admin/passport/login
                 default_target_path: /admin/system/users
+                username_parameter: _username
+                password_parameter: _password
             # activate different ways to authenticate
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             http_basic: ~

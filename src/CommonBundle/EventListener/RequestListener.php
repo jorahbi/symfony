@@ -38,7 +38,8 @@ class RequestListener
         //$pathInfo = $event->getRequest()->getPathInfo();
         $interceptor = $this->container->getParameter('request.interceptor');
         $currentRoute = $event->getRequest()->attributes->get('_route');
-        $result = true;
+      //var_dump($event->getRequest()->getSession()->get('role'));
+        $result = true; 
         
         foreach($interceptor as $key => &$value)
         {

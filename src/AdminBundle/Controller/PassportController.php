@@ -23,13 +23,13 @@ class PassportController extends Controller
         $plainPassword = 'admin123';
         $encoder = $this->container->get('security.password_encoder');
         $encoded = $encoder->encodePassword($user, $plainPassword);
-        var_dump($encoded);*/
+        var_dump($encoder);*/
 
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one / 获取可能存在的登录错误信息
         $error = $authenticationUtils->getLastAuthenticationError();
-        var_dump($error);
+        
         // last username entered by the user / 获取用户输入的username（用户名）
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('AdminBundle:Passport:login.html.twig', [

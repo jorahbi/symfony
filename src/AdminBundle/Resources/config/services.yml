@@ -8,7 +8,13 @@ services:
     
     app.token_authenticator:
         class: AdminBundle\Security\TokenAuthenticator
-        arguments: [""]
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]
+
+    # app.webservice_admin_provider:
+    #     class: AdminBundle\Security\Admin\WebserviceAdminProvider
+
+    # app.webservice_admin_provider:
+    #     class: AdminBundle\Security\Admin\WebserviceAdminProvider
         #calls: #set注入
         #    - [setMailer, ['@app.mailer']]
 
