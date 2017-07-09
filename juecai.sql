@@ -10,39 +10,46 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-06-25 20:41:39
+Date: 2017-07-09 20:18:46
 */
-
-use test;
 
 SET FOREIGN_KEY_CHECKS=0;
 
-
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
 DROP TABLE IF EXISTS `admin`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_880E0D76F85E0677` (`username`),
-  UNIQUE KEY `UNIQ_880E0D76E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL DEFAULT '' COMMENT '账号',
+  `password` varchar(50) NOT NULL DEFAULT '' COMMENT '密码',
+  `permission` text COMMENT '权限',
+  `group_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '部门ID',
+  `position_id` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '职位ID',
+  `real_name` varchar(20) NOT NULL DEFAULT '' COMMENT '真实姓名',
+  `job_num` varchar(10) NOT NULL DEFAULT '' COMMENT '员工工号',
+  `phone` varchar(18) NOT NULL COMMENT '坐席号码',
+  `qq` varchar(20) NOT NULL COMMENT '企业QQ',
+  `sex` tinyint(1) NOT NULL COMMENT '性别0女士1先生',
+  `bbs_uid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '论坛管理员前台账号ID,对应members',
+  `valid` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否有效：0禁用1有效',
+  `is_service` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否客服',
+  `is_investment_adviser` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否销售顾问',
+  `is_bbs_admin` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否论坛管理员',
+  `is_part_time` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT '是否兼职：1是，2否',
+  `is_auto_allot` tinyint(1) unsigned NOT NULL DEFAULT '2' COMMENT '是否自动分配客户：1分配，2不分配',
+  `skin` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '后台皮肤',
+  `is_service_online` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `cno` int(11) DEFAULT NULL COMMENT '客服工号',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='后台管理员';
 
---
--- Dumping data for table `admin`
---
-
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES (1,'admin','$2y$13$X26orWkhWce5nAvwlWV5ieAL5q1rBQVpNQt8qShIo5InhWPgeKELS','',1);
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES ('1', 'admin', 'Q/+WeiNKmL3Od3TTXAK+9A==', '{\"Index\":[\"main\",\"holiday\",\"set_seo\",\"webconfig\",\"set_webconfig\",\"bank_list\",\"bank_add\",\"bank_edit\",\"edit_my_info\",\"qudao_red\",\"change_skin\",\"clear_data_cache\",\"clear_temp_cache\",\"clear_tpl_cache\",\"add_version\",\"clear_limit\",\"help_tip\",\"add_help\"],\"Ad\":[\"index\",\"add_ad\",\"edit_ad\",\"app_welcome_pic\",\"app_nav_pic\",\"app_right_float_pic\",\"register_generalize_pic\"],\"AppDoc\":[\"index\",\"add\",\"edit\",\"test\",\"asset\"],\"Links\":[\"index\",\"edit_link\",\"common_link\"],\"Special\":[\"look_parent\",\"look_super\"],\"Borrow\":[\"borrow_wait\",\"borrow\",\"borrow_complete\",\"borrow_repaying\",\"borrow_failed\",\"add_borrow\",\"edit\",\"doedit\",\"repay_refund\",\"repay_list\",\"do_repay\",\"borrow_repay\",\"ext_borrow_repay\",\"ext_borrow_repay_list\"],\"BorrowRule\":[\"fee\",\"reward\",\"edit\",\"doedit\",\"add\"],\"Package\":[\"index\",\"add_package\",\"edit_package\",\"borrow_list\"],\"Members\":{\"0\":\"calluser\",\"1\":\"index\",\"2\":\"assign_user_tab\",\"3\":\"assign_user\",\"4\":\"export_member\",\"5\":\"message_user_export\",\"6\":\"load_user\",\"7\":\"save_customer_service_message\",\"8\":\"select_service\",\"9\":\"change_status\",\"10\":\"select_user_type\",\"11\":\"assign_tag\",\"12\":\"valid_account\",\"13\":\"comp_index\",\"14\":\"comp_add\",\"15\":\"comp_add_handler\",\"16\":\"comp_account\",\"17\":\"audit_member_infos\",\"18\":\"query_audit_result\",\"19\":\"reset_pwd\",\"20\":\"look\",\"21\":\"change_recommend\",\"22\":\"reg_way\",\"23\":\"set_reg_way\",\"24\":\"qrcode\",\"25\":\"spread_statis\",\"27\":\"vip\",\"28\":\"vip_renewal\",\"29\":\"behavior\",\"30\":\"recharge\",\"31\":\"used_juecaicoin_list\"},\"Article\":[\"index\",\"add_article\",\"edit_article\",\"delete_article\",\"add_sms_templat\",\"sms_tpl_list\",\"send_sms\"],\"ArticleType\":[\"index\",\"add_type\",\"edit_type\",\"delete_type\",\"warning_list\",\"change_warning_type\"],\"Activity\":[\"index\",\"add_activity\",\"edit_activity\",\"double_eleven_activity\",\"double_eleven_list\",\"get_pay_tab\",\"export_activitylog\",\"apple_tree\",\"lucky_wheel\",\"add_wheel_prize\",\"edit_wheel_prize\",\"lucky_wheel_log\",\"grant_prize\",\"app_popup\",\"add_app_popup\",\"spring_coupons\",\"consumer_activity\",\"consumer_activity_list\",\"refueling_activity\",\"receipt_activity\",\"friend_reward\",\"coupons_detail\",\"coupons_statis\",\"duanwu2017_sendstatus\",\"duanwu2017_activity\"],\"Mission\":[\"mission_list\",\"add_mission\",\"edit_mission\"],\"Prize\":[\"receive_list\",\"index\",\"add_prize\",\"edit_prize\",\"exchange_list\",\"done_exchange\"],\"Sign\":[\"index\",\"add_event\",\"edit_event\"],\"Admin\":[\"index\",\"unvalid_list\",\"admin_operation_logs\",\"unvalid_admin\",\"valid_admin\",\"admin_log\",\"add_admin\",\"edit_admin\",\"admin\"],\"AdminGroup\":[\"index\",\"add_group\",\"edit_group\",\"del_group\"],\"AdminPosition\":[\"index\",\"add_position\",\"edit_position\",\"del_position\"],\"Msg\":[\"index\",\"add_msg\",\"edit_msg\",\"delete_msg\"],\"AdvertiserReport\":[\"get_advertiser_day_excel\",\"get_advertiser_week_excel\",\"get_advertiser_month_excel\"],\"CapitalSta\":[\"custom_payment\",\"payment\",\"month_payment\",\"overall_statis\"],\"Operatereport\":[\"get_operate_day_excel\",\"get_operate_week_excel\",\"get_operate_month_excel\",\"member_coupons_list\"],\"Vistorlogin\":[\"index\"],\"Servercallbackreport\":[\"get_callback_report\",\"get_today_callback_list\",\"call_user_list\",\"invest_call_user_list\",\"second_assign_list\"],\"Windcontrol\":[\"invest_client_analyse\"],\"BorrowAuto\":[\"wait_list\",\"doing_list\",\"done_list\",\"fail_list\",\"cancel_list\",\"cancel_auto\",\"do_auto_invest\"],\"Capital\":[\"charge\",\"moneylog\",\"export_moneylog\",\"money_overview\",\"invest_list\",\"repay_list\",\"invest_log\",\"borrow_overview\",\"coupons\",\"add_coupons\",\"out_trade\",\"in_trade\",\"ext_invest_list\",\"investend\",\"leaseend\",\"borrow_end_list\",\"repay_detail_list\",\"repay_collect_list\",\"money_table\",\"future_borrow_repayment\"],\"Integral\":[\"integral\",\"add_integral\"],\"Lending\":[\"index\",\"verify\",\"confirm\",\"debt_index\",\"debt_verify\",\"debt_confirm\"],\"Withdraw\":[\"index\",\"apply\",\"verify\",\"confirm\",\"retreat\"],\"Commission\":[\"member_commission\"],\"Performance\":[\"performance_list\"],\"Sales\":[\"borrow_sales_month\",\"borrow_sales_day\",\"borrow_sales_detail\",\"query_team_info\",\"refresh_borrow_sales\"],\"SalesService\":[\"borrow_sales_month\",\"borrow_sales_day\",\"borrow_sales_detail\",\"refresh_borrow_sales\"],\"Customerservice\":[\"user_list\",\"sale_user_list\",\"borrow_repayment_list\",\"sale_user_list2\",\"add_tag_tab\",\"to_save_tag\",\"change_adviser_tab\",\"save_adviser\",\"charge_failed_list\",\"user_repay_list\",\"user_balance_list\"],\"Sinapay\":[\"create_activate_member\",\"non_mainland\",\"rebind_verify\",\"query_verify\",\"unfreeze\",\"unbind_card\",\"query_bank_card\",\"refund\",\"transfer\",\"query_account_details\",\"collect\",\"pay\",\"charge_list\",\"withdraw_list\",\"query_middle_account\"],\"WangDaiHome\":[\"my_member\",\"save_my_member\",\"update_my_member\"]}', '0', '0', '超级管理员', '', '', '', '0', '0', '1', '0', '0', '0', '2', '2', '2', '0', '2000');
+INSERT INTO `admin` VALUES ('2', 'root', 'e10adc3949ba59abbe56e057f20f883e', '{\"Index\":[\"main\",\"set_seo\",\"webconfig\",\"set_webconfig\",\"bank_list\",\"bank_add\",\"bank_edit\",\"edit_my_info\",\"clear_data_cache\",\"clear_temp_cache\",\"clear_tpl_cache\",\"add_version\",\"clear_limit\"],\"Ad\":[\"index\",\"add_ad\",\"edit_ad\"],\"Links\":[\"index\",\"edit_link\"],\"Borrow\":[\"borrow_wait\",\"borrow\",\"borrow_complete\",\"borrow_failed\",\"add_borrow\",\"edit\",\"doedit\",\"repay_refund\",\"repay_list\",\"do_repay\",\"borrow_repay\",\"ext_borrow_repay\",\"ext_borrow_repay_list\"],\"Package\":[\"index\",\"add_package\",\"edit_package\",\"borrow_list\"],\"Members\":[\"calluser\",\"index\",\"load_user\",\"save_customer_service_message\",\"valid_account\",\"comp_index\",\"comp_add\",\"behavior\"],\"Article\":[\"index\",\"add_article\",\"edit_article\",\"delete_article\",\"add_sms_templat\",\"sms_tpl_list\",\"send_sms\"],\"ArticleType\":[\"index\",\"add_type\",\"edit_type\",\"delete_type\"],\"Activity\":[\"index\",\"add_activity\",\"edit_activity\",\"double_eleven_activity\",\"get_pay_tab\",\"consumer_activity\"],\"Mission\":[\"mission_list\",\"add_mission\",\"edit_mission\"],\"Servercallbackreport\":[\"get_callback_report\",\"get_today_callback_list\",\"invest_call_user_list\"],\"BorrowAuto\":[\"wait_list\",\"doing_list\",\"done_list\",\"fail_list\",\"cancel_list\",\"cancel_auto\",\"do_auto_invest\"],\"Capital\":[\"charge\",\"moneylog\",\"export_moneylog\",\"invest_list\",\"coupons\",\"add_coupons\",\"out_trade\",\"investend\",\"leaseend\",\"repay_detail_list\",\"repay_collect_list\"],\"Integral\":[\"integral\",\"add_integral\"],\"Lending\":[\"index\",\"verify\",\"confirm\"],\"Withdraw\":[\"index\",\"apply\",\"verify\",\"confirm\",\"retreat\"],\"Customerservice\":[\"user_list\",\"sale_user_list\",\"add_tag_tab\",\"to_save_tag\",\"charge_failed_list\",\"user_repay_list\",\"user_balance_list\"],\"Sinapay\":[\"create_activate_member\",\"non_mainland\",\"rebind_verify\",\"query_verify\",\"unfreeze\",\"unbind_card\",\"query_bank_card\",\"refund\",\"transfer\",\"query_account_details\",\"collect\",\"pay\"]}', '1', '16', 'root', '', '', '', '0', '0', '1', '0', '1', '0', '2', '2', '1', '0', '2000');
+INSERT INTO `admin` VALUES ('3', 'wudi', 'e10adc3949ba59abbe56e057f20f883e', '{\"Index\":[\"main\",\"holiday\",\"set_seo\",\"webconfig\",\"set_webconfig\",\"bank_list\",\"bank_add\",\"bank_edit\",\"edit_my_info\",\"qudao_red\",\"change_skin\",\"clear_data_cache\",\"clear_temp_cache\",\"clear_tpl_cache\",\"add_version\",\"clear_limit\"],\"Ad\":[\"index\",\"add_ad\",\"edit_ad\"],\"AppDoc\":[\"index\",\"add\",\"edit\",\"test\",\"asset\"],\"Links\":[\"index\",\"edit_link\"],\"Members\":[\"calluser\",\"index\",\"load_user\",\"save_customer_service_message\",\"select_service\",\"valid_account\",\"comp_index\",\"comp_add\",\"comp_add_handler\",\"comp_account\",\"audit_member_infos\",\"query_audit_result\",\"reset_pwd\",\"look\",\"change_recommend\",\"reg_way\",\"set_reg_way\",\"qrcode\",\"spread_statis\",\"vip\",\"vip_renewal\"]}', '1', '0', '吴笛', '', '', '', '0', '0', '1', '0', '1', '0', '2', '2', '1', '0', '1');
 
 -- ----------------------------
 -- Table structure for borrow_info
@@ -2311,7 +2318,7 @@ CREATE TABLE `permission` (
   `is_menu` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否是菜单',
   `lv` int(11) NOT NULL DEFAULT '1' COMMENT '深度',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of permission
@@ -2468,3 +2475,7 @@ INSERT INTO `permission` VALUES ('149', '27', '部门管理', '5,27,149', 'icon-
 INSERT INTO `permission` VALUES ('150', '27', '职位管理', '5,27,150', 'icon-diamond', '1', '/admin/system/position', '1', '3');
 INSERT INTO `permission` VALUES ('151', '28', '消息列表', '5,28,151', 'icon-diamond', '1', '/admin/system/message', '1', '3');
 INSERT INTO `permission` VALUES ('152', '28', '发送消息', '5,28,152', 'icon-diamond', '1', '/admin/system/pushMsg', '1', '3');
+INSERT INTO `permission` VALUES ('153', '5', '权限管理', '5,153', 'diamond', '1', '#', '1', '2');
+INSERT INTO `permission` VALUES ('154', '153', '权限列表', '5,153,154', 'diamond', '1', '/admin/system/permission', '1', '3');
+INSERT INTO `permission` VALUES ('155', '153', '添加/修改权限', '5,153,155', 'diamond', '1', '/admin/system/savePermission', '0', '3');
+INSERT INTO `permission` VALUES ('156', '153', '删除权限', '5,153,156', 'diamond', '1', '/admin/system/delPermission', '0', '3');
