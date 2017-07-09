@@ -1,26 +1,32 @@
 <?php
 namespace AdminBundle\Security;
- 
+
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
- 
+
 class TokenAuthenticator extends AbstractGuardAuthenticator
 {
     private $em;
     private $encoder;
+    private $fileSystem;
+    private $container;
  
-    public function __construct(EntityManager $em, UserPasswordEncoder $encoder)
+    public function __construct(EntityManager $em, UserPasswordEncoder $encoder, Container $container)
     {
         $this->em = $em;
         $this->encoder = $encoder;
+        $this->fileSystem = new FilesystemAdapter();
+        $this->container = $container;
     }
  
     /**
@@ -29,31 +35,22 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      * @return []
      */
     public function getCredentials(Request $request)
-    {
-
-        
-        /*throw new CustomUserMessageAuthenticationException(
-                'ILuvAPIs is not a real API key: it\'s just a silly phrase'
-            );*/
-          // var_dump($request->headers->get('X-AUTH-TOKEN'));die;
-        /*if (!$token = $request->headers->get('X-AUTH-TOKEN')) 
+    { 
+        //var_dump($request->getSession()->get('permission'));
+        if(!$request->get('_username') || !$request->get('_password'))
         {
-            return;
-        }*/
-        var_dump($request->getSession()->get('role'));
-        if(!$request->get('_username'))
-        {
-
+            //用户已登录
+            if($request->getSession()->get('admin_id'))
+            {
+                $this->_checkPermissions($request);
+            }
             return null;
         }
-
 
         return [
             'username' => $request->get('_username'),
             'password' => $request->get('_password')
         ];
-        //
-        //return $return;
     }
     
     /**
@@ -76,7 +73,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
-
         if($this->encoder->encodePassword($user, $credentials['password']) != $user->getPassword())
         {
             throw new CustomUserMessageAuthenticationException('用户名或者密码不正确');
@@ -88,7 +84,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     /**
      * 认证成功时执行
      * @param Request
-     * @param TokenInterface
+     * @param TokenInterface $token->getUser()
      * @param $providerKey security.yml firewalls.main | ...
      * @return Response | null 
      */
@@ -97,8 +93,9 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         //file_put_contents('filename.txt', 'asfasdfasdf\n', FILE_APPEND);
         // on success, let the request continue
         // 成功之后，让请求继续
-        $request->getSession()->set('role', 'sadfsd:asdfsd:asdfsdf');
-        $request->getSession()->set('admin_id', '1');
+       
+        $request->getSession()->set('permission', $token->getUser()->getPermission());
+        $request->getSession()->set('admin_id', $token->getUser()->getId());
         return null;
     }
     
@@ -148,6 +145,29 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     }
 
     /**
+     * 检查权限
+     * @param Request 
+     * @return bool true 通过 | false 不通过
+     */
+    private function _checkPermissions(Request $request)
+    {
+        $currentRoute = $request->attributes->get('_route');
+        $this->container->get('admin.permissionService')->setCurrentRoute($currentRoute);
+        $perCache = $this->fileSystem->getItem('stats.crumbs');
+        $permissionCache = [];
+        ($perCache->isHit() && $permissionCache = $perCache->get()) || 
+        ($permissionCache = $this->container->get('doctrine')->getManager()->getRepository('AdminBundle:Permission')->getCrumbs());
+        
+        //if(empty($permission)) return true;
+        /*if(!$request->getSession()->get('permission'))
+        {
+            throw new CustomUserMessageAuthenticationException('没权限，请联系系统管理员');
+        }*/
+       
+        return true;
+    }
+
+    /**
      * 如果你实现的是 GuardAuthenticatorInterface 接口而不是继承 AbstractGuardAuthenticator 抽象类，你就得使用本方法
      * @param UserInterface
      * @param providerKey
@@ -157,4 +177,5 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
 
     }*/
+
 }

@@ -8,7 +8,7 @@ services:
     
     app.token_authenticator:
         class: AdminBundle\Security\TokenAuthenticator
-        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder"]
+        arguments: ["@doctrine.orm.entity_manager", "@security.password_encoder", "@service_container"]
 
     # app.webservice_admin_provider:
     #     class: AdminBundle\Security\Admin\WebserviceAdminProvider

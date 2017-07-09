@@ -7,12 +7,12 @@ use Symfony\Component\DependencyInjection\Container;
  
 class RequestListener
 {
-    protected $fileSystem;
+    //protected $fileSystem;
     protected $container;
 
     public function __construct(Container $container)
     {
-        $this->fileSystem = new FilesystemAdapter();
+        //$this->fileSystem = new FilesystemAdapter();
         $this->container = $container;
     }
 
@@ -36,7 +36,7 @@ class RequestListener
         $dispatcher->dispatch(StoreEvents::STORE_ORDER, $event);*/
 		//\Doctrine\Common\Util\Debug::dump($event->getRequest()->getHttpHost());
         //$pathInfo = $event->getRequest()->getPathInfo();
-        $interceptor = $this->container->getParameter('request.interceptor');
+        /*$interceptor = $this->container->getParameter('request.interceptor');
         $currentRoute = $event->getRequest()->attributes->get('_route');
       //var_dump($event->getRequest()->getSession()->get('role'));
         $result = true; 
@@ -56,28 +56,6 @@ class RequestListener
                 }
                 break;
             }
-        }
+        }*/
 	}
-
-    /**
-     * 
-     */
-    private function _adminAuth($currentRoute)
-    {
-        //登录、权限验证
-        //$cache->deleteItem('stats.permissions');//删除缓存
-        $perCache = $this->fileSystem->getItem('stats.crumbs');
-        $resultCache = [];
-        if($perCache->isHit() && in_array($currentRoute, $perCache->get())){
-            //$resultCache = $perCache->get();
-            //权限验证 跳转
-        }
-        $this->container->get('admin.permissionService')->setCurrentRoute($currentRoute);
-        return true;
-    }
-
-    private function _passportAuth($currentRoute)
-    {
-
-    }
 }

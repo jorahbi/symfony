@@ -26,10 +26,22 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 
 	public function add (Permission $permission)
 	{	
-		$this->mapRequest($permission);
+		$this->mapRequest();
+		!empty($permission->getPath()) &&		
+		$permission->setParent($permission->getPath()) &&
+		$permission->setPath(trim($permission->getPath()->getPath(), ','));
+		$permission->setLv(count(explode(',', $permission->getPath())) + 1);
+		
+		//\Doctrine\Common\Util\Debug::dump($permission);die;
 		$query = $this->getEntityManager();
 		$query->persist($permission);
 		$query->flush();
+		$permission->setPath(trim($permission->getPath() . ',' . $permission->getId(), ','));
+		$query->flush();
+
+		$cache = new FilesystemAdapter();
+		$cache->deleteItem('stats.permissions');//删除缓存
+		$cache->deleteItem('stats.crumbs');//删除缓存
 		return $permission->getId();
 	}
 
@@ -110,7 +122,7 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 */
 	public function &getMenus()
 	{
-		$this->getCrumbs();
+		//$this->getCrumbs();
 		$cache = new FilesystemAdapter();
 		//$cache->deleteItem('stats.permissions');//删除缓存
 		$perCache = $cache->getItem('stats.permissions');

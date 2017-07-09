@@ -3,8 +3,7 @@
 security:
     #加密方式
     encoders:
-        # AdminBundle\Entity\Admin:
-        #     algorithm: md5
+        
         AdminBundle\Entity\Admin: 
             algorithm: md5
             #cost: 12
@@ -27,8 +26,8 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        main:
-            pattern: ^/.*
+        admin:
+            pattern: ^/admin
             provider: our_db_provider
             anonymous: ~
             form_login:

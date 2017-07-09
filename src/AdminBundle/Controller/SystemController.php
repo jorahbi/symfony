@@ -17,20 +17,12 @@ class SystemController extends Controller
 {
     /**
      * 管理员列表
-     * @Route("/users/{parent}", name="/admin/system/users", defaults={"parent": "0"})
+     * @Route("/users", name="/admin/system/users")
      *  
      */
-    public function usersAction(Request $request)
+    public function usersAction()
     {
-        //var_dump(get_class($this->container->get('doctrine')));die;//Doctrine\ORM\EntityManager
-        //var_dump($request->getSession()->get('admin_id'));
-        if($request->isXmlHttpRequest())
-        {
-            $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->getPermission($request);
-            $result['draw'] = $request->get('draw');
-            return $this->json($result);
-        }
-        return $this->render('AdminBundle:System:users.html.twig', ['parent' => $request->get('parent')]);
+        return $this->render('AdminBundle:System:users.html.twig');
     }
 
     /**
@@ -128,8 +120,9 @@ class SystemController extends Controller
                 }
                 return $this->json($result);
             }
-            $permission = $form->getData();
-            
+            //$permission = $form->getData();
+            //var_dump($request->get('permission'));
+            $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->add($form->getData());
             return $this->json(['status' => 1]);
         }
         return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);
@@ -137,7 +130,22 @@ class SystemController extends Controller
 
     /**
      * 添加后台权限
-     * @Route("/delPermission/{pid}", name="/admin/system/delPermission")
+     * @Route("/permission/{parent}", name="/admin/system/permission", defaults={"parent": "0"})
+     */
+    public function permissionAction(Request $request)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->getPermission($request);
+            $result['draw'] = $request->get('draw');
+            return $this->json($result);
+        }
+        return $this->render('AdminBundle:System:permission.html.twig', ['parent' => $request->get('parent')]);
+    }
+
+    /**
+     * 删除后台权限
+     * @Route("/delPermission/{pid}", name="/admin/system/delPermission", defaults={"pid": 0})
      * 默认pid为0 初始为添加菜单
      */
     public function delPermissionAction()

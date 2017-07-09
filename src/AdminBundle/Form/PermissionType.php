@@ -23,29 +23,36 @@ class PermissionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, Array $options)
     {
-         $builder->add('status', CurrencyType::class, array(
-                'mapped' => false, 
+        //\Doctrine\Common\Util\Debug::dump($options);
+        $builder
+        ->add('link', TextType::class)
+        ->add('label', TextType::class)
+        ->add('status', CurrencyType::class, array(
+                //'mapped' => false, 
                 'required' => true, 
-                'choices' => ['是' => 0, '否' => 1], 
+                'choices' => ['是' => 1, '否' => 0], 
                 'expanded' => true,
                 'multiple' => false,
-                'data' => 0
-            ));
-            $builder->add('link', TextType::class)
-            ->add('path', HiddenType::class, ['mapped' => false, 'required' => false])
-            ->add('label', TextType::class);
-             
-            $builder->add('parentId', EntityType::class, [
+                'data' => 1
+        ))
+        ->add('isMenu', CurrencyType::class, array(
+                //'mapped' => false, 
+                'required' => true, 
+                'choices' => ['是' => 1, '否' => 0], 
+                'expanded' => true,
+                'multiple' => false,
+                'data' => 1
+        ))
+        ->add('path', EntityType::class, [
                 'class' => 'AdminBundle:Permission',
-                    'mapped' => false,
+                    //'mapped' => false,
                     'choice_label' => 'label',
+                    //'choice_value' => 'path',
                     'required' => false,
                     'query_builder' => function(EntityRepository $er){
-                        //return $er->findBy(['lv' => 1]);
-                        $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
+                       /* $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
                         //\Doctrine\Common\Util\Debug::dump($result);
-                        //\Doctrine\Common\Util\Debug::dump($er->findBy(['lv' => 1]));
-                        return $result;
+                        return $result;*/
                     }
             ])
             ->add('save', SubmitType::class);
