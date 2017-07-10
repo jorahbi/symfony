@@ -74,11 +74,26 @@ class PermissionService
 	}
 
 	/**
-	 * 后台菜单显示 
+	 * 获取后台权限
+	 * @param $cacheKey 获取类型（menus 菜单显示| permission分配权限）
+	 * @param $isNew 是否拉取最新数据
+	 * @return Array 
 	 */
-	public function &menu()
+	public function &permissions($cacheKey = 'menus', $isNew = false)
 	{
-		return $this->doctrine->getRepository('AdminBundle:Permission')->getMenus();
+		$where = $cacheKey == 'menus' ? ['status' => 1, 'isMenu' => 1, 'lv' => 1] : ['lv' => 1];
+		$cache = new FilesystemAdapter();
+		$isNew && $cache->deleteItem('stats' . $cacheKey);//删除缓存
+		$perCache = $cache->getItem('stats' . $cacheKey);
+		if($perCache->isHit()){
+			$resultCache = $perCache->get();
+			return $resultCache;
+		}
+		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($where);
+		$tree = $this->arrayService->objectToTree($permissions);
+		$perCache->set($tree);
+        $cache->save($perCache);
+        return $tree;
 	}
 
 	public function getPath()

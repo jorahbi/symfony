@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AdminBundle\Form\PermissionType;
 use AdminBundle\Entity\Permission;
+use AdminBundle\Entity\AdminPosition;
+use AdminBundle\Form\AdminPositionType;
 
 /**
  * 系统管理
@@ -68,7 +70,9 @@ class SystemController extends Controller
      */
     public function positionAction()
     {
-        return $this->render('AdminBundle:System:position.html.twig');
+        $adminPosition = new AdminPosition();
+        $form = $this->createForm(AdminPositionType::class, $adminPosition);
+        return $this->render('AdminBundle:System:position.html.twig', ['form' => $form->createView()]);
     }
 
     /**

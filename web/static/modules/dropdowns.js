@@ -9,8 +9,9 @@ define('dropdowns', ['plugins/select2/select2.min'], function(require, exports, 
     Dropdowns.prototype.init = function(selector) {
         var css = {};
         setting.element = $(selector);
-        if(setting.element.width() > 1 && setting.element.closest('div.form-group').length > 0) //siblings 兄弟元素
-            css = {dropdownCss: {'width': setting.element.width() - 4, 'margin-left': 15}};
+        var sibling = setting.element.siblings('div.input-xlarge');
+        if(setting.element.width() > 1 && sibling.length > 0) //siblings 兄弟元素
+            css = {dropdownCss: {'width': sibling.width(), 'margin-left': 15}};
         setting.element.select2(css);
     }
     return {

@@ -36,6 +36,9 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     { 
+        //$cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter();
+        //$cache->deleteItem('stats.menus');//删除缓存
+        //$cache->deleteItem('stats.crumbs');//删除缓存
         //var_dump($request->getSession()->get('permission'));
         if(!$request->get('_username') || !$request->get('_password'))
         {

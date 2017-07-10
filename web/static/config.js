@@ -28,6 +28,7 @@ var requireConfig = {
                 'css!modules/admin/admin5css/plugins.css',
                 'css!modules/admin/layout/css/layout.css',
                 'css!modules/admin/layout/css/themes/default.css',
+                'css!plugins/uniform/css/uniform.default.min.css',
                 'css!global/self-admin.css',
                 //'modules/admin/layout4/scripts/layout'
             ]
