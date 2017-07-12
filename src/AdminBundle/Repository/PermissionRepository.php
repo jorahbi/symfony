@@ -75,14 +75,6 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 */
 	public function &getCrumbs()
 	{
-		$cache = new FilesystemAdapter();
-		//$cache->deleteItem('stats.permissionsAll');//删除缓存
-		//set cache item 根据后台管理员id设置对应的缓存
-		$perCache = $cache->getItem('stats.crumbs');
-		if($perCache->isHit()){
-			$resultCache = $perCache->get();
-			return $resultCache;
-		}
 		$result = [];
 		foreach($this->findAll() as &$item)
 		{
@@ -96,8 +88,6 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 				'icon' => $item->getIcon()
 			];
 		}
-		$perCache->set($result);
-        $cache->save($perCache);
         return $result;
 	}
 }

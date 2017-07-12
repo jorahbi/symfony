@@ -23,12 +23,14 @@ class PermissionService
 	protected $container;
 	protected $doctrine;
 	protected $currentRoute;
+	protected $fileCache;
 
 	public function __construct(ArrayService $arrayService, Container $container)
 	{
 		$this->arrayService = $arrayService;
 		$this->container = $container;
 		$this->doctrine = $this->container->get('doctrine')->getManager();
+		$this->fileCache = $this->container->get('common.fileCache');
 	}
 
 	public function savePermission()
@@ -81,10 +83,10 @@ class PermissionService
 	 */
 	public function &permissions($cacheKey = 'menus', $isNew = false)
 	{
-		$where = $cacheKey == 'menus' ? ['status' => 1, 'isMenu' => 1, 'lv' => 1] : ['lv' => 1];
-		$cache = new FilesystemAdapter();
-		$isNew && $cache->deleteItem('stats' . $cacheKey);//删除缓存
-		$perCache = $cache->getItem('stats' . $cacheKey);
+		$where = $cacheKey == 'menus' ? ['status' => 1, 'isMenu' => 1] : ['lv' => 1];
+		$isNew && $this->fileCache->deleteItem('stats.' . $cacheKey);//删除缓存
+		$perCache = $this->fileCache->getItem('stats.' . $cacheKey);
+		var_dump($perCache->isHit());
 		if($perCache->isHit()){
 			$resultCache = $perCache->get();
 			return $resultCache;
@@ -92,8 +94,27 @@ class PermissionService
 		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($where);
 		$tree = $this->arrayService->objectToTree($permissions);
 		$perCache->set($tree);
-        $cache->save($perCache);
+        $this->fileCache->save($perCache);
         return $tree;
+	}
+
+	/**
+	 * 后台面包屑
+	 * 
+	 */
+	public function &getCrumbs()
+	{
+		//$cache->deleteItem('stats.permissionsAll');//删除缓存
+		//set cache item 根据后台管理员id设置对应的缓存
+		$perCache = $this->fileCache->getItem('stats.crumbs');
+		if($perCache->isHit()){
+			$resultCache = $perCache->get();
+			return $resultCache;
+		}
+		$result = $this->doctrine->getRepository('AdminBundle:Permission')->getCrumbs();
+		$perCache->set($result);
+        $this->fileCache->save($perCache);
+        return $result;
 	}
 
 	public function getPath()
