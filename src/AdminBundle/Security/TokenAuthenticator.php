@@ -36,10 +36,12 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     { 
-        // $cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter();
-        // $cache->deleteItem('stats.menus');//删除缓存
-        // $cache->deleteItem('stats.crumbs');//删除缓存
-        // $cache->deleteItem('stats.permissions');
+        /*$cache = new \Symfony\Component\Cache\Adapter\FilesystemAdapter();
+        $cache->deleteItem('admin.menus');//删除缓存
+        $cache->deleteItem('admin.permissionAll');
+        $cache->deleteItem('admin.permissions');*/
+
+        //$cache->deleteItem('admin.crumbs');//删除缓存
         //var_dump($request->getSession()->get('permission'));
         if(!$request->get('_username') || !$request->get('_password'))
         {
@@ -158,7 +160,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         $currentRoute = $request->attributes->get('_route');
         $permissionService = $this->container->get('admin.permissionService');
         $permissionService->setCurrentRoute($currentRoute);
-        $perCache = $this->fileSystem->getItem('stats.crumbs');
+        $perCache = $this->fileSystem->getItem('admin.crumbs');
         $permissionCache = [];
         ($perCache->isHit() && $permissionCache = $perCache->get()) || 
         ($permissionCache = $permissionService->getCrumbs());

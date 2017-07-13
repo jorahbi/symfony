@@ -11,7 +11,7 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\DoctrineProvider;
 use AdminBundle\Entity\Permission;
 use AdminBundle\Entity\Cat;
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * 后台权限服务
@@ -25,24 +25,12 @@ class PermissionService
 	protected $currentRoute;
 	protected $fileCache;
 
-	public function __construct(ArrayService $arrayService, Container $container)
+	public function __construct(Container $container)
 	{
-		$this->arrayService = $arrayService;
 		$this->container = $container;
+		$this->arrayService = $this->container->get('common.array');
 		$this->doctrine = $this->container->get('doctrine')->getManager();
 		$this->fileCache = $this->container->get('common.fileCache');
-	}
-
-	public function savePermission()
-	{
-		//print_r(get_class($this->container));
-		/*$menusAll = $this->getPermissionAll();
-		$permission = new Permission();
-		foreach ($menusAll as $key => $value) 
-		{
-			
-		}*/
-		
 	}
 
 	public function setCurrentRoute($route)
@@ -62,7 +50,7 @@ class PermissionService
 	public function &getCurrentMenu()
 	{
 		//get cache item 根据后台管理员id获取对应的缓存
-        $perCache = (new FilesystemAdapter())->getItem('stats.crumbs')->get();
+        $perCache = $this->getCrumbs();
         //菜单栏选中路径
         $menuTmp = isset($perCache['menus'][$this->getCurrentRoute()]) ? $perCache['menus'][$this->getCurrentRoute()] : '';
         $currentMenu['parent'] = explode(',', $menuTmp);
@@ -81,22 +69,47 @@ class PermissionService
 	 * @param $isNew 是否拉取最新数据
 	 * @return Array 
 	 */
-	public function &permissions($cacheKey = 'menus', $isNew = false)
+	public function &permissionAll()
 	{
-		$where = $cacheKey == 'menus' ? ['status' => 1, 'isMenu' => 1] : ['lv' => 1];
-		$isNew && $this->fileCache->deleteItem('stats.' . $cacheKey);//删除缓存
-		$perCache = $this->fileCache->getItem('stats.' . $cacheKey);
-		var_dump($perCache->isHit());
-		if($perCache->isHit()){
+		$perCache = $this->fileCache->getItem('admin.permissionAll');
+		if($perCache->isHit())
+		{
 			$resultCache = $perCache->get();
 			return $resultCache;
 		}
-		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($where);
-		$tree = $this->arrayService->objectToTree($permissions);
-		$perCache->set($tree);
+		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findAll();
+		$perCache->set($permissions);
         $this->fileCache->save($perCache);
-        return $tree;
+        return $permissions;
+    }
+
+	/**
+	 * 后台左侧生成菜单树
+	 */
+	public function &menuTree()
+	{
+		//根据管理员Id生成缓存 isupdate(字段待添加) 判断缓存是否要更新
+        return $this->permissionTree('admin.menus', $this->permissionAll());
 	}
+
+	/**
+	 * 后台修改角色权限页面，权限展示
+	 */
+	public function &permissionTree($cacheKey = 'admin.permissions', Array $value = [])
+	{
+		$perCache = $this->fileCache->getItem($cacheKey);
+		if($perCache->isHit())
+		{
+			$resultCache = $perCache->get();
+			return $resultCache;
+		}
+		$value = !empty($value) ? $value : $this->permissionAll();
+		$value = $this->arrayService->objectGenerateTree($value);
+		$perCache->set($value);
+        $this->fileCache->save($perCache);
+        return $value;
+	}
+
 
 	/**
 	 * 后台面包屑
@@ -104,10 +117,10 @@ class PermissionService
 	 */
 	public function &getCrumbs()
 	{
-		//$cache->deleteItem('stats.permissionsAll');//删除缓存
 		//set cache item 根据后台管理员id设置对应的缓存
-		$perCache = $this->fileCache->getItem('stats.crumbs');
-		if($perCache->isHit()){
+		$perCache = $this->fileCache->getItem('admin.crumbs');
+		if($perCache->isHit())
+		{
 			$resultCache = $perCache->get();
 			return $resultCache;
 		}
@@ -117,9 +130,14 @@ class PermissionService
         return $result;
 	}
 
-	public function getPath()
+	/**
+	 * 清除文件缓存
+	 */
+	public function cacheClear()
 	{
-		
+		$this->fileCache->deleteItem('admin.menus');
+		$this->fileCache->deleteItem('admin.permissions');
+		$this->fileCache->deleteItem('admin.crumbs');
 	}
 
 	public function test($object)

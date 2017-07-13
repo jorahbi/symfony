@@ -7,7 +7,7 @@
                 <span class="title">主面板</span>
             </a>
         </li>
-        {% for menus in permission.permissions('menus') %}
+        {% for menus in permission.menuTree %}
         <li class="{% if menus.getId|inArray(permission.getCurrentMenu['parent']) %}active open {% endif %}">
             <a href="javascript:;">
                 <i class="{{ menus.getIcon }}"></i>

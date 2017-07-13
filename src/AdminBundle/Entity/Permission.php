@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Permission
- * @ORM\Cache("READ_WRITE") 
+ * @ORM\Cache(usage="NONSTRICT_READ_WRITE", region="persission_entity_region") 
  * @ORM\Table(name="permission")
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\PermissionRepository")
  */
@@ -31,12 +31,14 @@ class Permission
     private $label;
 
     /**
+     * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
      * @ORM\OneToMany(targetEntity="permission", mappedBy="parent", cascade={"persist"})
      */
     private $children;
 
 
     /**
+     * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
      * @ORM\ManyToOne(targetEntity="Permission", inversedBy="children", cascade={"persist"})
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      */

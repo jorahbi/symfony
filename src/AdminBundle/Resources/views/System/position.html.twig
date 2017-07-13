@@ -2,7 +2,7 @@
 
 {% block title %} default {% endblock %}
 {% block body %}
-	<link rel="stylesheet" type="text/css" href="http://localhost/formwork/bootstrap/page/assets/global/plugins/jstree/dist/themes/default/style.min.css">
+	{# <link rel="stylesheet" type="text/css" href="http://localhost/formwork/bootstrap/page/assets/global/plugins/jstree/dist/themes/default/style.min.css"> #}
     <!-- BEGIN PAGE CONTENT-->
  <div class="row">
     <div class="col-md-12">
@@ -39,23 +39,26 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">分配权限</label>
 							<div class="col-md-7">
-								<ul class="list-unstyled">
-									{% for item in permission.permissions('permissions') %}
-									<li>
+								<ul class="list-unstyled list-tree">
+									{% for item in permission.permissionTree %}
+									<li class="tree-node">
+										
 										<div class="checkbox-list">
-											<label class="checkbox-inline">
+											<label class="checkbox-inline tree-icon tree-open">
 											<input type="checkbox" id="inlineCheckbox1" value="{{ item.getId }}"> {{ item.getLabel }} </label>
 										</div>
 										{% for item1 in item.getChildren %}
 										<ul class="list-unstyled">
-											<li>
+											<li class="tree-node">
+												
 												<div class="checkbox-list">
-													<label class="checkbox-inline">
+													<label class="checkbox-inline tree-icon tree-open">
 													<input type="checkbox" id="inlineCheckbox1" value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
 												</div>
 												<ul class="list-unstyled">
-													<li>
+													<li class="tree-node">
 														<div class="checkbox-list">
+
 															{% for item2 in item1.getChildren %}
 															<label class="checkbox-inline">
 															<input type="checkbox" id="inlineCheckbox1" {% if item2.getStatus == 0 %} disabled {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>

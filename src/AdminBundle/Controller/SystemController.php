@@ -72,6 +72,8 @@ class SystemController extends Controller
     {
         $adminPosition = new AdminPosition();
         $form = $this->createForm(AdminPositionType::class, $adminPosition);
+        //$this->get('admin.permissionService')->permissions('menus');
+        //$this->get('admin.permissionService')->menuTree();die;
         return $this->render('AdminBundle:System:position.html.twig', ['form' => $form->createView()]);
     }
 
@@ -124,9 +126,8 @@ class SystemController extends Controller
                 }
                 return $this->json($result);
             }
-            //$permission = $form->getData();
-            //var_dump($request->get('permission'));
             $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->add($form->getData());
+            $this->get('admin.permissionService')->cacheClear();
             return $this->json(['status' => 1]);
         }
         return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);

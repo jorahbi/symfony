@@ -36,7 +36,7 @@ class ArrayService
      * @param $addChild 设置子元素
      * @return [];
      */
-    public function &objectToTree(Array &$source, $getKey = 'getId', $getParent = 'getParent', $addChild = 'addChild')
+    public function &objectGenerateTree(&$source, $getKey = 'getId', $getParent = 'getParent', $addChild = 'addChild')
     {
         $convertTmp = [];
         foreach ($source as $_item) 
@@ -56,5 +56,27 @@ class ArrayService
         //\Doctrine\Common\Util\Debug::dump($tree[0]->getChildren());die;
         return $tree;
 
+    }
+
+    /**
+     * 数组转换树结构
+     * @param $source 原数组对象
+     * @param $key 目标key值
+     * @param $Parent 获取上级元素
+     * @param $children 设置子元素
+     * @return [];
+     */
+    public function &arrayGenerateTree(&$source, $key = 'id', $parent = 'parent_id', $children = 'children')
+    {
+        $tree = [];
+        foreach($source as $item)
+        {
+            if(isset($source[$item[$parent]])){ 
+                $source[$source[$parent]][$children][] = &$source[$item[$key]];
+            }else{
+                $tree[] = &$source[$item[$key]];
+            }
+        }
+        return $tree;
     }
 }

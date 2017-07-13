@@ -7,6 +7,7 @@ use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\DoctrineProvider;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Mapping as ORM;
 #use Doctrine\ORM\Tools\Pagination\Paginator; 
 /**
  * PermissionRepository
@@ -18,12 +19,19 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 {
 
 	protected $queryBuilder = null;
+	protected $em = null;
 
 	protected function mapRequest()
 	{
-		empty($this->queryBuilder) && $this->queryBuilder = $this->getEntityManager()->createQueryBuilder()->from($this->getEntityName(), 'p');
+		$this->em = $this->getEntityManager();
+		$this->queryBuilder = $this->em->createQueryBuilder()->from($this->getEntityName(), 'p');
 	}
 
+	/**
+	 * 添加权限
+	 * @param Permission 
+	 * @return permissionId
+	 */
 	public function add (Permission $permission)
 	{	
 		$this->mapRequest();
@@ -33,18 +41,21 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 		$permission->setLv(count(explode(',', $permission->getPath())) + 1);
 		
 		//\Doctrine\Common\Util\Debug::dump($permission);die;
-		$query = $this->getEntityManager();
-		$query->persist($permission);
-		$query->flush();
+		$this->em->persist($permission);
+		$this->em->flush();
+		$this->em->clear();
 		$permission->setPath(trim($permission->getPath() . ',' . $permission->getId(), ','));
-		$query->flush();
-
-		$cache = new FilesystemAdapter();
-		$cache->deleteItem('stats.permissions');//删除缓存
-		$cache->deleteItem('stats.crumbs');//删除缓存
+		$this->em->flush();
+		$this->em->clear();
+		
 		return $permission->getId();
 	}
 
+	/**
+	 * 后台权限列表dataTable Ajax调用
+	 * @param request
+	 * @return []
+	 */
 	public function &getPermission(Request $request)
 	{
 		$result = [];

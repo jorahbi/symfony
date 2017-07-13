@@ -4,7 +4,7 @@ services:
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
     admin.permissionService:
         class: AdminBundle\Services\PermissionService
-        arguments: ["@common.array", "@service_container"]
+        arguments: ["@service_container"]
     
     app.token_authenticator:
         class: AdminBundle\Security\TokenAuthenticator
