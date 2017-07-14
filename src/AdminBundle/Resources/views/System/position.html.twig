@@ -28,37 +28,33 @@
 								{{ form_errors(form.title) }}
 							</div>
 						</div>
-						
 						<div class="form-group">
 							{{ form_label(form.isEnable, '是否启用') }}
 							{{ form_widget(form.isEnable, {'attr': {'class': 'col-md-5'}}) }}
 							{{ form_errors(form.isEnable) }}
 						</div>
-						
-						
 						<div class="form-group">
 							<label class="col-md-2 control-label">分配权限</label>
-							<div class="col-md-7">
+							<div class="col-md-9">
 								<ul class="list-unstyled list-tree">
 									{% for item in permission.permissionTree %}
 									<li class="tree-node">
-										
 										<div class="checkbox-list">
-											<label class="checkbox-inline tree-icon tree-open">
+										<i class="tree-icon tree-open"></i>
+											<label class="checkbox-inline">
 											<input type="checkbox" id="inlineCheckbox1" value="{{ item.getId }}"> {{ item.getLabel }} </label>
 										</div>
 										{% for item1 in item.getChildren %}
 										<ul class="list-unstyled">
 											<li class="tree-node">
-												
 												<div class="checkbox-list">
-													<label class="checkbox-inline tree-icon tree-open">
+												<i class="tree-icon tree-open"></i>
+													<label class="checkbox-inline">
 													<input type="checkbox" id="inlineCheckbox1" value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
 												</div>
 												<ul class="list-unstyled">
-													<li class="tree-node">
+													<li class="tree-node tree-leaf">
 														<div class="checkbox-list">
-
 															{% for item2 in item1.getChildren %}
 															<label class="checkbox-inline">
 															<input type="checkbox" id="inlineCheckbox1" {% if item2.getStatus == 0 %} disabled {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>
