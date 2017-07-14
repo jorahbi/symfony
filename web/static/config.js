@@ -17,6 +17,7 @@ var requireConfig = {
         datatables: 'plugins/datatables/media/js/jquery.dataTables.min',
         datepicker: 'modules/datepicker',
         dropdowns: 'modules/dropdowns',
+        tree: 'modules/tree'
         //icheck: 'modules/icheck'
     },
     shim:{

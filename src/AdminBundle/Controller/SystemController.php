@@ -66,15 +66,17 @@ class SystemController extends Controller
 
     /**
      * 职位管理
-     * @Route("/position", name="/admin/system/position")
+     * @Route("/position/{role}", name="/admin/system/position", defaults={"role": 0}, requirements={"role": "\d+"})
      */
-    public function positionAction()
+    public function positionAction(Request $request)
     {
-        $adminPosition = new AdminPosition();
+        $adminPosition = $request->get('role') == 0 ? new AdminPosition() : 
+        $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPermission')->findBy(['id' => $request->get('role')]);
         $form = $this->createForm(AdminPositionType::class, $adminPosition);
-        //$this->get('admin.permissionService')->permissions('menus');
-        //$this->get('admin.permissionService')->menuTree();die;
-        return $this->render('AdminBundle:System:position.html.twig', ['form' => $form->createView()]);
+        return $this->render('AdminBundle:System:position.html.twig', [
+            'form' => $form->createView(),
+            'permissionList' => unserialize($adminPosition->getPermission())
+        ]);
     }
 
     /**
@@ -117,14 +119,10 @@ class SystemController extends Controller
         
         if($request->isXmlHttpRequest() && $form->isSubmitted())
         {
-            $result = [];
-            if(!$form->isValid())
+            $errors = $this->get('validator')->validate($permission);
+            if(count($errors) > 0)
             {
-                foreach($this->get('validator')->validate($permission)->getIterator() as $key => $validate)
-                {
-                    $result['message'][] = $validate->getMessage();
-                }
-                return $this->json($result);
+                return $this->json(['status' => -1, 'message' => (string) $errors]);
             }
             $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->add($form->getData());
             $this->get('admin.permissionService')->cacheClear();

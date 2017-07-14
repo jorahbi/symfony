@@ -184,11 +184,13 @@
 .list-tree .tree-open{
   background-position: -36px -4px;
 }
-.list-tree .checkbox-inline, .radio-inline{
+.list-tree .checkbox-inline{
   padding:  2px 20px 10px 0  !important;
   margin-left: 0;
 }
-
+.list-tree .tree-hide{
+  display: none;
+}
 .list-tree .tree-leaf{
   padding-left: 24px;
 }
