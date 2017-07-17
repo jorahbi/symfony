@@ -45,13 +45,14 @@ define("dataTablesAjax", function(require, exports, module) {
                 paging: false,
                 src: setting.element,
                 onSuccess: function(grid) { 
-
                     setTimeout(function(){
                         //时序问题，缺少dom填充完成回调函数，暂时先延时1秒
                         require(['core'], function(Core){
                             Core.init();
                         });
+
                     }, 1000);
+
                 },
                 onError: function(grid) {},
                 onDataLoad: function(grid) {},
@@ -68,6 +69,9 @@ define("dataTablesAjax", function(require, exports, module) {
                     initComplete: function(nRow, aData, iDataIndex){//detail http://www.cnblogs.com/amoniyibeizi/p/4548111.html
                         
                         
+                    },
+                    rowCallback : function(nRow, aData, iDisplayIndex) {  
+                        $(nRow).find('input[type="checkbox"]').uniform();
                     },
                     pageLength: 10, // default record count per page
                     ajax: {

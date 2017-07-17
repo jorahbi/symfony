@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * AdminPosition
  *
  * @ORM\Table(name="admin_position")
- * @ORM\Entity(repositoryClass="AdminBundle\Repository\AdminRepository")
+ * @ORM\Entity(repositoryClass="AdminBundle\Repository\AdminPositionRepository")
  */
 class AdminPosition
 {
@@ -63,7 +63,10 @@ class AdminPosition
      */
     private $permission;
 
-
+    public function __construct()
+    {
+        $this->createtime = time();
+    }
 
     /**
      * Get id
@@ -204,7 +207,7 @@ class AdminPosition
      */
     public function setPermission($permission)
     {
-        $this->permission = $permission;
+        $this->permission = join(',', $permission);
 
         return $this;
     }
@@ -216,6 +219,6 @@ class AdminPosition
      */
     public function getPermission()
     {
-        return $this->permission;
+        return explode(',', $this->permission);
     }
 }

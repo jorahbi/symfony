@@ -64,38 +64,9 @@ class PermissionService
 	}
 
 	/**
-	 * 获取后台权限
-	 * @param $cacheKey 获取类型（menus 菜单显示| permission分配权限）
-	 * @param $isNew 是否拉取最新数据
-	 * @return Array 
-	 */
-	public function &permissionAll()
-	{
-		$perCache = $this->fileCache->getItem('admin.permissionAll');
-		if($perCache->isHit())
-		{
-			$resultCache = $perCache->get();
-			return $resultCache;
-		}
-		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findAll();
-		$perCache->set($permissions);
-        $this->fileCache->save($perCache);
-        return $permissions;
-    }
-
-	/**
-	 * 后台左侧生成菜单树
-	 */
-	public function &menuTree()
-	{
-		//根据管理员Id生成缓存 isupdate(字段待添加) 判断缓存是否要更新
-        return $this->permissionTree('admin.menus', $this->permissionAll());
-	}
-
-	/**
 	 * 后台修改角色权限页面，权限展示
 	 */
-	public function &permissionTree($cacheKey = 'admin.permissions', Array $value = [])
+	public function &permissionTree($cacheKey = 'admin.permissions')
 	{
 		$perCache = $this->fileCache->getItem($cacheKey);
 		if($perCache->isHit())
@@ -103,11 +74,15 @@ class PermissionService
 			$resultCache = $perCache->get();
 			return $resultCache;
 		}
-		$value = !empty($value) ? $value : $this->permissionAll();
-		$value = $this->arrayService->objectGenerateTree($value);
-		$perCache->set($value);
+		$filter = [
+			'admin.menus' => ['status' => 1, 'isMenu' => 1],
+			'admin.permissions' => ['lv' => 1]
+		];
+		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($filter[$cacheKey]);
+		$permissions = $this->arrayService->objectGenerateTree($permissions);
+		$perCache->set($permissions);
         $this->fileCache->save($perCache);
-        return $value;
+        return $permissions;
 	}
 
 

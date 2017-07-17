@@ -1,109 +1,111 @@
 {% extends 'AdminBundle:layout:default.html.twig' %}
-
-{% block title %} default {% endblock %}
+{% block title %} 添加角色 {% endblock %}
 {% block body %}
-	{# <link rel="stylesheet" type="text/css" href="http://localhost/formwork/bootstrap/page/assets/global/plugins/jstree/dist/themes/default/style.min.css"> #}
     <!-- BEGIN PAGE CONTENT-->
- <div class="row">
-    <div class="col-md-12">
-    	<div class="portlet light">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-gift font-green-sharp"></i>
-                    <span class="caption-subject font-green-sharp bold uppercase">职位添加</span>
-                    <span class="caption-helper">help</span>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Begin: life time stats -->
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift font-green-sharp"></i>
+                        <span class="caption-subject font-green-sharp bold uppercase">角色管理</span>
+                        <span class="caption-helper">help</span>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-default btn-circle" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="{{ path('/admin/system/savePosition') }}">
+                            <i class="fa fa-plus"></i>
+                            <span class="hidden-480">添加角色</span>
+                        </a>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-circle" href="table_ajax.html#" data-toggle="dropdown">
+                                <i class="fa fa-share"></i>
+                                <span class="hidden-480">工具 </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to Excel </a>
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to CSV </a>
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Export to XML </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="table_ajax.html#">
+                                Print Invoices </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-container">
+                        <div class="table-actions-wrapper">
+                            <span>
+                        </span>
+                            <select class="table-group-action-input form-control input-inline input-small input-sm">
+                                <option value="">待审核</option>
+                                <option value="Cancel">投标中</option>
+                                <option value="Cancel">还款中</option>
+                                <option value="Cancel">已流标</option>
+                                <option value="Close">已完成</option>
+                            </select>
+                            <button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> Submit</button>
+                        </div>
+                        <form class="data-table">
+                        <table class="table table-striped table-bordered table-hover" data-modules="dataTablesAjax" data-ajax-url="{{ path('/admin/system/position') }}" data-modal-save="{{ path('/admin/system/savePosition') }}" data-modal-del="path('/admin/system/delPosition', {'pid': 1})" data-source="admin/position">
+                            <thead>
+                                <tr role="row" class="heading">
+                                    <th width="5%"><input type="checkbox" value="" class="group-checkable"></th>
+                                    <th width="15%" data-order="customer">职位名称</th>
+
+                                    <th width="10%" data-order="price">是否启用</th>
+                                    <th width="10%">修改人 </th>
+                                    <th width="10%">修改时间 </th>
+                                    <th width="29%">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        </form>
+                    </div>
                 </div>
             </div>
-        
-	        <div class="portlet-body form">
-	        	{% form_theme form 'CommonBundle:Form:bootstrap.html.twig' %}
-				{{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'role': 'form'}}) }}
-					<div class="form-body">
-						<div class="form-group">
-							{{ form_label(form.title, '职位名称') }}
-							<div class="col-md-5">
-								{{ form_widget(form.title) }}
-								<span class="help-block">
-								This is inline help </span>
-								{{ form_errors(form.title) }}
-							</div>
-						</div>
-						<div class="form-group">
-							{{ form_label(form.isEnable, '是否启用') }}
-							{{ form_widget(form.isEnable, {'attr': {'class': 'col-md-5'}}) }}
-							{{ form_errors(form.isEnable) }}
-						</div>
-						<div class="form-group">
-							<label class="col-md-2 control-label">分配权限</label>
-							<div class="col-md-9 list-tree" data-modules="tree">
-								{% for item in permission.permissionTree %}
-								<ul class="list-unstyled tree-root">
-									<li class="">
-										<div class="checkbox-list">
-											<i class="tree-icon tree-closed"></i>
-											<label class="checkbox-inline" ref="tree-root">
-											<input type="checkbox" name="permission_id[]" checked="checked" value="{{ item.getId }}"> {{ item.getLabel }} </label>
-										</div>
-										{% for item1 in item.getChildren %}
-										<ul class="list-unstyled tree-hide tree-node">
-											<li class="">
-												<div class="checkbox-list">
-													<i class="tree-icon tree-open"></i>
-													<label class="checkbox-inline" ref="tree-node">
-													<input type="checkbox" name="permission_id[]" checked="checked" value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
-												</div>
-												<ul class="list-unstyled tree-hide tree-leaf">
-													<li class="">
-														<div class="checkbox-list">
-															{% for item2 in item1.getChildren %}
-															<label class="checkbox-inline" ref="tree-leaf">
-															<input type="checkbox" name="permission_id[]" checked="checked" {% if item2.getStatus == 0 %} disabled {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>
-															{% endfor %}
-														</div>
-													</li>
-												</ul>
-											</li>
-										</ul>
-										{% endfor %}
-									</li>
-									
-								</ul>
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-					<div class="form-actions">
-						<div class="row">
-							<div class="col-md-offset-2 col-md-5">
-								{{ form_label(form.save, '添加') }}
-								{{ form_widget(form.save) }}
-								<button type="reset" class="btn-default btn">Cancel</button>
-							</div>
-						</div>
-					</div>
-				{{ form_end(form)}}
-	        </div>
-	    </div>
-	</div>
-</div>
+            <!-- End: life time stats -->
+        </div>
+    </div>
     <!-- END PAGE CONTENT-->
 {% endblock %}
 
 {% block javascripts %}
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core', 'tools'], function(Admin, Vue, Core, Tools) {
-			$('form.form-horizontal').on('submit', function(e){
-                e.stopPropagation();
-                e.preventDefault();
-                Tools.ajax({
-                    url: $(this).attr('action'),
-                    data: $(this).serializeArray(),
-                    successCallback: function(data){
-                        console.log(data);
-                    }
+            Core.getModule(function(modules){
+                modules.modals.callback(function(modal){
+                    //var form = $(modal).find('.form-row-sepe.form-horizontal');
+                    $(modal).find('.form-row-sepe.form-horizontal').on('submit', function(e){
+                        e.stopPropagation();
+                        e.preventDefault();
+                        Tools.ajax({
+                            url: $(this).attr('action'),
+                            data: $(this).serializeArray(),
+                            successCallback: function(data){
+                                console.log(data);
+                            }
+                        });
+                    });
                 });
             });
 		});
-		
 	</script>
 {% endblock %}

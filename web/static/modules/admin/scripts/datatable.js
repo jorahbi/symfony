@@ -186,13 +186,27 @@ var Datatable = function() {
                 $('.table-actions-wrapper', tableContainer).remove(); // remove the template container
             }
             // handle group checkboxes check/uncheck
-            $('.group-checkable', table).change(function() {
-                var set = $('tbody > tr > td:nth-child(1) input[type="checkbox"]', table);
-                var checked = $(this).is(":checked");
-                $(set).each(function() {
-                    $(this).attr("checked", checked);
+            var firstCheckbox = $('input[type="checkbox"]:first', table);
+            var otherCheckbox = $('input[type="checkbox"]:not(:first)', table);
+            firstCheckbox.change(function(e) {
+                var isChecked = $(this).is(':checked');
+                $(table).find('input[type="checkbox"]').attr('checked', isChecked);
+                (isChecked && $(table).find('div.checker>span').addClass('checked')) || ($(table).find('div.checker>span').removeClass('checked'));
+            });
+
+            otherCheckbox.change(function(e) {
+                $(this).attr('checked', $(this).is(":checked"));
+                otherCheckbox.each(function(idx, item) {
+                    if($(item).is(":checked"))
+                    {
+                        firstCheckbox.attr('checked', true);
+                        firstCheckbox.closest('span').addClass('checked');
+                        return false;
+                    }
+                    firstCheckbox.attr('checked', false);
+                    firstCheckbox.closest('span').removeClass('checked');
                 });
-                $.uniform.update(set);
+                $.uniform.update(otherCheckbox);
                 countSelectedRecords();
             });
 

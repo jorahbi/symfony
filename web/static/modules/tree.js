@@ -11,6 +11,7 @@ define("tree", function(require, exports, module) {
 			$(this).toggleClass('tree-closed');
 			$(this).closest('li').find('ul').toggle(function(){});
 		});
+		treeElement.find('input[type="checkbox"]').uniform();
 		this.onRootClick();
 		this.onNodeClick();
 		this.onLeafClick();

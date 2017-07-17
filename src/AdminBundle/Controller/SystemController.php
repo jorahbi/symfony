@@ -65,17 +65,48 @@ class SystemController extends Controller
     }
 
     /**
-     * 职位管理
-     * @Route("/position/{role}", name="/admin/system/position", defaults={"role": 0}, requirements={"role": "\d+"})
+     * 职位管理添加|修改
+     * @Route("/position", name="/admin/system/position")
      */
     public function positionAction(Request $request)
     {
-        $adminPosition = $request->get('role') == 0 ? new AdminPosition() : 
-        $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPermission')->findBy(['id' => $request->get('role')]);
+        if($request->isXmlHttpRequest())
+        {
+            $result = $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPosition')->getPosition($request);
+            $result['draw'] = $request->get('draw');
+            return $this->json($result);
+        }
+        return $this->render('AdminBundle:System:position.html.twig');
+    }
+
+    /**
+     * 职位管理添加|修改
+     * @Route("/savePosition/{role}", name="/admin/system/savePosition", defaults={"role": 0}, requirements={"role": "\d+"})
+     */
+    public function savePositionAction(Request $request)
+    {
+        $mAdminPosition = $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPosition');
+        $adminPosition = $request->get('role') == 0 ? new AdminPosition() : $mAdminPosition->findBy(['id' => $request->get('role')]);
         $form = $this->createForm(AdminPositionType::class, $adminPosition);
-        return $this->render('AdminBundle:System:position.html.twig', [
+        $form->handleRequest($request);
+        if($request->isXmlHttpRequest() && $form->isSubmitted())
+        {
+            $errors = $this->get('validator')->validate($adminPosition);
+            if(count($errors) > 0)
+            {
+                return $this->json(['status' => -1, 'message' => (string) $errors]);
+            }
+            $adminPosition->setAdminId($this->getUser()->getId())->setPermission($request->get('permission_id'));
+            $positionId = $mAdminPosition->add($adminPosition);
+            if($positionId > 0)
+            {
+                return $this->json(['status' => 1, 'data' => ['positionId' => $positionId], 'message' => '添加成功']);
+            }
+            return $this->json(['status' => -1, 'data' => [], 'message' => '添加失败']);
+        }
+        return $this->render('AdminBundle:System:savePosition.html.twig', [
             'form' => $form->createView(),
-            'permissionList' => unserialize($adminPosition->getPermission())
+            'permissionList' => $adminPosition->getPermission()
         ]);
     }
 
@@ -108,7 +139,7 @@ class SystemController extends Controller
 
     /**
      * 添加后台权限
-     * @Route("/savePermission/{pid}/{type}", name="/admin/system/savePermission", defaults={"pid": 0, "type": "add"})
+     * @Route("/savePermission/{pid}/{type}", name="/admin/system/savePermission", defaults={"pid": 0, "type": "add"}, requirements={"pid": "\d+"})
      * 默认pid为0 初始为添加菜单
      */
     public function savePermissionAction(Request $request)
