@@ -13,7 +13,7 @@
                         <span class="caption-helper">help</span>
                     </div>
                     <div class="actions">
-                        <a class="btn btn-default btn-circle" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="{{ path('/admin/system/savePosition') }}">
+                        <a class="btn btn-default btn-circle" href="{{ path('/admin/system/savePosition') }}">
                             <i class="fa fa-plus"></i>
                             <span class="hidden-480">添加角色</span>
                         </a>
@@ -90,22 +90,7 @@
 {% block javascripts %}
 	<script type="text/javascript">
 		require(['admin', 'vue', 'core', 'tools'], function(Admin, Vue, Core, Tools) {
-            Core.getModule(function(modules){
-                modules.modals.callback(function(modal){
-                    //var form = $(modal).find('.form-row-sepe.form-horizontal');
-                    $(modal).find('.form-row-sepe.form-horizontal').on('submit', function(e){
-                        e.stopPropagation();
-                        e.preventDefault();
-                        Tools.ajax({
-                            url: $(this).attr('action'),
-                            data: $(this).serializeArray(),
-                            successCallback: function(data){
-                                console.log(data);
-                            }
-                        });
-                    });
-                });
-            });
+            
 		});
 	</script>
 {% endblock %}
