@@ -23,32 +23,41 @@ class PermissionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, Array $options)
     {
-        //\Doctrine\Common\Util\Debug::dump($options);
         $builder
-        ->add('link', TextType::class)
-        ->add('label', TextType::class)
-        ->add('status', CurrencyType::class, array(
+        ->add('link', TextType::class, [
+            'data' => $options['data']->getLink(),
+        ])
+        ->add('label', TextType::class, [
+            'data' => $options['data']->getLabel(),
+        ])
+        ->add('id', HiddenType::class, [
+            'data' => $options['data']->getId(),
+            'required' => false,
+            'mapped' => false
+        ])
+        ->add('status', CurrencyType::class, [
                 //'mapped' => false, 
                 'required' => true, 
                 'choices' => ['是' => 1, '否' => 0], 
                 'expanded' => true,
                 'multiple' => false,
-                'data' => 1
-        ))
-        ->add('isMenu', CurrencyType::class, array(
+                'data' => $options['data']->getStatus(),
+        ])
+        ->add('isMenu', CurrencyType::class, [
                 //'mapped' => false, 
                 'required' => true, 
                 'choices' => ['是' => 1, '否' => 0], 
                 'expanded' => true,
                 'multiple' => false,
-                'data' => 1
-        ))
-        ->add('path', EntityType::class, [
+                'data' => $options['data']->getIsMenu(),
+        ])
+        ->add('parentId', EntityType::class, [
                 'class' => 'AdminBundle:Permission',
-                    //'mapped' => false,
+                    'mapped' => false,
                     'choice_label' => 'label',
                     //'choice_value' => 'path',
                     'required' => false,
+                    'data' => $options['data']->getParent() === NULL ? NULL : $options['data']->getParent()->getId(),
                     'query_builder' => function(EntityRepository $er){
                        /* $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
                         //\Doctrine\Common\Util\Debug::dump($result);

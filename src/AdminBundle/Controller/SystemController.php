@@ -9,6 +9,7 @@ use AdminBundle\Form\PermissionType;
 use AdminBundle\Entity\Permission;
 use AdminBundle\Entity\AdminPosition;
 use AdminBundle\Form\AdminPositionType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * 系统管理
@@ -139,12 +140,32 @@ class SystemController extends Controller
 
     /**
      * 添加后台权限
-     * @Route("/savePermission/{pid}/{type}", name="/admin/system/savePermission", defaults={"pid": 0, "type": "add"}, requirements={"pid": "\d+"})
+     * @Route("/editPermission/{pid}", name="/admin/system/editPermission", defaults={"pid": 0}, requirements={"pid": "\d+"})
+     * 默认pid为0 初始为添加菜单
+     */
+    public function editPermissionAction(Request $request)
+    {
+        $permission = $request->get('pid') === 0 ? new Permission() : 
+        $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->find($request->get('pid'));
+
+        $form = $this->createForm(PermissionType::class, $permission);
+        return $this->render('AdminBundle:System:editPermission.html.twig', ['form' => $form->createView()]);
+    }
+
+
+    /**
+     * 添加后台权限
+     * @Route("/savePermission", name="/admin/system/savePermission")
+     * @Method("POST")
      * 默认pid为0 初始为添加菜单
      */
     public function savePermissionAction(Request $request)
     {
-        $permission = new Permission();
+        $pId = intval($request->get('permission')['id']);
+        $mPermission = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission');
+        $permission = $pId === 0 ? new Permission() : 
+        $mPermission->find($pId);
+        //$permission->getParent();
         $form = $this->createForm(PermissionType::class, $permission);
         $form->handleRequest($request);
         
@@ -155,12 +176,14 @@ class SystemController extends Controller
             {
                 return $this->json(['status' => -1, 'message' => (string) $errors]);
             }
-            $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->add($form->getData());
+            ($request->get('permission')['parentId']) && $permission->setParent($mPermission->find($request->get('permission')['parentId']));
+            $mPermission->save($permission);
             $this->get('admin.permissionService')->cacheClear();
             return $this->json(['status' => 1]);
         }
-        return $this->render('AdminBundle:System:savePermission.html.twig', ['form' => $form->createView()]);
+        return $this->json(['status' => -1, 'data' => [], 'message' => '非法请求']);
     }
+
 
     /**
      * 添加后台权限

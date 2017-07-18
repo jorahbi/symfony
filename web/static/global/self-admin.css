@@ -156,7 +156,7 @@
     margin-left: 0;
   }
 }
-
+// js checkbox tree begin
 .form-control.select2-container, .icheck-inline {
   padding: 0 15px !important;
 }
@@ -198,7 +198,8 @@
 .cssload-pgloading {
   display: none;
 }
-
+// js checkbox tree end
+// ajax page loader begin
 .cssload-pgloading:after {
     content: "";
     z-index: -1;
@@ -340,12 +341,6 @@
         cssload-opa 6.04s ease-in-out infinite alternate;
 }
 
-
-
-
-
-
-
 @keyframes cssload-rota {
     from { }
     to { transform: rotate(360deg); }
@@ -445,3 +440,5 @@
     84.2% { opacity: 0.75; }
     91.0% { opacity: 0.87; }
 }
+
+// ajax page loader end

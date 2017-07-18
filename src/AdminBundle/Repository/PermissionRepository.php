@@ -32,22 +32,25 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 	 * @param Permission 
 	 * @return permissionId
 	 */
-	public function add (Permission $permission)
+	public function save (Permission $permission)
 	{	
 		$this->mapRequest();
-		!empty($permission->getPath()) &&		
-		$permission->setParent($permission->getPath()) &&
-		$permission->setPath(trim($permission->getPath()->getPath(), ','));
-		$permission->setLv(count(explode(',', $permission->getPath())) + 1);
+		$isUpdate = $permission->getId() ? true : false;
+		$parent = $permission->getParent();
+		$lv = $parent === null ? 1 : count(explode(',', $parent->getPath())) + 1;
+		$path = $parent === null ? $permission->getId() : trim($parent->getPath() . ',' . $permission->getId(), ',');
+		$permission->setLv($lv)->setPath($path);
 		
-		//\Doctrine\Common\Util\Debug::dump($permission);die;
 		$this->em->persist($permission);
 		$this->em->flush();
+
+		if(!$isUpdate)
+		{
+			$path = $parent === null ? $permission->getId() : trim($parent->getPath() . ',' . $permission->getId(), ',');
+			$permission->setPath($path);
+			$this->em->flush();
+		}
 		$this->em->clear();
-		$permission->setPath(trim($permission->getPath() . ',' . $permission->getId(), ','));
-		$this->em->flush();
-		$this->em->clear();
-		
 		return $permission->getId();
 	}
 

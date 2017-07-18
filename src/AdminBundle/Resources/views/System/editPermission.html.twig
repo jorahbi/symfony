@@ -1,5 +1,5 @@
 <!-- BEGIN PAGE CONTENT-->
-{% form_theme form 'CommonBundle:Form:bootstrap.html.twig' %}
+{% form_theme form 'CommonBundle:Form:bootstrap_3_horizontal_layout.html.twig' %}
 {{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe', 'id': 'save-permission'}}) }}
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -15,9 +15,9 @@
 	</div>
 
 	<div class="form-group">
-		{{ form_label(form.path, '所属权限', {'label_attr': {'class' : 'col-md-3'}}) }}
-		{{ form_widget(form.path, {'attr': {'class' : 'form-control input-xlarge select2me col-md-7 ', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
-		{{ form_errors(form.path) }}
+		{{ form_label(form.parentId, '所属权限', {'label_attr': {'class' : 'col-md-3'}}) }}
+		{{ form_widget(form.parentId, {'attr': {'class' : 'form-control input-xlarge select2me col-md-7 ', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
+		{{ form_errors(form.parentId) }}
 	</div>
 	<div class="form-group">
 		{{ form_label(form.status, '是否启用', {'label_attr': {'class' : 'col-md-3'}}) }}

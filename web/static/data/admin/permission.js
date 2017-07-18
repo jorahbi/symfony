@@ -39,8 +39,8 @@ define(function() {
             bSortable: false,
             render: function(data, type, row, meta) {
                 return '<a class="btn btn-xs default green" href="' + setting.ajaxUrl + '/' + data + '"><i class="fa fa-eye"></i> 查看子类</a>\
-                        <a class="btn btn-xs default green" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalSave + '/' + data + '/add"><i class="fa fa-plus"></i> 添加子类</a>\
-                        <a class="btn btn-xs default yellow" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalSave + '/' + data + '/edit"><i class="fa fa-edit"></i> 编辑</a>\
+                        <a class="btn btn-xs default green" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalEdit + '/' + data +'"><i class="fa fa-plus"></i> 添加子类</a>\
+                        <a class="btn btn-xs default yellow" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalEdit + '/' + data + '"><i class="fa fa-edit"></i> 编辑</a>\
                         <a class="btn btn-xs default red"><i class="fa fa-trash-o"></i> 删除</a>\
                 ';
                 

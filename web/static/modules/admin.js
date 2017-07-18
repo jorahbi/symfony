@@ -92,6 +92,15 @@ define("admin", function(require, exports, module) {
         return result;
     }
 
+    /**
+     * 重新载入页面
+     */
+    PageLoader.prototype.reset = function(href){
+        href = href || window.location.pathname;
+        var location = $('ul.page-sidebar-menu').find('a[href="' + href + '"]:first').html() || '<a href="' + href + '"> </a>';
+        this.loader($(location));
+    }
+
     PageLoader.prototype.popstate = function(){
        /* var _self = this;
         $(window).on('popstate', function() {
@@ -102,6 +111,6 @@ define("admin", function(require, exports, module) {
     
     var pageLoader = new PageLoader();
     pageLoader.init();
-    
+    return pageLoader;
 });
 
