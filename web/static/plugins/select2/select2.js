@@ -962,17 +962,17 @@ the specific language governing permissions and limitations under the Apache Lic
                             label.attr("id", "select2-result-label-" + nextUid());
                             label.attr("role", "option");
                            
-                            formatted=opts.formatResult(result, label, query, self.opts.escapeMarkup);
+                            formatted = opts.formatResult(result, label, query, self.opts.escapeMarkup);
                             //添加层级显示
                             var path = $(result.element).data('path') ? String($(result.element).data('path')) : '';
                             var pathArray = path.split(',');
                             var lv = pathArray.length - 1 < 0 ? 0 : pathArray.length - 1;
 
                             if (formatted!==undefined) {
-                                label.text($(result.element).text());
-                                label.prepend($(formatted).css({display: 'inline-block', 'margin-left': lv * 18 + 'px'}));
                                 var parentPath = path.substring(0, path.lastIndexOf(','));
-                                label.attr('data-path', path);
+                                node.attr('data-path', path);
+                                label.html(formatted);
+                                label.css({'padding-left': lv * 18 + 6 + 'px'});
                                 node.append(label);
                             }
                             if (compound) {
@@ -984,7 +984,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
                             node.data("select2-data", result);
                             if(lv > 0){
-                                container.find('[data-path="' + parentPath + '"]').after(node[0])
+                                container.find('li[data-path="' + parentPath + '"]').after(node[0]);
                             }else{
                                 container.append(node[0]);
                             }

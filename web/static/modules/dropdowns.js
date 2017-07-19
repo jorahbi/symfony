@@ -12,7 +12,9 @@ define('dropdowns', ['plugins/select2/select2.min'], function(require, exports, 
     Dropdowns.prototype.init = function(selector) {
         setting.element = $(selector);
         //适用于bootstrap样式 form-group
-        var options = {dropdownCss: {'width': setting.element.width() + 2, 'margin-left': 15}};
+        var options = {
+            dropdownCss: {'width': setting.element.width() + 2, 'margin-left': 15}
+        };
         if(!setting.element.is(':required')) options['allowClear'] = true; //右上角清除按扭
         setting.element.select2(options);
     }
