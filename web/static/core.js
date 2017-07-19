@@ -37,6 +37,7 @@ define("core", function(require, exports, module) {
     
     //获取require模块
     Core.prototype.getModule = function(callback){
+        callback = typeof callback == 'function' ? callback : function(){};
         //加载时序问题，模块全部加载完成后结束调用
        var timer = setInterval(function(){
             if(moduleIndex == moduleNum){
