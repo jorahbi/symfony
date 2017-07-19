@@ -36,7 +36,7 @@ class ArrayService
      * @param $addChild 设置子元素
      * @return [];
      */
-    public function &objectGenerateTree(&$source, $getKey = 'getId', $getParent = 'getParent', $addChild = 'addChild')
+    public function objectGenerateTree(&$source, $getKey = 'getId', $getParent = 'getParent', $addChild = 'addChild')
     {
         $convertTmp = [];
         foreach ($source as $_item) 

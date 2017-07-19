@@ -21,6 +21,9 @@ define("core", function(require, exports, module) {
                 });
             }
         }
+        
+        $('input[type="checkbox"]').uniform();
+        $('input[type="radio"]').uniform();
     };
     
     /*Core.prototype.reset = function(moduleName){

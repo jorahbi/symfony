@@ -13,18 +13,23 @@
   }
   .form-control.input-xlarge.col-md-9 {
     width: 75% !important;
+    padding: 0 15px;
   }
   .form-control.input-xlarge.col-md-8 {
     width: 66.66666667% !important;
+    padding: 0 15px;
   }
   .form-control.input-xlarge.col-md-7, .select2-drop.col-md-7 {/*dropdowns css */
     width: 58.33333333% !important;
+    padding: 0 15px;
   }
   .form-control.input-xlarge.col-md-6 {
     width: 50% !important;
+    padding: 0 15px;
   }
   .form-control.input-xlarge.col-md-5 {
     width: 41.66666667% !important;
+    padding: 0 15px;
   }
   .col-md-4 {
     width: 33.33333333%;

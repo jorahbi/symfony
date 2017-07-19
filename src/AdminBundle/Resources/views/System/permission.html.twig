@@ -130,7 +130,7 @@
                             successCallback: function(data){
                                 //成功 | 失败
                                 $(modal).modal('hide');
-                                Admin.reset('{{ path("/admin/system/permission") }}');
+                                Admin.reload('{{ path("/admin/system/permission") }}');
                             }
                         });
                     });

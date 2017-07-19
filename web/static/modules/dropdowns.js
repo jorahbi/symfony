@@ -1,5 +1,8 @@
 define('dropdowns', ['plugins/select2/select2.min'], function(require, exports, module) {
     "use strict";
+    /**
+     * 层级显示需要传入path(路径：1,2,3 层级路径需要包自身)用于设置data-path值
+     */
     var Dropdowns = function() {};
 
     var setting = {
@@ -7,13 +10,12 @@ define('dropdowns', ['plugins/select2/select2.min'], function(require, exports, 
     };
 
     Dropdowns.prototype.init = function(selector) {
-        var css = {};
         setting.element = $(selector);
-        var sibling = setting.element.siblings('div.input-xlarge');
-        if(setting.element.width() > 1 && sibling.length > 0) //siblings 兄弟元素
-            css = {dropdownCss: {'width': sibling.width(), 'margin-left': 15}};
+        //适用于bootstrap样式 form-group
+        var css = {dropdownCss: {'width': setting.element.width() + 2, 'margin-left': 15}};
         setting.element.select2(css);
     }
+
     return {
         name: 'dropdowns',
         module: (new Dropdowns())

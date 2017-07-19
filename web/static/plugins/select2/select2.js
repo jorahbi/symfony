@@ -961,16 +961,21 @@ the specific language governing permissions and limitations under the Apache Lic
                             label.addClass("select2-result-label");
                             label.attr("id", "select2-result-label-" + nextUid());
                             label.attr("role", "option");
-
+                           
                             formatted=opts.formatResult(result, label, query, self.opts.escapeMarkup);
+                            //添加层级显示
+                            var path = $(result.element).data('path') ? String($(result.element).data('path')) : '';
+                            var pathArray = path.split(',');
+                            var lv = pathArray.length - 1 < 0 ? 0 : pathArray.length - 1;
+
                             if (formatted!==undefined) {
-                                label.html(formatted);
+                                label.text($(result.element).text());
+                                label.prepend($(formatted).css({display: 'inline-block', 'margin-left': lv * 18 + 'px'}));
+                                var parentPath = path.substring(0, path.lastIndexOf(','));
+                                label.attr('data-path', path);
                                 node.append(label);
                             }
-
-
                             if (compound) {
-
                                 innerContainer=$("<ul></ul>");
                                 innerContainer.addClass("select2-result-sub");
                                 populate(result.children, innerContainer, depth+1);
@@ -978,14 +983,18 @@ the specific language governing permissions and limitations under the Apache Lic
                             }
 
                             node.data("select2-data", result);
-                            nodes.push(node[0]);
+                            if(lv > 0){
+                                container.find('[data-path="' + parentPath + '"]').after(node[0])
+                            }else{
+                                container.append(node[0]);
+                            }
+                            //nodes.push(node[0]);
                         }
 
                         // bulk append the created nodes
-                        container.append(nodes);
+                        //container.append(nodes);
                         liveRegion.text(opts.formatMatches(results.length));
                     };
-
                     populate(results, container, 0);
                 }
             }, $.fn.select2.defaults, opts);

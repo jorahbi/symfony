@@ -22,7 +22,6 @@ define('modals', function(require) {
 
     Modal.prototype.init = function(selector) {
         setting.element = $(selector);
-
         setting.data = setting.element.data();
         $.fn.modalmanager.defaults.resize = true;
         var modalLock = {}; //modal lock

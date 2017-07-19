@@ -49,7 +49,7 @@ define("admin", function(require, exports, module) {
                         $('.page-sidebar-menu').find('li').removeClass('active').removeClass('open');
                         onLoader.parent().addClass('active').parents().addClass('active open');
                     }
-                    request.setRequestHeader('Ajax-Type', 'pjax');
+                    request.setRequestHeader('Ajax-Type', 'page-load');
                 },
                 success: function(data){
                     _self.setting.body = data;
@@ -95,7 +95,7 @@ define("admin", function(require, exports, module) {
     /**
      * 重新载入页面
      */
-    PageLoader.prototype.reset = function(href){
+    PageLoader.prototype.reload = function(href){
         href = href || window.location.pathname;
         var location = $('ul.page-sidebar-menu').find('a[href="' + href + '"]:first').html() || '<a href="' + href + '"> </a>';
         this.loader($(location));

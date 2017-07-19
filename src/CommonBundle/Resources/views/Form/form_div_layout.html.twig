@@ -79,7 +79,8 @@
                 {{- block('choice_widget_options') -}}
             </optgroup>
         {%- else -%}
-            <option value="{{ choice.value }}"{% if choice.attr %} {% set attr = choice.attr %}{{ block('attributes') }}{% endif %}{% if choice.value == data %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
+        {% dump(choice) %}
+            <option value="{{ choice.value }}" {% if choice.data.path %} data-path="{{choice.data.path}}" {% endif %} {% if choice.attr %} {% set attr = choice.attr %}{{ block('attributes') }}{% endif %}{% if choice.value == data %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}</option>
         {%- endif -%}
     {% endfor %}
 {%- endblock choice_widget_options -%}

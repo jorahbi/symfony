@@ -20,14 +20,19 @@
 		{{ form_errors(form.parentId) }}
 	</div>
 	<div class="form-group">
+		{{ form_label(form.test, '所属权限1', {'label_attr': {'class' : 'col-md-3'}}) }}
+		{{ form_widget(form.test, {'attr': {'class' : 'form-control input-xlarge select2me col-md-7 ', 'data-placeholder': '--请选择--', 'data-modules': 'dropdowns'}}) }}
+		{{ form_errors(form.test) }}
+	</div>
+	<div class="form-group">
 		{{ form_label(form.status, '是否启用', {'label_attr': {'class' : 'col-md-3'}}) }}
-		{{ form_widget(form.status, {'attr': {'class': 'col-md-7', 'asdfsda': 'asdfsd'}}) }}
+		{{ form_widget(form.status, {'attr': {'class': 'col-md-7'}}) }}
 		{{ form_errors(form.status) }}
 	</div>
 
 	<div class="form-group">
 		{{ form_label(form.isMenu, '菜单显示', {'label_attr': {'class' : 'col-md-3'}}) }}
-		{{ form_widget(form.isMenu, {'attr': {'class': 'col-md-7', 'asdfsda': 'asdfsd'}}) }}
+		{{ form_widget(form.isMenu, {'attr': {'class': 'col-md-7'}}) }}
 		{{ form_errors(form.isMenu) }}
 	</div>
 

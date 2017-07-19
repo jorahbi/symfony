@@ -76,9 +76,10 @@ class PermissionService
 		}
 		$filter = [
 			'admin.menus' => ['status' => 1, 'isMenu' => 1],
-			'admin.permissions' => ['lv' => 1]
+			'admin.permissions' => []
 		];
 		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($filter[$cacheKey]);
+		$this->doctrine->getRepository('AdminBundle:Permission')->clear();
 		$permissions = $this->arrayService->objectGenerateTree($permissions);
 		$perCache->set($permissions);
         $this->fileCache->save($perCache);
