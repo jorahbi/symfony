@@ -15,28 +15,21 @@ class AdminPositionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, Array $options)
     {
-        $builder->add('title', TextType::class)
-            /*->add('parentId', EntityType::class, [
-                'class' => 'AdminBundle:AdminPosition',
-                    //'mapped' => false,
-                    'choice_label' => 'title',
-                    //'choice_value' => 'path',
-                    'required' => false,
-                    'query_builder' => function(EntityRepository $er){
-                        // $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
-                        // //\Doctrine\Common\Util\Debug::dump($result);
-                        // return $result;
-                    }
-                ])*/
-            ->add('isEnable', CurrencyType::class, array(
-                    //'mapped' => false, 
-                    'required' => true, 
-                    'choices' => ['是' => 1, '否' => 0], 
-                    'expanded' => true,
-                    'multiple' => false,
-                    'data' => 1
-            ))
-            ->add('save', SubmitType::class);
+        $builder
+        ->add('title', TextType::class)
+        ->add('roleId', HiddenType::class,[
+            'mapped' => false,
+            'data' => $options['data']->getId()
+        ])
+        ->add('isEnable', CurrencyType::class, array(
+                //'mapped' => false, 
+                'required' => true, 
+                'choices' => ['是' => 1, '否' => 0], 
+                'expanded' => true,
+                'multiple' => false,
+                'data' => 1
+        ))
+        ->add('save', SubmitType::class);
     }
 }
 

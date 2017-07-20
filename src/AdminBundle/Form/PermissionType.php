@@ -30,6 +30,9 @@ class PermissionType extends AbstractType
         ->add('label', TextType::class, [
             'data' => $options['data']->getLabel(),
         ])
+        ->add('icon', TextType::class, [
+            'data' => $options['data']->getIcon(),
+        ])
         ->add('id', HiddenType::class, [
             'data' => $options['data']->getId(),
             'required' => false,

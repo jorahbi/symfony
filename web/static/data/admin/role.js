@@ -41,10 +41,9 @@ define(function() {
             data: 'id',
             bSortable: false,
             render: function(data, type, row, meta) {
-                return '<a class="btn btn-xs default yellow" data-target="ajax-modal" data-toggle="modal" data-modules="modals" data-source="' + setting.modalSave + '/' + data + '/edit"><i class="fa fa-edit"></i> 编辑</a>\
+                return '<a class="btn btn-xs default yellow" href="' + setting.modalSave + '/' + data + '"><i class="fa fa-edit"></i> 编辑</a>\
                         <a class="btn btn-xs default red"><i class="fa fa-trash-o"></i> 删除</a>\
                 ';
-                
             }
         }/*, {
             data: 'upperPrice',

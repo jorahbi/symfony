@@ -24,7 +24,7 @@ define("tree", function(require, exports, module) {
 		treeElement.find('[ref="tree-root"]').click(function(e){
 			e.stopPropagation();
 			e.preventDefault();
-			var checked = $(this).find('input[type="checkbox"]').attr('checked') != undefined ? false : true;
+			var checked = $(this).find('input[type="checkbox"]').is(':checked') ? false : true;
 			_self.onChecked($(this).closest('ul.tree-root'), checked);
 		});
 	}
@@ -34,7 +34,7 @@ define("tree", function(require, exports, module) {
 		treeElement.find('[ref="tree-node"]').click(function(e){
 			e.stopPropagation();
 			e.preventDefault();
-			var checked = $(this).find('input[type="checkbox"]').attr('checked') != undefined ? false : true;
+			var checked = $(this).find('input[type="checkbox"]').is(':checked') ? false : true;
 			_self.onChecked($(this).closest('ul.tree-node'), checked);
 			checked = checked || _self.isChecked($(this).closest('ul.tree-root'));
 			_self.onChecked($(this).closest('ul.tree-root').find('[ref="tree-root"]'), checked);
@@ -47,7 +47,7 @@ define("tree", function(require, exports, module) {
 		treeElement.find('[ref="tree-leaf"]').click(function(e){
 			e.stopPropagation();
 			e.preventDefault();
-			var checked = $(this).find('input[type="checkbox"]').attr('checked') != undefined ? false : true;
+			var checked = $(this).find('input[type="checkbox"]').is(':checked') ? false : true;
 			var treeNode = $(this).closest('ul.tree-node');
 			_self.onChecked($(this), checked);
 			checked = checked || _self.isChecked(treeNode);
@@ -60,8 +60,9 @@ define("tree", function(require, exports, module) {
 	}
 
 	Tree.prototype.onChecked = function(node, checked){
+//debugger
 		(checked && (node.find('span').addClass('checked'))) || (node.find('span').removeClass('checked'));
-		node.find('input[type="checkbox"]').attr('checked', checked);
+		node.find('input[type="checkbox"]').prop('checked', checked);
 	}
 
 	Tree.prototype.isChecked = function(node){

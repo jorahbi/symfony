@@ -3,7 +3,7 @@
 {{ form_start(form, {'action': path('/admin/system/savePermission'), 'method': 'POST', 'attr': {'class' : ' form-row-sepe', 'id': 'save-permission'}}) }}
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-	<h4 class="modal-title">添加新权限</h4>
+	<h4 class="modal-title">{% if type == 'edit' %}编辑{% else %}添加{% if permission.getId %}子{% else %}新{% endif %}{% endif %}权限 <small>{{permission.getLabel}}</small></h4>
 </div>
 <div class="modal-body">
 	<div class="form-group">
@@ -30,7 +30,13 @@
 		{{ form_widget(form.isMenu, {'attr': {'class': 'col-md-7'}}) }}
 		{{ form_errors(form.isMenu) }}
 	</div>
-
+	<div class="form-group">
+		{{ form_label(form.icon, 'Icon', {'label_attr': {'class' : 'col-md-3'}}) }}
+		<div class="col-sm-7">
+			{{ form_widget(form.icon) }}
+		</div>
+		{{ form_errors(form.icon) }}
+	</div>
 	<div class="form-group">
 		{{ form_label(form.link, '链接', {'label_attr': {'class' : 'col-md-3'}}) }}
 		<div class="col-sm-7">

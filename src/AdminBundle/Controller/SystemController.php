@@ -66,10 +66,10 @@ class SystemController extends Controller
     }
 
     /**
-     * 职位管理添加|修改
-     * @Route("/position", name="/admin/system/position")
+     * 角色管理列表
+     * @Route("/role", name="/admin/system/role")
      */
-    public function positionAction(Request $request)
+    public function roleAction(Request $request)
     {
         if($request->isXmlHttpRequest())
         {
@@ -77,17 +77,33 @@ class SystemController extends Controller
             $result['draw'] = $request->get('draw');
             return $this->json($result);
         }
-        return $this->render('AdminBundle:System:position.html.twig');
+        return $this->render('AdminBundle:System:role.html.twig');
     }
 
     /**
-     * 职位管理添加|修改
-     * @Route("/savePosition/{role}", name="/admin/system/savePosition", defaults={"role": 0}, requirements={"role": "\d+"})
+     * 角色管理添加|修改
+     * @Route("/editRole/{role}", name="/admin/system/editRole", defaults={"role": 0}, requirements={"role": "\d+"})
      */
-    public function savePositionAction(Request $request)
+    public function editRoleAction(Request $request)
     {
         $mAdminPosition = $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPosition');
-        $adminPosition = $request->get('role') == 0 ? new AdminPosition() : $mAdminPosition->findBy(['id' => $request->get('role')]);
+        $adminPosition = $request->get('role') == 0 ? new AdminPosition() : $mAdminPosition->find(['id' => $request->get('role')]);
+        $form = $this->createForm(AdminPositionType::class, $adminPosition);
+        return $this->render('AdminBundle:System:editRole.html.twig', [
+            'form' => $form->createView(),
+            'permissionList' => $adminPosition->getPermission()
+        ]);
+    }
+
+    /**
+     * 修改、保存角色
+     * @Route("/saveRole", name="/admin/system/saveRole")
+     * @Method("POST")
+     */
+    public function saveRoleAction(Request $request)
+    {
+        $mAdminPosition = $this->getDoctrine()->getManager()->getRepository('AdminBundle:AdminPosition');
+        $adminPosition = empty($request->get('admin_position')['roleId']) ? new AdminPosition() : $mAdminPosition->find(['id' => $request->get('admin_position')['roleId']]);
         $form = $this->createForm(AdminPositionType::class, $adminPosition);
         $form->handleRequest($request);
         if($request->isXmlHttpRequest() && $form->isSubmitted())
@@ -105,10 +121,7 @@ class SystemController extends Controller
             }
             return $this->json(['status' => -1, 'data' => [], 'message' => '添加失败']);
         }
-        return $this->render('AdminBundle:System:savePosition.html.twig', [
-            'form' => $form->createView(),
-            'permissionList' => $adminPosition->getPermission()
-        ]);
+        return $this->json(['status' => -1, 'data' => [], 'message' => '非法请求']);
     }
 
     /**
@@ -140,31 +153,36 @@ class SystemController extends Controller
 
     /**
      * 添加后台权限
-     * @Route("/editPermission/{pid}", name="/admin/system/editPermission", defaults={"pid": 0}, requirements={"pid": "\d+"})
+     * @Route("/editPermission/{pid}/{type}", name="/admin/system/editPermission", defaults={"pid": 0, "type": "add"}, requirements={"pid": "\d+"})
      * 默认pid为0 初始为添加菜单
      */
     public function editPermissionAction(Request $request)
     {
-        $permission = $request->get('pid') === 0 ? new Permission() : 
-        $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission')->find($request->get('pid'));
+        $mPermission = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission');
+        (($request->get('pid') === 0) && ($permission = new Permission())) ||
+        (($request->get('type') === 'add') && ($permission = new Permission()) && ($permission->setParent($mPermission->find($request->get('pid'))))) ||
+        (($request->get('type') === 'edit') && ($permission = $mPermission->find($request->get('pid'))));
 
         $form = $this->createForm(PermissionType::class, $permission);
-        return $this->render('AdminBundle:System:editPermission.html.twig', ['form' => $form->createView()]);
+        $assign = [
+            'form' => $form->createView(), 
+            'type' => $request->get('type'),
+            'permission' => $request->get('type') === 'add' ? $permission->getParent() : $permission
+        ];
+        return $this->render('AdminBundle:System:editPermission.html.twig', $assign);
     }
 
 
     /**
-     * 添加后台权限
+     * 保存后台权限
      * @Route("/savePermission", name="/admin/system/savePermission")
      * @Method("POST")
-     * 默认pid为0 初始为添加菜单
      */
     public function savePermissionAction(Request $request)
     {
         $pId = intval($request->get('permission')['id']);
         $mPermission = $this->getDoctrine()->getManager()->getRepository('AdminBundle:Permission');
-        $permission = $pId === 0 ? new Permission() : 
-        $mPermission->find($pId);
+        $permission = $pId === 0 ? new Permission() : $mPermission->find($pId);
         //$permission->getParent();
         $form = $this->createForm(PermissionType::class, $permission);
         $form->handleRequest($request);
@@ -186,7 +204,7 @@ class SystemController extends Controller
 
 
     /**
-     * 添加后台权限
+     * 后台权限列表
      * @Route("/permission/{parent}", name="/admin/system/permission", defaults={"parent": "0"})
      */
     public function permissionAction(Request $request)

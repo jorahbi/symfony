@@ -2,7 +2,6 @@
 
 {% block title %} default {% endblock %}
 {% block body %}
-	{# <link rel="stylesheet" type="text/css" href="http://localhost/formwork/bootstrap/page/assets/global/plugins/jstree/dist/themes/default/style.min.css"> #}
     <!-- BEGIN PAGE CONTENT-->
  <div class="row">
     <div class="col-md-12">
@@ -17,7 +16,7 @@
         
 	        <div class="portlet-body form">
 	        	{% form_theme form 'CommonBundle:Form:bootstrap_3_horizontal_layout.html.twig' %}
-				{{ form_start(form, {'action': path('/admin/system/position'), 'method': 'POST', 'attr': {'role': 'form'}}) }}
+				{{ form_start(form, {'action': path('/admin/system/saveRole'), 'method': 'POST', 'attr': {'role': 'form'}}) }}
 					<div class="form-body">
 						<div class="form-group">
 							{{ form_label(form.title, '职位名称') }}
@@ -28,6 +27,7 @@
 								{{ form_errors(form.title) }}
 							</div>
 						</div>
+
 						<div class="form-group">
 							{{ form_label(form.isEnable, '是否启用') }}
 							{{ form_widget(form.isEnable, {'attr': {'class': 'col-md-5'}}) }}
@@ -37,12 +37,14 @@
 							<label class="col-md-2 control-label">分配权限</label>
 							<div class="col-md-9 list-tree" data-modules="tree">
 								{% for item in permission.permissionTree %}
+									
 								<ul class="list-unstyled tree-root">
 									<li class="">
 										<div class="checkbox-list">
 											<i class="tree-icon tree-closed"></i>
 											<label class="checkbox-inline" ref="tree-root">
-											<input type="checkbox" name="permission_id[]" checked="checked" value="{{ item.getId }}"> {{ item.getLabel }} </label>
+											<input type="checkbox" name="permission_id[]" {% if item.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item.getId }}"> {{ item.getLabel }} 
+										</label>
 										</div>
 										{% for item1 in item.getChildren %}
 										<ul class="list-unstyled tree-hide tree-node">
@@ -50,14 +52,14 @@
 												<div class="checkbox-list">
 													<i class="tree-icon tree-open"></i>
 													<label class="checkbox-inline" ref="tree-node">
-													<input type="checkbox" name="permission_id[]" checked="checked" value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
+													<input type="checkbox" name="permission_id[]" {% if item1.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
 												</div>
 												<ul class="list-unstyled tree-hide tree-leaf">
 													<li class="">
 														<div class="checkbox-list">
 															{% for item2 in item1.getChildren %}
 															<label class="checkbox-inline" ref="tree-leaf">
-															<input type="checkbox" name="permission_id[]" checked="checked" {% if item2.getStatus == 0 %} disabled {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>
+															<input type="checkbox" name="permission_id[]" {% if item2.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>
 															{% endfor %}
 														</div>
 													</li>
