@@ -104,4 +104,31 @@ class PermissionRepository extends \Doctrine\ORM\EntityRepository
 		}
         return $result;
 	}
+
+	/**
+	 * 按权限获取权限列表 Array
+	 * entity parent oneToMany 获取不到
+	 * @param $where 查询条件
+	 * @return []
+	 */
+	public function &getPermissionArray(Array $where = [])
+	{
+		$result = [];
+		foreach($this->findBy($where) as &$item)
+		{
+			$result[$item->getId()] = [
+				'id' => $item->getId(),
+				'label' => $item->getLabel(),
+				'parent_id' => !empty($item->getParent()) ? $item->getParent()->getId() : '0',
+				'link' => $item->getLink(),
+				'icon' => $item->getIcon(),
+				'status' => $item->getStatus(),
+				'isMenu' => $item->getIsMenu(),
+				'lv' => $item->getLv(),
+				'path' => $item->getPath(),
+				'children' => []
+			];
+		}
+		return $result;
+	}
 }

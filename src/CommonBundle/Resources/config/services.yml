@@ -12,6 +12,7 @@ services:
         class: CommonBundle\Services\ArrayService
     common.fileCache:
         class: Symfony\Component\Cache\Adapter\FilesystemAdapter
+#        arguments: ["", 0, "/home/nice/htocs/company/juecai-refactor/var/cache/dev/test"]
     kernel.request_listener:
         class: CommonBundle\EventListener\RequestListener
         arguments: ["@service_container"]

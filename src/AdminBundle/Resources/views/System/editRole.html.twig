@@ -43,23 +43,23 @@
 										<div class="checkbox-list">
 											<i class="tree-icon tree-closed"></i>
 											<label class="checkbox-inline" ref="tree-root">
-											<input type="checkbox" name="permission_id[]" {% if item.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item.getId }}"> {{ item.getLabel }} 
+											<input type="checkbox" name="permission_id[]" {% if item['id']|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item['id'] }}"> {{ item['label'] }} 
 										</label>
 										</div>
-										{% for item1 in item.getChildren %}
+										{% for item1 in item['children'] %}
 										<ul class="list-unstyled tree-hide tree-node">
 											<li class="">
 												<div class="checkbox-list">
 													<i class="tree-icon tree-open"></i>
 													<label class="checkbox-inline" ref="tree-node">
-													<input type="checkbox" name="permission_id[]" {% if item1.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item1.getId }}"> {{ item1.getLabel }} </label>
+													<input type="checkbox" name="permission_id[]" {% if item1['id']|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item1['id'] }}"> {{ item1['label'] }} </label>
 												</div>
 												<ul class="list-unstyled tree-hide tree-leaf">
 													<li class="">
 														<div class="checkbox-list">
-															{% for item2 in item1.getChildren %}
+															{% for item2 in item1['children'] %}
 															<label class="checkbox-inline" ref="tree-leaf">
-															<input type="checkbox" name="permission_id[]" {% if item2.getId|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item2.getId }}"> {{ item2.getLabel }} </label>
+															<input type="checkbox" name="permission_id[]" {% if item2['id']|inArray(permissionList)%}  checked="checked" {% endif %} value="{{ item2['id'] }}"> {{ item2['label'] }} </label>
 															{% endfor %}
 														</div>
 													</li>

@@ -8,22 +8,22 @@
             </a>
         </li>
         {% for menus in permission.permissionTree('admin.menus') %}
-        <li class="{% if menus.getId|inArray(permission.getCurrentMenu['parent']) %}active open {% endif %}">
+        <li class="{% if menus['id']|inArray(permission.getCurrentMenu['parent']) %}active open {% endif %}">
             <a href="javascript:;">
-                <i class="{{ menus.getIcon }}"></i>
-                <span class="title">{{ menus.getLabel }}</span>
+                <i class="{{ menus['icon'] }}"></i>
+                <span class="title">{{ menus['label'] }}</span>
                 <span class="arrow "></span>
             </a>
             <ul class="sub-menu">
-                {% for children1 in menus.getChildren %}
-                <li class="{% if children1.getId|inArray(permission.getCurrentMenu['parent']) %}active open {% endif %}">
+                {% for children1 in menus['children'] %}
+                <li class="{% if children1['id']|inArray(permission.getCurrentMenu['parent']) %}active open {% endif %}">
                     <a href="javascript:;">
-                        <i class="{{ children1.getIcon }}"></i> {{ children1.getLabel }}<span class="arrow"></span>
+                        <i class="{{ children1['icon'] }}"></i> {{ children1['label'] }}<span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
-                        {% for children2 in children1.getChildren %}
-                        <li class="{% if children2.getId|inArray(permission.getCurrentMenu['parent']) %}active{% endif %}">
-                            <a href="{{ path(children2.getLink) }}"><i class="{{ children2.getIcon }}"></i> {{ children2.getLabel }}</a>
+                        {% for children2 in children1['children'] %}
+                        <li class="{% if children2['id']|inArray(permission.getCurrentMenu['parent']) %}active{% endif %}">
+                            <a href="{{ path(children2['link']) }}"><i class="{{ children2['icon'] }}"></i> {{ children2['label'] }}</a>
                         </li>
                         {% endfor %}
                     </ul>

@@ -62,9 +62,8 @@ class PermissionType extends AbstractType
                     'required' => false,
                     'data' => $options['data']->getParent() === NULL ? NULL : $options['data']->getParent()->getId(),
                     'query_builder' => function(EntityRepository $er){
-                       /* $result = $er->createQueryBuilder('p')->andWhere('p.lv = :lv')->setParameter('lv', 1)->orderBy('p.label', 'ASC');
-                        //\Doctrine\Common\Util\Debug::dump($result);
-                        return $result;*/
+                        return $er->createQueryBuilder('p');
+                        //return $result;
                     }
         ])
         ->add('save', SubmitType::class);

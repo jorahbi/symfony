@@ -41,7 +41,7 @@ class ArrayService
         $convertTmp = [];
         foreach ($source as $_item) 
         {
-                $convertTmp[$_item->$getKey()] = $_item;
+            $convertTmp[$_item->$getKey()] = $_item;
         }
         // 转换成树
         $tree = [];
@@ -69,14 +69,25 @@ class ArrayService
     public function &arrayGenerateTree(&$source, $key = 'id', $parent = 'parent_id', $children = 'children')
     {
         $tree = [];
-        foreach($source as $item)
+        foreach($source as $key1 => $item)
         {
             if(isset($source[$item[$parent]])){ 
-                $source[$source[$parent]][$children][] = &$source[$item[$key]];
+                $source[$item[$parent]][$children][] = &$source[$item[$key]];
             }else{
                 $tree[] = &$source[$item[$key]];
             }
         }
         return $tree;
+    }
+
+
+    public function objectToArray($object)
+    {
+        $array = new ArrayCollection();
+        foreach($object as $key => $value)
+        {
+            \Doctrine\Common\Util\Debug::dump($value);die;
+        }
+        
     }
 }

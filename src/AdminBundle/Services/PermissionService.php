@@ -78,9 +78,8 @@ class PermissionService
 			'admin.menus' => ['status' => 1, 'isMenu' => 1],
 			'admin.permissions' => []
 		];
-		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->findBy($filter[$cacheKey]);
-		$this->doctrine->getRepository('AdminBundle:Permission')->clear();
-		$permissions = $this->arrayService->objectGenerateTree($permissions);
+		$permissions = $this->doctrine->getRepository('AdminBundle:Permission')->getPermissionArray($filter[$cacheKey]);
+		$permissions = $this->arrayService->arrayGenerateTree($permissions);
 		$perCache->set($permissions);
         $this->fileCache->save($perCache);
         return $permissions;
